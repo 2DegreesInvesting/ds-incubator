@@ -1,6 +1,6 @@
 # ds-incubator (data scientists' incubator)
 
-> As a data-scientist (researcher, analyst, you name it) who wants to work in a more transparent, reproducible, and collaborative way, I would like to learn and share with my colleagues the best practices in data science.
+> As a data-scientist (researcher, analyst, you name it) who wants to work in a more transparent, reproducible, and collaborative way, I would like to learn and share the best practices in data science.
 >
 > -- Someone with a [growth mindset](https://www.mindsetworks.com/science/).
 
