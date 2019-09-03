@@ -1,4 +1,6 @@
-# ds-incubator (data scientists' incubator)
+# ds-incubator
+
+_data scientists' incubator_
 
 > As a data-scientist (researcher, analyst, you name it) who wants to work in a more transparent, reproducible, and collaborative way, I would like to learn and share the best practices in data science.
 >
