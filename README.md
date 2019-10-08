@@ -6,4 +6,4 @@ The goal of this repository is to share best practices in coding. It hosts mater
 
 ----
 
-Managed by Mauro with support from CJ and guidance from Klaus and Clare. 
+Managed by [Mauro](https://github.com/maurolepore) with support from [CJ](https://github.com/orgs/2DegreesInvesting/people/cjyetman) and guidance from [Klaus](https://github.com/orgs/2DegreesInvesting/people/2diiKlaus) and [Clare](https://github.com/orgs/2DegreesInvesting/people/Clare2D). Thanks Didi for admin support.
