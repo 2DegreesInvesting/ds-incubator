@@ -18,6 +18,6 @@
 * Git clients: None or GitKraken
 
 * How to think about upgrading R, RStudio, and R packages
-    * https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio
-    * https://community.rstudio.com/t/should-i-update-all-my-r-packages-frequently-yes-no-why/5856/4?u=mauro_lepore
-    * The installr package: https://cran.r-project.org/web/packages/installr/index.html
+    * [happy git with r](https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio).
+    * [rscommunity](https://community.rstudio.com/t/should-i-update-all-my-r-packages-frequently-yes-no-why/5856/4?u=mauro_lepore).
+    * The [installr package](https://cran.r-project.org/web/packages/installr/index.html).
