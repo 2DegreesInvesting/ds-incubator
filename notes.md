@@ -1,3 +1,5 @@
+[Googledoc](https://docs.google.com/document/d/1FWiGmwTsr3YuZeQ7NLtTQ42WIm9D5RLxuFuPK4M6FzQ/edit?usp=sharing)
+
 # 2019-10-15, setup GitHub, R, RStudio, Git
 
 * Demo from Introduce yourself to git until the end. 
