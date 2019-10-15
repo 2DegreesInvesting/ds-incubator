@@ -119,7 +119,8 @@ git config —global credential.helper manager
 ```
 
 If we need to remove your git credentials on Windows, they are here:
-    Control Panel > user accounts > credential manager > Windows credentials > Generic credentials
+
+_Control Panel > user accounts > credential manager > Windows credentials > Generic credentials_
 
 SSH: Skip.
 
