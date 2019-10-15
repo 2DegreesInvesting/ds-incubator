@@ -4,7 +4,7 @@
 
 
 
-### Pre-meetup setup
+### Pre-meetup setup (only Mauro)
 
 * Move .gitconfig and .ssh out of ~/
 
