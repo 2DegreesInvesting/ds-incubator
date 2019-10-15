@@ -42,6 +42,18 @@ Upgrading software:
 * Aliases
 * Useful git config
 
+```
+[user]
+	name = Mauro Lepore
+	email = maurolepore@gmail.com
+[push]
+	default = current
+[core]
+	editor = nano
+[credential]
+	helper = manager
+```
+
 ### RStudio
 
 * preview (try the tarball installer)
