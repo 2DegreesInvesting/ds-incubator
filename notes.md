@@ -2,9 +2,22 @@
 
 # 2019-10-15, setup GitHub, R, RStudio, Git
 
-
-
 ### Pre-meetup setup (only Mauro)
+
+#### Meeting room
+
+Option 1:
+
+* https://zoom.us/j/597544351
+* record
+
+Option 2 (if zoom fails):
+
+* https://meet.google.com/ags-rjcf-tqk
+* Or +1 417-986-2948 and enter this PIN: 284 162 277#
+* Record via screen-o- matic
+
+#### Software setup
 
 * Move .gitconfig and .ssh out of ~/
 
