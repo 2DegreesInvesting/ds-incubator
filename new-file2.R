@@ -1,2 +1,3 @@
-A line by contributor
-Another line by contributor
+* A line by contributor.
+* Another line by contributor.
+* Another line by maintainer.
