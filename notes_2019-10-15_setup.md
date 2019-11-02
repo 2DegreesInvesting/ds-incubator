@@ -163,17 +163,3 @@ Do it twice to confirm that the credential manager works as expected.
 ### Contemplate if you’d like to install an optional Git client
 
 I recommend GitKraken: https://www.gitkraken.com/download
-
-
-
-# 2019-10-29, pull request helpers
-
-[GitHub issue for this meetup](https://github.com/2DegreesInvesting/ds-incubator/issues/3).
-
-We'll walk through the help file of the [Helpers for GitHub pull requests](https://usethis.r-lib.org/reference/pr_init.html)
-
-### Related setup information
-
-* [Instructions to setup GitHub, R, RStudio, and Git](https://happygitwithr.com/workshops.html).
-* [usethis setup](https://usethis.r-lib.org/articles/articles/usethis-setup.html)
-* [Get and store a GitHub personal access token](https://usethis.r-lib.org/articles/articles/usethis-setup.html#get-and-store-a-github-personal-access-token).

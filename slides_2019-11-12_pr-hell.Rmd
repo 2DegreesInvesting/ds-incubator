@@ -1,0 +1,11 @@
+---
+subtitle: "Ir a la página siguente"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, child="notes_2019-11-12_pr-hell.Rmd"}
+```
