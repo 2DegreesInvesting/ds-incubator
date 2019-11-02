@@ -19,7 +19,7 @@ Commit and push to source repo
 
 
 
-## Contrubutor
+## Contributor
 
 * Fork source repo
 * Clone locally
@@ -32,7 +32,7 @@ Commit and push to source repo
 * 7ad3e62 (origin/master, origin/HEAD, master) M Add README.md
 ```
 
-## Contrubutor
+## Contributor
 
 * Create pull request on GitHub
 
@@ -60,7 +60,7 @@ Notice conflict
 
 
 
-## Contrubutor
+## Contributor
 
 * Add connection to source repo, then view all connections
 
@@ -76,7 +76,7 @@ upstream        git@github.com:an-org/abc.git (fetch)
 upstream        git@github.com:an-org/abc.git (push)
 ```
 
-## Contrubutor
+## Contributor
 
 * Bring metadata from source repo
 
@@ -101,7 +101,7 @@ From github.com:an-org/abc
 * 7ad3e62 (origin/master, origin/HEAD, master) M Add README.md
 ```
 
-## Contrubutor
+## Contributor
 
 * Sync the local history (contributor) with updated history of source repo:
 
@@ -114,13 +114,13 @@ Recorded preimage for 'README.md'
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-## Contrubutor
+## Contributor
 
 * Fix merge conflicts, then push with `git push`
 
 <img src="https://i.imgur.com/kNwo4of.png" width=760>
 
-## Contrubutor
+## Contributor
 
 * The history of the local repo has now changed to reflect the merge
 

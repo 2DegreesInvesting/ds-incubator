@@ -1,15 +1,16 @@
----
-output: github_document
----
 
-# usethis::pr_sync( )
+# usethis::pr\_sync( )
 
-"_pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )_" ([usethis](https://usethis.r-lib.org/reference/pr_init.html))
+**Before merging your pull request, the source repository adds a
+conflicting commit. Now what?**
 
-_<https://twitter.com/mauro_lepore>_
+“*pr\_sync( ) is a shortcut for pr\_pull( ), pr\_pull\_upstream( ), and
+pr\_push( )*”
+([usethis](https://usethis.r-lib.org/reference/pr_init.html))
+
+*<https://twitter.com/mauro_lepore>*
 
 License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
-
 
 ## 
 
@@ -33,11 +34,13 @@ License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
 
 ## 
 
-But before `[pr]` is merged, the maintainer adds a conflicting change to the source repository
+But before `[pr]` is merged, the maintainer adds a conflicting change to
+the source repository
 
---
+–
 
-_Pero antes de fusionar la `[pr]`, la administradora agrega un cambio conflictivo al repositorio fuente_
+*Pero antes de fusionar la `[pr]`, la administradora agrega un cambio
+conflictivo al repositorio fuente*
 
 ## 
 
