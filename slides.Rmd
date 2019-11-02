@@ -1,5 +1,5 @@
 ---
-subtitle: "Ir a la página siguente"
+subtitle: ">>>"
 output: ioslides_presentation
 ---
 
@@ -7,5 +7,5 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r, child="notes_2019-11-12_pr-hell.Rmd"}
+```{r, child="FIXME.Rmd"}
 ```
