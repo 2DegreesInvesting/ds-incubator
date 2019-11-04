@@ -30,6 +30,10 @@ The maintainer edits `pr1` and accepts it (squash-merges it into the upstream/ma
 
 <img src="https://i.imgur.com/0qBnkt5.png" width = 750 />
 
+## Commit
+
+<img src="https://i.imgur.com/AqXYBig.png" width = 750 />
+
 ## `pr_push()`
 
 <img src="https://i.imgur.com/MP2yvyX.png" width = 750 />
