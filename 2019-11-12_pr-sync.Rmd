@@ -6,7 +6,6 @@ output: github_document
 
 __Before merging your pull request, the source repository adds a conflicting commit. Now what?__
 
-
 "_pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )_" ([usethis](https://usethis.r-lib.org/reference/pr_init.html))
 
 _<https://twitter.com/mauro_lepore>_
@@ -16,7 +15,7 @@ License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
 
 ## `create_from_github()`
 
-<img src="https://i.imgur.com/1kHjVzm.png" width=760>
+<img src="https://i.imgur.com/1kHjVzm.png" width=760 />
 
 ```
 # Fork on GitHub, then run from a terminal:
@@ -29,9 +28,14 @@ git pull upstream master
 git branch --set-upstream-to=upstream/master
 ```
 
-## `git remote --verbose`
+## `git_sitrep()`
 
-<img src="https://i.imgur.com/nCt4aYU.png" width=760>
+<img src="https://i.imgur.com/0K4llKf.png" width=700 />
+
+```
+git remote -v
+```
+
 
 ## `pr_init("pr")`
 
@@ -112,3 +116,4 @@ git pull upstream master
 git push -d origin pr
 git branch -d pr
 ```
+
