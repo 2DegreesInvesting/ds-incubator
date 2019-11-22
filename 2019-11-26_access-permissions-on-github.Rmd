@@ -1,0 +1,17 @@
+---
+output: github_document
+---
+
+# Managing user privileges
+
+## Slide with image
+
+<img src="https://i.imgur.com/vViZK38.png" width = 750 />
+
+## Links
+
+Access permissions on GitHub
+
+How this relates to GitHub workflow?
+
+https://help.github.com/en/github/getting-started-with-github/access-permissions-on-github
