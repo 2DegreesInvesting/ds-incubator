@@ -2,13 +2,64 @@
 output: github_document
 ---
 
-## [Permission levels for an organization](https://help.github.com/en/github/getting-started-with-github/access-permissions-on-github)
+## [Access permissions for a GitHub organization](https://help.github.com/en/github/getting-started-with-github/access-permissions-on-github)
+
+# Situation
+
+* You want to propose changes to a source repo on a GitHub organization.
+* The organization uses the GitHub workflow.
+
+## Set the usual plumbing
+
+* Fork the source repo to your user account on GitHub.
+* Create a local clone of your fork.
+* Connect your local clone with your fork (i.e. add remote origin).
+* Connect your local clone with the source repo (i.e. add remote upstream).
+
+_Which function from the usethis package could you use?_
+
+## Initiate and work on your PR
+
+* Create a local branch to host your pull request (PR).
+* Change something in your local clone.
+* Create a commit with a message of what changed and why.
+
+_Which function from the usethis package could you use?_
+
+## Synchronize, push, and submit your PR
+
+* Synchronize the source repository to get the latest changes.
+* Push your commit to your fork.
+* Submit a pull request.
+
+_Which functions from the usethis package could you use?_
+
+## But you are feeling adventurous
+
+You did all of that by hand and some things went wrong:
+
+1. You copied the wrong URL so remote origin now points to the source repo -- not your fork.
+2. You forgot to create a new branch and commited to your local `master` branch.
+
+## What happens when you push?
+
+1. Your commit(s) are now in the PR branch of your fork.
+1. Your commit(s) are now in the master branch of your fork.
+1. Your commit(s) are now in the PR branch  of the source repo.
+1. Your commit(s) are now in the master branch of the source repo.
+1. You fail to push and get an error.
+1. It depends on your role and permission level:
+    
+    * Roles: Owner, ..., member, collaborator.
+    * Permission levels: Admin, ..., push (write), read.
+
+## [Owner, billing manager & member](https://help.github.com/en/github/getting-started-with-github/access-permissions-on-github)
 
 __Organization members can have owner, billing manager, or member roles.__
 
 __Owners__ have complete administrative access to your organization, while __billing managers__ can manage billing settings. __Member__ is the default role for everyone else. 
 
-Members, teams & outside collaborators:
+## Members, teams & outside collaborators
 
 * You can set the default of what any organization members can do for all repos.
 * You can manage access permissions for multiple members at a time with __teams__.
@@ -16,19 +67,25 @@ Members, teams & outside collaborators:
 
 ## Permission levels for repositories
 
-* __Read__: Recommended for non-code contributors who want to view or discuss your project
-* __Triage__: Recommended for contributors who need to proactively manage issues and pull requests without write access
-* __Write__: Recommended for contributors who actively push to your project
-* __Maintain__: Recommended for project managers who need to manage the repository without access to sensitive or destructive actions
-* __Admin__: Recommended for people who need full access to the project, including sensitive and destructive actions like managing security or deleting a repository
+* __Read__: Recommended for non-code contributors who want to view or discuss your project.
 
-__Organization owners have admin permissions for every repository owned by the organization.__
+* __Triage__: Recommended for contributors who need to proactively manage issues and pull requests without write access.
 
-For more information, see [Repository access for each permission level](https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#repository-access-for-each-permission-level)
+* __Write__: Recommended for contributors who actively push to your project.
+
+* __Maintain__: Recommended for project managers who need to manage the repository without access to sensitive or destructive actions.
+
+* __Admin__: Recommended for people who need full access to the project, including sensitive and destructive actions like managing security or deleting a repository.
+
+## Permission levels for repositories
+
+* __Admin__: Recommended for people who need full access to the project, including sensitive and destructive actions like managing security or deleting a repository.
+
+__Organization owners have admin permissions for every repository owned by the organization__ ([table](https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#repository-access-for-each-permission-level)).
 
 ## Org settings: People
 
-<img src="https://i.imgur.com/gmUDwRF.png" width = 750 />
+<img src="https://i.imgur.com/gmUDwRF.png" width = 700 />
 
 ## Example: An owner's privileges
 
@@ -46,19 +103,12 @@ For more information, see [Repository access for each permission level](https://
 
 <img src="https://i.imgur.com/raoaf6i.png" width = 750 />
 
-## Situations
-
-You fork a repo, add a commit and push accidentally push it to upstream/master. What happens if?
-
-* As an individual you have read only access to the repo.
-* All members are set to have admin/read privileges.
-* You are an owner/member/collaborator.
-
-## How this relates to the GitHub workflow?
-
-It depends on the workflow: GitHub workflow
-
-## Conclusion
+## Advice
 
 * Give Owner permissions to a small group of people.
 * Don't give people more access to the project than they need.
+* Let usethis help you.
+
+> "You do not rise to the level of your goals. You fall to the level of your systems".
+>
+> -- James Clear in Atomic Habits
