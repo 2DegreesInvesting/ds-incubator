@@ -124,12 +124,10 @@ __Organization owners have admin permissions for every repository owned by the o
 
 <img src="https://i.imgur.com/raoaf6i.png" width = 750 />
 
-## Advice
 
-* Don't give people more access to the project than they need.
 
-* Be pragmatic ([The pragmatic programmer (2nd edition)](https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=asc_df_0135957052/?tag=hyprod-20&linkCode=df0&hvadid=385599638286&hvpos=1o1&hvnetw=g&hvrand=10153582926800634949&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9027584&hvtargid=pla-826212996228&psc=1&tag=&ref=&adgrpid=79288120515&hvpone=&hvptwo=&hvadid=385599638286&hvpos=1o1&hvnetw=g&hvrand=10153582926800634949&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9027584&hvtargid=pla-826212996228))
+# "You do not rise to the level of your goals. You fall to the level of your systems" -- [James Clear, Atomic Habits](https://jamesclear.com/atomic-habits)
 
-> "You do not rise to the level of your goals. You fall to the level of your systems"
-> 
-> -- James Clear
+* __People should have just the access they need.__
+* __[Be pragmatic](https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=asc_df_0135957052/?tag=hyprod-20&linkCode=df0&hvadid=385599638286&hvpos=1o1&hvnetw=g&hvrand=10153582926800634949&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9027584&hvtargid=pla-826212996228&psc=1&tag=&ref=&adgrpid=79288120515&hvpone=&hvptwo=&hvadid=385599638286&hvpos=1o1&hvnetw=g&hvrand=10153582926800634949&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9027584&hvtargid=pla-826212996228).__
+
