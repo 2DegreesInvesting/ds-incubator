@@ -12,9 +12,9 @@ output: github_document
 
 
 
-## Por que user solicitudes de fusion?
+## Por que usar solicitudes de fusión?
 
-Las solicitudes de fusion (__PR: _pull requests___) son el componente central de las contribuciones al codigo abierto. 
+Las solicitudes de fusión (__PR: _pull requests___) son el componente central de las contribuciones al código abierto. 
 
 <img src="https://i.imgur.com/VA5kiWA.png" width=760 />
 
@@ -22,19 +22,32 @@ Las solicitudes de fusion (__PR: _pull requests___) son el componente central de
 
 ## Por que usethis?
 
-Las conexiones son complejas y es facil equivocarse.
+Las conexiones son complejas y es fácil equivocarse.
 
 <img src="https://i.imgur.com/3r95UJw.png" width=760 />
 
 ## Por que usethis?
 
-[Las ayudantes para solicitudes de fusion de GitHub](https://usethis.r-lib.org/reference/pr_init.html): 
+[Las ayudantes para solicitudes de fusión de GitHub](https://usethis.r-lib.org/reference/pr_init.html): 
 
 * Automatizan lo automatizable.
 * Implementan las mejores practicas.
 * Evitan errores.
 
-# Demostracion
+
+
+## Ejemplo
+
+__\@forestgeoguest__ contribuye a __an-org/abc__:
+
+* Bifurca y clona el repositorio.
+* Hace cambios y somete una PR.
+* Nota conflictos.
+* Sincroniza, soluciona, y actualiza la PR.
+* Nota que la PR fue aceptada.
+* Finaliza la PR.
+
+
 
 ## `create_from_github()`
 
@@ -56,13 +69,18 @@ git pull upstream master
 git branch --set-upstream-to=upstream/master
 ```
 
+
+
 ## `git_sitrep()`
 
-<img src="https://i.imgur.com/3VJY7JN.png" width=650 />
+<img src="https://i.imgur.com/3VJY7JN.png" width=600 />
 
 ```
+# forestgeoguest@LAPTOP ~/abc (master)
 git remote -v
 ```
+
+
 
 ## `pr_init("pr")`
 
@@ -75,6 +93,8 @@ git branch pr
 git checkout pr
 ```
 
+
+
 ## `pr_push()`
 
 <img src="https://i.imgur.com/Msc9YGw.png" width = 750 />
@@ -85,6 +105,8 @@ git push origin
 git branch --set-upstream-to=origin/pr
 ```
 
+
+
 ## 
 
 ### <https://github.com/forestgeoguest/abc/compare/pr>
@@ -92,6 +114,8 @@ git branch --set-upstream-to=origin/pr
 <img src="https://i.imgur.com/S5FWZMu.png" width = 750 />
 
 <img src="https://i.imgur.com/ND8vC7e.png" width = 750 />
+
+
 
 ## 
 
@@ -102,6 +126,8 @@ __Pero antes de fusionar la PR, la administradora del repositorio agrega un camb
 __Y ese cambio entra en conflicto con la PR.__
 
 <img src="https://i.imgur.com/z9OP7rP.png" width = 700 />
+
+
 
 ## `pr_sync()`
 
@@ -116,9 +142,13 @@ git pull upstream master
 git push
 ```
 
-## Solve merge conflicts
+
+
+## Resolver conflictos de fusión
 
 <img src="https://i.imgur.com/bw70s0R.png" width = 750 />
+
+
 
 ## `pr_push()`
 
@@ -132,15 +162,21 @@ git pull upstream master
 git push
 ```
 
-## La solucitud de fusion es aceptada
+
+
+## La solicitud de fusión es aceptada
 
 __`[pr]` ya no tiene conflictos con `[upstream/master]`__
 
 <img src="https://i.imgur.com/bVkV0PP.png" width = 650 />
 
+
+
 ## Historia del repositorio fuente
 
 <img src="https://i.imgur.com/OezvXhH.png" width = 650 />
+
+
 
 ## `pr_finish()`
 
