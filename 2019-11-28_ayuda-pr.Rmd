@@ -20,11 +20,11 @@ License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
 
 ```
 # Fork on GitHub, then run from a terminal:
-git clone git@github.com:maurolepore/abc.git
+git clone https://github.com/forestgeoguest/abc.git
 cd abc
 
 # forestgeoguest@LAPTOP ~/abc (master)
-git remote add upstream git@github.com:an-org/abc.git
+git remote add upstream https://github.com/an-org/abc.git
 git pull upstream master
 git branch --set-upstream-to=upstream/master
 ```
