@@ -193,7 +193,7 @@ git branch -d pr
 ```
 
 
+# __Déjate ayudar por usethis__
 
-# "No subes al nivel de tus metas. Caes el nivel de tus sistemas." - [James Clear](https://jamesclear.com/atomic-habits)
+__"No subes al nivel de tus metas. Caes el nivel de tus sistemas." - [James Clear](https://jamesclear.com/atomic-habits)__
 
-### __Déjate ayudar por usethis__
