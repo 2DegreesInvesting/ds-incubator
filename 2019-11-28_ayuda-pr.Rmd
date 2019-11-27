@@ -21,7 +21,7 @@ License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
 git clone git@github.com:maurolepore/abc.git
 cd abc
 
-# Contrib@LAPTOP ~/abc (master)
+# forestgeoguest@LAPTOP ~/abc (master)
 git remote add upstream git@github.com:an-org/abc.git
 git pull upstream master
 git branch --set-upstream-to=upstream/master
@@ -40,7 +40,7 @@ git remote -v
 <img src="https://i.imgur.com/i6NNP9x.png" width=760>
 
 ```
-# Contrib@LAPTOP ~/abc (master)
+# forestgeoguest@LAPTOP ~/abc (master)
 git pull upstream master
 git branch pr
 git checkout pr
@@ -51,7 +51,7 @@ git checkout pr
 <img src="https://i.imgur.com/Msc9YGw.png" width = 750 />
 
 ```
-# Contrib@LAPTOP ~/abc (pr)
+# forestgeoguest@LAPTOP ~/abc (pr)
 git push origin
 git branch --set-upstream-to=origin/pr
 ```
@@ -77,7 +77,7 @@ git branch --set-upstream-to=origin/pr
 <img src="https://i.imgur.com/4DwVcTM.png" width = 550 />
 
 ```
-# Contrib@LAPTOP ~/abc (pr)
+# forestgeoguest@LAPTOP ~/abc (pr)
 # Using default remote "origin" and branch "pr"
 # `git pull` is shorthand for `git fetch && git merge FETCH_HEAD`
 git pull
@@ -94,7 +94,7 @@ git push
 <img src="https://i.imgur.com/lysBvtt.png" width = 700 />
 
 ```
-# Contrib@LAPTOP ~/abc (pr)
+# forestgeoguest@LAPTOP ~/abc (pr)
 # Retry sync
 git pull
 git pull upstream master
@@ -114,10 +114,10 @@ git push
 <img src="https://i.imgur.com/jT5gfJY.png" width = 750 />
 
 ```
-# Contrib@LAPTOP ~/abc (pr)
+# forestgeoguest@LAPTOP ~/abc (pr)
 git checkout master
 
-# Contrib@LAPTOP ~/abc (master)
+# forestgeoguest@LAPTOP ~/abc (master)
 git pull upstream master
 git push -d origin pr
 git branch -d pr
