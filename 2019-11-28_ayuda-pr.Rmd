@@ -2,24 +2,51 @@
 output: github_document
 ---
 
-# usethis::pr_sync( )
+# Ayuda para solicitudes de fusión en GitHub  
 
-__Before merging your pull request, the source repository adds a conflicting commit. Now what?__
+<https://twitter.com/mauro_lepore>
 
-"_pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )_" ([usethis](https://usethis.r-lib.org/reference/pr_init.html))
+* Todo disponible en <http://bit.ly/FIXME>.
+* Presentación en [FIXME](XXXXXXX).
+* [Licencia CCO](https://creativecommons.org/choose/zero/?lang=es)
 
-_<https://twitter.com/mauro_lepore>_
 
-License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
+
+## Por que user solicitudes de fusion?
+
+Las solicitudes de fusion (__PR: _pull requests___) son el componente central de las contribuciones al codigo abierto. 
+
+<img src="https://i.imgur.com/VA5kiWA.png" width=760 />
+
+
+
+## Por que usethis?
+
+Las conexiones son complejas y es facil equivocarse.
+
+<img src="https://i.imgur.com/3r95UJw.png" width=760 />
+
+## Por que usethis?
+
+[Las ayudantes para solicitudes de fusion de GitHub](https://usethis.r-lib.org/reference/pr_init.html): 
+
+* Automatizan lo automatizable.
+* Implementan las mejores practicas.
+* Evitan errores.
+
+# Demostracion
 
 ## `create_from_github()`
 
 <img src="https://i.imgur.com/8WhfKjZ.png" width=760 />
 
-## `create_from_github()`
+...
+
+## ...
 
 ```
-# Fork on GitHub, then run from a terminal:
+# Bifurca (Fork) el repositorio fuente en GitHub. 
+# Luego:
 git clone https://github.com/forestgeoguest/abc.git
 cd abc
 
@@ -31,7 +58,7 @@ git branch --set-upstream-to=upstream/master
 
 ## `git_sitrep()`
 
-<img src="https://i.imgur.com/3VJY7JN.png" width=700 />
+<img src="https://i.imgur.com/3VJY7JN.png" width=650 />
 
 ```
 git remote -v
@@ -68,11 +95,13 @@ git branch --set-upstream-to=origin/pr
 
 ## 
 
-### But before `[pr]` is merged, the maintainer adds a conflicting change to the source repository
+__Pero antes de fusionar la PR, la administradora del repositorio agrega un cambio al repositorio fuente.__
 
-<img src="https://i.imgur.com/dp64HxK.png" width = 750 />
+<img src="https://i.imgur.com/dp64HxK.png" width = 700 />
 
-<img src="https://i.imgur.com/z9OP7rP.png" width = 750 />
+__Y ese cambio entra en conflicto con la PR.__
+
+<img src="https://i.imgur.com/z9OP7rP.png" width = 700 />
 
 ## `pr_sync()`
 
@@ -80,8 +109,8 @@ git branch --set-upstream-to=origin/pr
 
 ```
 # forestgeoguest@LAPTOP ~/abc (pr)
-# Using default remote "origin" and branch "pr"
-# `git pull` is shorthand for `git fetch && git merge FETCH_HEAD`
+# Usando el remoto por defecto "origin", y la rama "pr"
+# `git pull` es un atajo para `git fetch && git merge FETCH_HEAD`
 git pull
 git pull upstream master
 git push
@@ -97,19 +126,21 @@ git push
 
 ```
 # forestgeoguest@LAPTOP ~/abc (pr)
-# Retry sync
+# Reintenta soncronizar
 git pull
 git pull upstream master
 git push
 ```
 
-## `[pr]` now has no conflicts with `[upstream/master]`
+## La solucitud de fusion es aceptada
 
-<img src="https://i.imgur.com/bVkV0PP.png" width = 750 />
+__`[pr]` ya no tiene conflictos con `[upstream/master]`__
 
-## Commits history
+<img src="https://i.imgur.com/bVkV0PP.png" width = 650 />
 
-<img src="https://i.imgur.com/OezvXhH.png" width = 750 />
+## Historia del repositorio fuente
+
+<img src="https://i.imgur.com/OezvXhH.png" width = 650 />
 
 ## `pr_finish()`
 
@@ -125,3 +156,8 @@ git push -d origin pr
 git branch -d pr
 ```
 
+
+
+# "No subes al nivel de tus metas. Caes el nivel de tus sistemas." - [James Clear](https://jamesclear.com/atomic-habits)
+
+### __Déjate ayudar por usethis__
