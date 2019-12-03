@@ -1,9 +1,6 @@
 
 # Avoid hidden arguments
 
-**“Functions are easier to understand if the results depend only on the
-values of the inputs”**
-
 – [Tidyverse design
 guide](https://principles.tidyverse.org/args-hidden.html)
 
@@ -11,11 +8,31 @@ guide](https://principles.tidyverse.org/args-hidden.html)
 
 License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
 
-## “Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other state”
+## Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other state
+
+``` r
+y <- 1
+add <- function(x) {
+  x + y
+}
+add(1)
+```
+
+    ## [1] 2
+
+``` r
+y <- 10 ## It is hard to keep track of this
+
+add(1)  
+```
+
+    ## [1] 11
+
+## Functions are easier to understand if the results depend only on the values of the inputs
 
 ## How can I remediate the problem?
 
-If you have an existing function with a hidden input, you’ll need to
+If you have an existing function with a hidden input:
 
 1.  Make sure the input is an explicit option.
 2.  Make sure it’s printed.
@@ -25,13 +42,13 @@ If you have an existing function with a hidden input, you’ll need to
 The output depends on `data`, but it is hidden.
 
 ``` r
-path <- tempfile()
-readr::write_csv(mtcars, path)
-
 prepare_data <- function() {
   data <- read.csv(path)
   data[1:2, 1:2]
 }
+
+path <- tempfile()
+readr::write_csv(mtcars, path)
 
 prepare_data()
 ```
@@ -59,16 +76,17 @@ prepare_data()
 ``` r
 prepare_data <- function(data = read.csv(path)) {
   if (missing(data)) {
-    message("Using `data` with columns: ", paste(names(data), collapse = ", "))
+    message(
+      "Using `data` with names: ", paste(names(data), collapse = ", ")
+    )
   }
-  
   data[1:2, 1:2]
 }
 
 prepare_data()
 ```
 
-    ## Using `data` with columns: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
+    ## Using `data` with names: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
 
     ##   mpg cyl
     ## 1  21   6
@@ -84,14 +102,11 @@ prepare_data(read.csv(path))
 
 ## But `data` should be supplied
 
-> Function arguments should always come in the same order: data, then
-> descriptors, then details.
-
 > Data arguments provide the core data. They are required, and are
 > usually vectors and often determine the type and size of the output.
-> Data arguments are often called `data`, `x`, or `y`.
-
-<https://principles.tidyverse.org/args-data-details.html>
+> Data arguments are often called `data`, `x`, or `y` – [tidyverse
+> design
+> guide](https://principles.tidyverse.org/args-data-details.html).
 
 ``` r
 prepare_data <- function(data) {
@@ -111,6 +126,8 @@ prepare_data(data)
     ##   mpg cyl
     ## 1  21   6
     ## 2  21   6
+
+# Some functions do need to depend on external state …
 
 ## A function has hidden arguments when it returns different results with the same inputs in a surprising way
 
