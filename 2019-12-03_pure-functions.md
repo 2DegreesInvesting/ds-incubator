@@ -1,25 +1,172 @@
 
-# What Is a Pure Function?
+# Avoid hidden arguments
 
-### [Pure functions in programming and their benefits](https://medium.com/better-programming/what-is-a-pure-function-3b4af9352f6f)
+**“Functions are easier to understand if the results depend only on the
+values of the inputs”**
 
-*<https://twitter.com/mauro_lepore>*
+– [Tidyverse design
+guide](https://principles.tidyverse.org/args-hidden.html)
+
+<https://twitter.com/mauro_lepore>
 
 License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
 
-## Pure function
+## “Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other state”
 
-A function that has the following properties:
+## How can I remediate the problem?
 
-1.  The function always returns the same value for the same inputs.
+If you have an existing function with a hidden input, you’ll need to
 
-2.  Evaluation of the function has no side effects (give feedback or
-    change global state – see [Side-effect
-    soup](https://principles.tidyverse.org/side-effect-soup.html#side-effect-soup))
+1.  Make sure the input is an explicit option.
+2.  Make sure it’s printed.
 
-Effectively, a pure function’s return value is based only on its inputs
-and has no other dependencies or effects on the overall program.
+## For example, take `prepare_data()`
 
-## Avoid hidden arguments
+The output depends on `data`, but it is hidden.
 
-<https://principles.tidyverse.org/args-hidden.html>
+``` r
+path <- tempfile()
+readr::write_csv(mtcars, path)
+
+prepare_data <- function() {
+  data <- read.csv(path)
+  data[1:2, 1:2]
+}
+
+prepare_data()
+```
+
+    ##   mpg cyl
+    ## 1  21   6
+    ## 2  21   6
+
+## 1\. `prepare_data()` gains the explicit argument `data`
+
+``` r
+prepare_data <- function(data = read.csv(path)) {
+  data[1:2, 1:2]
+}
+
+prepare_data()
+```
+
+    ##   mpg cyl
+    ## 1  21   6
+    ## 2  21   6
+
+## 2\. `prepare_data()` now prints `data`
+
+``` r
+prepare_data <- function(data = read.csv(path)) {
+  if (missing(data)) {
+    message("Using `data` with columns: ", paste(names(data), collapse = ", "))
+  }
+  
+  data[1:2, 1:2]
+}
+
+prepare_data()
+```
+
+    ## Using `data` with columns: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
+
+    ##   mpg cyl
+    ## 1  21   6
+    ## 2  21   6
+
+``` r
+prepare_data(read.csv(path))
+```
+
+    ##   mpg cyl
+    ## 1  21   6
+    ## 2  21   6
+
+## But `data` should be supplied
+
+> Function arguments should always come in the same order: data, then
+> descriptors, then details.
+
+> Data arguments provide the core data. They are required, and are
+> usually vectors and often determine the type and size of the output.
+> Data arguments are often called `data`, `x`, or `y`.
+
+<https://principles.tidyverse.org/args-data-details.html>
+
+``` r
+prepare_data <- function(data) {
+  data[1:2, 1:2]
+}
+
+try(prepare_data())
+```
+
+    ## Error in prepare_data() : argument "data" is missing, with no default
+
+``` r
+data <- read.csv(path)
+prepare_data(data)
+```
+
+    ##   mpg cyl
+    ## 1  21   6
+    ## 2  21   6
+
+## A function has hidden arguments when it returns different results with the same inputs in a surprising way
+
+## Surprising
+
+``` r
+getOption("stringsAsFactors")
+```
+
+    ## [1] TRUE
+
+``` r
+data.frame(x = "a")$x
+```
+
+    ## [1] a
+    ## Levels: a
+
+``` r
+old_options <- options(stringsAsFactors = FALSE)
+on.exit(old_options)
+
+getOption("stringsAsFactors")
+```
+
+    ## [1] FALSE
+
+``` r
+data.frame(x = "a")$x
+```
+
+    ## [1] "a"
+
+Global options should not affect computation.
+
+## Not surprising
+
+`read_csv(path)` depends not only on `path` but also on the contents of
+the file, but that is not surprising.
+
+``` r
+library(readr)
+path <- tempfile()
+
+write_csv(mtcars, path)
+
+names(read_csv(path))
+```
+
+    ##  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+    ## [11] "carb"
+
+``` r
+write_csv(iris, path)
+
+names(read_csv(path))
+```
+
+    ## [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"

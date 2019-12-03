@@ -4,7 +4,12 @@ output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(
+    echo = TRUE,
+    comment = "#>",
+    error = TRUE,
+    collapse = TRUE
+)
 ```
 
 ```{r, child="2019-12-03_pure-functions.Rmd"}
