@@ -1,5 +1,5 @@
 ---
-subtitle: ">>>"
+title: Reproducible examples
 output: ioslides_presentation
 ---
 
@@ -12,5 +12,5 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, child="2019-12-03_pure-functions.Rmd"}
+```{r, child="2019-12-10_reprex.Rmd"}
 ```

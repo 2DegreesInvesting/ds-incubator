@@ -1,0 +1,152 @@
+---
+title: Creating reproducible examples
+output: github_document
+---
+
+```{r, echo=FALSE}
+readr::write_csv(datasets::BOD, "your-file.csv")
+```
+
+
+# The reprex package
+
+## reprex
+
+* [reprex usage](https://reprex.tidyverse.org/index.html#usage)
+* [Reprex do’s and don’ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html)
+* [This seems like a lot of work!](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html#this-seems-like-a-lot-of-work)
+* [Using datapasta with reprex](https://reprex.tidyverse.org/articles/articles/datapasta-reprex.html)
+
+
+
+# Creating data
+
+
+
+## Creating data from an R object
+
+```{r}
+# Biochemical Oxygen Demand
+datasets::BOD
+```
+
+
+
+## `dput()`
+
+```{r}
+dput(BOD)
+
+bod <- structure(list(Time = c(1, 2, 3, 4, 5, 7), demand = c(8.3, 10.3, 
+19, 16, 15.6, 19.8)), class = "data.frame", row.names = c(NA, 
+-6L), reference = "A1.4, p. 270")
+
+bod
+```
+
+
+
+## `datapasta::dpasta()`
+
+```
+BOD %>% 
+  datapasta::dpasta()
+
+#>  data.frame(
+#>        Time = c(1, 2, 3, 4, 5, 7),
+#>      demand = c(8.3, 10.3, 19, 16, 15.6, 19.8)
+#> )
+```
+
+
+
+## `datapasta::tribble_paste()`
+
+```
+BOD %>% 
+  datapasta::tribble_paste()
+
+#> tibble::tribble(
+#>   ~Time, ~demand,
+#>       1,     8.3,
+#>       2,    10.3,
+#>       3,      19,
+#>       4,      16,
+#>       5,    15.6,
+#>       7,    19.8
+#>   )
+```
+
+
+
+# Beyond reprex
+
+
+
+## Why .Rmd?
+
+* reprex can't read data from your system
+
+```r
+reprex::reprex(
+  readr::read_csv(here::here("your-file.csv"))
+)
+#> Error: 'your-file.csv' does not exist in current working directory
+('C:/Users/Mauro/AppData/Local/Temp/RtmpCqzepI/reprex4e7022114c1f').
+```
+
+* reprex can.
+
+```{r, message=FALSE}
+data <- readr::read_csv(here::here("your-file.csv"))
+head(data, 2)
+```
+
+
+
+## Create a GitHub document
+
+_File > New File > R Markdown...
+
+<img src="https://i.imgur.com/JcJYQXy.png" width=600 />
+
+
+
+## Why `here::here`?
+
+.Rmd files have a weird notion of working directory
+
+<img src="https://i.imgur.com/2RQA3Kf.png" width=600/>
+
+`here::here()` is what you normally expect.
+
+```{r}
+here::here()
+```
+
+## Workflow
+
+* Write your-file.Rmd, e.g.:
+
+```{r, message=FALSE}
+library(here)
+library(readr)
+
+path <- here::here("your-file.csv")
+data <- readr::read_csv(path)
+
+head(data, 2)
+
+# More code ...
+```
+
+* Knit your-file.Rmd (press the _Knit_ button).
+
+* Commit and push; GitHub will render your-file.md beautifully.
+* Share the link to your-file.md
+
+
+```{r cleaup, echo=FALSE}
+on.exit(fs::file_delete(path))
+```
+
