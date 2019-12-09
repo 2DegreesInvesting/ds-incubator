@@ -130,23 +130,20 @@ here::here()
 
 ```{r, message=FALSE}
 library(here)
-library(readr)
 
-path <- here::here("your-file.csv")
-data <- readr::read_csv(path)
-
+data <- read.csv(here::here("your-file.csv"), stringsAsFactors = FALSE)
 head(data, 2)
 
 # More code ...
 ```
 
 * Knit your-file.Rmd (press the _Knit_ button).
-
 * Commit and push; GitHub will render your-file.md beautifully.
-* Share the link to your-file.md
+* Share your-file.csv and the [link to your-file.md](https://github.com/2DegreesInvesting/ds-incubator/blob/master/2019-12-10_reprex.md).
+
 
 
 ```{r cleaup, echo=FALSE}
-on.exit(fs::file_delete(path))
+on.exit(fs::file_delete("your-file.csv"))
 ```
 
