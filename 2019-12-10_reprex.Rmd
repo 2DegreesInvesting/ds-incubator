@@ -8,8 +8,6 @@ readr::write_csv(datasets::BOD, "your-file.csv")
 ```
 
 
-# The reprex package
-
 ## reprex
 
 * [reprex usage](https://reprex.tidyverse.org/index.html#usage)
@@ -19,68 +17,7 @@ readr::write_csv(datasets::BOD, "your-file.csv")
 
 
 
-# Creating data
-
-
-
-## Creating data from an R object
-
-```{r}
-# Biochemical Oxygen Demand
-datasets::BOD
-```
-
-
-
-## `dput()`
-
-```{r}
-dput(BOD)
-
-bod <- structure(list(Time = c(1, 2, 3, 4, 5, 7), demand = c(8.3, 10.3, 
-19, 16, 15.6, 19.8)), class = "data.frame", row.names = c(NA, 
--6L), reference = "A1.4, p. 270")
-
-bod
-```
-
-
-
-## `datapasta::dpasta()`
-
-```
-BOD %>% 
-  datapasta::dpasta()
-
-#>  data.frame(
-#>        Time = c(1, 2, 3, 4, 5, 7),
-#>      demand = c(8.3, 10.3, 19, 16, 15.6, 19.8)
-#> )
-```
-
-
-
-## `datapasta::tribble_paste()`
-
-```
-BOD %>% 
-  datapasta::tribble_paste()
-
-#> tibble::tribble(
-#>   ~Time, ~demand,
-#>       1,     8.3,
-#>       2,    10.3,
-#>       3,      19,
-#>       4,      16,
-#>       5,    15.6,
-#>       7,    19.8
-#>   )
-```
-
-
-
-# Beyond reprex
-
+# Beyond reprex (.Rmd)
 
 
 ## Why .Rmd?
@@ -95,7 +32,7 @@ reprex::reprex(
 ('C:/Users/Mauro/AppData/Local/Temp/RtmpCqzepI/reprex4e7022114c1f').
 ```
 
-* reprex can.
+* R Markdown can.
 
 ```{r, message=FALSE}
 data <- readr::read_csv(here::here("your-file.csv"))
@@ -104,15 +41,7 @@ head(data, 2)
 
 
 
-## Create a GitHub document
-
-_File > New File > R Markdown...
-
-<img src="https://i.imgur.com/JcJYQXy.png" width=600 />
-
-
-
-## Why `here::here`?
+## Why `here::here()`?
 
 .Rmd files have a weird notion of working directory
 
@@ -124,14 +53,24 @@ _File > New File > R Markdown...
 here::here()
 ```
 
-## Workflow
+
+
+## Reproducible examples with R Markdown
+
+_File > New File > R Markdown..._
+
+<img src="https://i.imgur.com/JcJYQXy.png" width=600 />
+
+
+
+## Reproducible examples with R Markdown
 
 * Write your-file.Rmd, e.g.:
 
 ```{r, message=FALSE}
-library(here)
+library(readr)
 
-data <- read.csv(here::here("your-file.csv"), stringsAsFactors = FALSE)
+data <- read_csv(here::here("your-file.csv"))
 head(data, 2)
 
 # More code ...
