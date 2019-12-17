@@ -1,5 +1,5 @@
 ---
-title: Creating reproducible examples
+title: Reusing tidyverse code
 output: ioslides_presentation
 ---
 

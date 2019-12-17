@@ -7,6 +7,71 @@ output: github_document
 readr::write_csv(datasets::BOD, "your-file.csv")
 ```
 
+# Reusing tidyverse code
+
+### [Lionel Henry, UseR 2019](https://www.youtube.com/watch?v=C78fcsJmESI&feature=youtu.be).
+
+##
+
+<img src="https://i.imgur.com/WVOubD0.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/XfZlsyW.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/A5b9HGY.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/QmNZule.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/eSXBwPt.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/0uSqUaU.png" align="center" width = 750 />
+
+
+##
+
+<img src="https://i.imgur.com/z0iJol2.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/oEAacwc.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/ZuBudWs.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/RPDnQFz.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/Ryqn0EH.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/oyrTTel.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/l2q54yM.png" align="center" width = 750 />
+
+##
+
+<img src="https://i.imgur.com/sGo0Sa5.png" align="center" width = 750 />
+
+# Tidy evel in context
+
+### [Jenny Bryan, rstudio::conf 2019](https://resources.rstudio.com/rstudio-conf-2019/lazy-evaluation)
+
 ## Wait! Before you learn tidy eval
 
 <img src="https://i.imgur.com/7juk8pI.png" width=760>
