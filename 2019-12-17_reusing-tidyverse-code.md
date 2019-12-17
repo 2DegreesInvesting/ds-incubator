@@ -1,21 +1,5 @@
-
-# Wait\!
-
-## Jenny Bryan, [Tidy eval in context](https://resources.rstudio.com/rstudio-conf-2019/lazy-evaluatio)
-
-You may better spend your time learning:
-
-<img src="https://i.imgur.com/7juk8pI.png" width=760>
-
-## `?subset`, `?transform`, `?with`
-
-<img src="https://i.imgur.com/llbpdNp.png" width=760>
-
-<img src="https://i.imgur.com/hICM2Hc.png" width=760>
-
-# Reusing tidyverse code
-
-### [Lionel Henry, UseR 2019](https://www.youtube.com/watch?v=C78fcsJmESI&feature=youtu.be)
+Reusing tidyverse code
+================
 
 ## 
 

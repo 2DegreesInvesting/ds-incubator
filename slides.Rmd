@@ -1,5 +1,6 @@
 ---
 title: Reusing tidyverse code
+subtitle: Adapted by Mauro Lepore from [_Reusing tidyverse code_, by Lionel Henry, UseR 2019](https://www.youtube.com/watch?v=C78fcsJmESI&feature=youtu.be)
 output: ioslides_presentation
 ---
 
