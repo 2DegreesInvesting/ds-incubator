@@ -1,15 +1,24 @@
 ---
-title: Reusing tidyverse code
 output: github_document
 ---
 
-```{r, echo=FALSE}
-readr::write_csv(datasets::BOD, "your-file.csv")
-```
+# Wait!
+
+## Jenny Bryan, [Tidy eval in context](https://resources.rstudio.com/rstudio-conf-2019/lazy-evaluatio)
+
+You may better spend your time learning:
+
+<img src="https://i.imgur.com/7juk8pI.png" width=760>
+
+## `?subset`, `?transform`, `?with`
+
+<img src="https://i.imgur.com/llbpdNp.png" width=760>
+
+<img src="https://i.imgur.com/hICM2Hc.png" width=760>
 
 # Reusing tidyverse code
 
-### [Lionel Henry, UseR 2019](https://www.youtube.com/watch?v=C78fcsJmESI&feature=youtu.be).
+### [Lionel Henry, UseR 2019](https://www.youtube.com/watch?v=C78fcsJmESI&feature=youtu.be)
 
 ##
 
@@ -68,63 +77,13 @@ readr::write_csv(datasets::BOD, "your-file.csv")
 
 <img src="https://i.imgur.com/sGo0Sa5.png" align="center" width = 750 />
 
-# Tidy evel in context
+## Resources
 
-### [Jenny Bryan, rstudio::conf 2019](https://resources.rstudio.com/rstudio-conf-2019/lazy-evaluation)
+* [Tidy eval in context, rstudio::conf 2019, Jenny Bryan](https://resources.rstudio.com/rstudio-conf-2019/lazy-evaluation).
 
-## Wait! Before you learn tidy eval
+* [Reusing tidyverse code, UseR 2019, Lionel Henry](https://www.youtube.com/watch?v=C78fcsJmESI&feature=youtu.be).
 
-<img src="https://i.imgur.com/7juk8pI.png" width=760>
+* [Advanced R, ed. 2, ch. 17-21, Hadley Wickham](https://adv-r.hadley.nz/).
 
-## What is tidy eval?
-
-<img src="https://i.imgur.com/E6oO3Iw.png" width=760>
-
-## This is also Non-standard-evaluation
-
-<img src="https://i.imgur.com/PgRfdFa.png" width=760>
-
-## Programming becomes harder
-
-<img src="https://i.imgur.com/hICM2Hc.png" width=760>
-
-# How much tidy eval you need to know?
-
-## None
-
-<img src="https://i.imgur.com/HeQzF6L.png" width=760>
-
-## None or pass the dots `...`
-
-<img src="https://i.imgur.com/vZoN2Y6.png" width=760>
-
-## None or pass the dots `...`
-
-<img src="https://i.imgur.com/uSt9NJi.png" width=760>
-
-## None or pass the dots `...`
-
-<img src="https://i.imgur.com/5qQ386O.png" width=760>
-
-## `enquo()` and `!!`; or `{{ }}`
-
-<img src="https://i.imgur.com/1Cn8usl.png" width=760>
-
-## `enquo()` and `!!`; or `{{ }}`
-
-<img src="https://i.imgur.com/orLULhz.png" width=760>
-
-## `enquo()` and `!!`; or `{{ }}`
-
-<img src="https://i.imgur.com/L6LRza1.png" width=760>
-
-## `:=`
-
-<img src="https://i.imgur.com/IuJsw6m.png" width=760>
-
-## [rlang](https://rlang.r-lib.org/)
-
-<img src="https://i.imgur.com/dhQuLOy.png" width=760>
-
-[Advanced R, 2nd ed., chapters 17-21, by Hadley Wickham](https://adv-r.hadley.nz/metaprogramming.html)
+* [rlang package, Lionel Henry, Hadley Wickham](https://rlang.r-lib.org/).
 
