@@ -1,0 +1,65 @@
+---
+title: Reusing tidyverse code
+output: github_document
+---
+
+```{r, echo=FALSE}
+readr::write_csv(datasets::BOD, "your-file.csv")
+```
+
+## Wait! Before you learn tidy eval
+
+<img src="https://i.imgur.com/7juk8pI.png" width=760>
+
+## What is tidy eval?
+
+<img src="https://i.imgur.com/E6oO3Iw.png" width=760>
+
+## This is also Non-standard-evaluation
+
+<img src="https://i.imgur.com/PgRfdFa.png" width=760>
+
+## Programming becomes harder
+
+<img src="https://i.imgur.com/hICM2Hc.png" width=760>
+
+# How much tidy eval you need to know?
+
+## None
+
+<img src="https://i.imgur.com/HeQzF6L.png" width=760>
+
+## None or pass the dots `...`
+
+<img src="https://i.imgur.com/vZoN2Y6.png" width=760>
+
+## None or pass the dots `...`
+
+<img src="https://i.imgur.com/uSt9NJi.png" width=760>
+
+## None or pass the dots `...`
+
+<img src="https://i.imgur.com/5qQ386O.png" width=760>
+
+## `enquo()` and `!!`; or `{{ }}`
+
+<img src="https://i.imgur.com/1Cn8usl.png" width=760>
+
+## `enquo()` and `!!`; or `{{ }}`
+
+<img src="https://i.imgur.com/orLULhz.png" width=760>
+
+## `enquo()` and `!!`; or `{{ }}`
+
+<img src="https://i.imgur.com/L6LRza1.png" width=760>
+
+## `:=`
+
+<img src="https://i.imgur.com/IuJsw6m.png" width=760>
+
+## [rlang](https://rlang.r-lib.org/)
+
+<img src="https://i.imgur.com/dhQuLOy.png" width=760>
+
+[Advanced R, 2nd ed., chapters 17-21, by Hadley Wickham](https://adv-r.hadley.nz/metaprogramming.html)
+

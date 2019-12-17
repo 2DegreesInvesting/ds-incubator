@@ -12,5 +12,5 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, child="2019-12-10_reprex.Rmd"}
+```{r, child="2019-12-17_reusing-tidyverse-code.Rmd"}
 ```
