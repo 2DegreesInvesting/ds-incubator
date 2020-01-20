@@ -4,7 +4,7 @@ author: "Mauro Lepore"
 output:
   github_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-### master passes tests with no failures
+## master passes tests with no failures
 
 ```
 git checkout master
@@ -26,7 +26,7 @@ git checkout master
 devtools::test()
 ```
 
-### master passes checkes with 0 errors, 0 warnings, 0 notes
+## master passes checkes with 0 errors, 0 warnings, 0 notes
 
 ```
 git checkout master
@@ -36,7 +36,7 @@ git checkout master
 devtools::check()
 ```
 
-### PR loads
+## PR loads
 
 ```
 git checkout pr
@@ -46,18 +46,46 @@ git checkout pr
 devtools::load_all()
 ```
 
-### PR passes tests
+## PR passes tests
 
 ```R
 devtools::test()
 ```
 
-### PR passes checks
+## PR passes checks with 0 errors, 0 warnings, and 0 notes
+
+Some note may remain, but the number of errors warnings must be 0.
 
 ```R
 devtools::check()
 ```
 
-### FIXME/TODO are flagged, and details are given/referenced
+* Called `use_package()` to use packages (e.g. `use_package("dplyr")`).
+* Using `package::function` format or `#' @importFrom package function`
+
+```R
+f <- function(data) {
+  dplyr::filter(data)
+}
+
+# Or
+
+#' @importFrom dplyr filter
+f <- function(data) {
+  filter(data)
+}
+```
+
+## A minimal regression test captures expected behaviour
+
+## Can document
+
+## Can run examples
+
+## pkgdown website builds
+
+## All exported functions appear in website's reference
+
+## FIXME/TODO are flagged, and details are given/referenced
 
 [Common gotchas](https://github.com/2DegreesInvesting/ds-incubator/issues/11#issuecomment-575837744)
