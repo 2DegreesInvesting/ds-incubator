@@ -40,6 +40,8 @@ Mauro Lepore
       - [Extract commented sections into
         functions](#extract-commented-sections-into-functions)
   - [Error prone](#error-prone)
+      - [Separate functions, data, and interactive
+        code](#separate-functions-data-and-interactive-code)
       - [`if()` uses a single `TRUE` or
         `FALSE`](#if-uses-a-single-true-or-false)
       - [`1` is equal to `1L` but not
@@ -53,6 +55,15 @@ Mauro Lepore
         `FALSE`](#avoid-t-and-f-as-synonyms-for-true-and-false)
       - [Reserve `return()` to return
         early](#reserve-return-to-return-early)
+
+``` r
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment = "#>",
+  error = TRUE,
+  collapse = TRUE
+)
+```
 
 # Motivation
 
@@ -132,6 +143,8 @@ f()
 
 ## Avoid modifying the global environment, e.g. with `<<-`
 
+Setup.
+
 ``` r
 readr::write_csv(mtcars, "some_data.csv")
 ```
@@ -193,6 +206,12 @@ read_some_data()
 
 For valid uses of `<<-` see ([Advanced R, Function
 factories](https://adv-r.hadley.nz/function-factories.html#stateful-funs)).
+
+Clean up.
+
+``` r
+fs::file_delete("some_data.csv")
+```
 
 ## Arguments that provide core data are required
 
@@ -439,7 +458,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "10, 2 Nope!"
+#> [1] "2, 7 Nope!"
 ```
 
 Bad.
@@ -450,7 +469,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "10, 2 Nope!"
+#> [1] "2, 7 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
@@ -583,6 +602,20 @@ f <- function(x) {
 ```
 
 # Error prone
+
+## Separate functions, data, and interactive code
+
+Setup.
+
+``` r
+readr::write_csv(mtcars, "some_data.csv")
+```
+
+Clean up.
+
+``` r
+fs::file_delete("some_data.csv")
+```
 
 ## `if()` uses a single `TRUE` or `FALSE`
 

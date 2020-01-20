@@ -7,6 +7,15 @@ output:
     toc_depth: 2
 ---
 
+```{r setup}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment = "#>",
+  error = TRUE,
+  collapse = TRUE
+)
+```
+
 # Motivation
 
 > You and a friend are having a picnic by the side of a river. Suddenly you hear a shout from the direction of the water—a child is drowning. Without thinking, you both dive in, grab the child, and swim to shore. Before you can recover, you hear another child cry for help. You and your friend jump back in the river to rescue her as well. Then another struggling child drifts into sight ... and another ... and another. The two of you can barely keep up. Suddenly, you see your friend wading out of the water, seeming to leave you alone. "Where are you going?" you demand. Your friend answers, "I'm going Nopetream to tackle the guy who's throwing all these kids in the water.'
@@ -69,9 +78,9 @@ f()
 
 
 
-
-
 ## Avoid modifying the global environment, e.g. with `<<-`
+
+Setup.
 
 ```{r}
 readr::write_csv(mtcars, "some_data.csv")
@@ -112,6 +121,12 @@ read_some_data()
 > "[Avoid global variables because they] introduce non-obvious dependencies between functions" -- [Advanced R, Environments](https://adv-r.hadley.nz/environments.html)). 
 
 For valid uses of `<<-` see ([Advanced R, Function factories](https://adv-r.hadley.nz/function-factories.html#stateful-funs)).
+
+Clean up.
+
+```{r}
+fs::file_delete("some_data.csv")
+```
 
 ## Arguments that provide core data are required
 
@@ -525,6 +540,27 @@ f <- function(x) {
 
 # Error prone
 
+## Separate functions, data, and interactive code
+
+
+Setup.
+
+```{r}
+readr::write_csv(mtcars, "some_data.csv")
+```
+
+
+
+
+Clean up.
+
+```{r}
+fs::file_delete("some_data.csv")
+```
+
+
+
+
 ## `if()` uses a single `TRUE` or `FALSE`
 
 ```{r}
@@ -653,12 +689,4 @@ try(TRUE <- "Whatever")
 > Only use `return()` for early returns. Otherwise, rely on R to return the result of the last evaluated expression
 
 <https://style.tidyverse.org/functions.html#return>
-
-
-
-```{r tear-down, echo=FALSE}
-if (fs::file_exists(here::here("some_data.csv"))) {
-  fs::file_delete(here::here("some_data.csv"))
-}
-```
 
