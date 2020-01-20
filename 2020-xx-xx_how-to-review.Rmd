@@ -1,0 +1,63 @@
+---
+title: "Checklist to review a pull request"
+author: "Mauro Lepore"
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment = "#>",
+  error = TRUE,
+  collapse = TRUE
+)
+```
+
+### master passes tests with no failures
+
+```
+git checkout master
+```
+
+```R
+devtools::test()
+```
+
+### master passes checkes with 0 errors, 0 warnings, 0 notes
+
+```
+git checkout master
+```
+
+```R
+devtools::check()
+```
+
+### PR loads
+
+```
+git checkout pr
+```
+
+```R
+devtools::load_all()
+```
+
+### PR passes tests
+
+```R
+devtools::test()
+```
+
+### PR passes checks
+
+```R
+devtools::check()
+```
+
+### FIXME/TODO are flagged, and details are given/referenced
+
+[Common gotchas](https://github.com/2DegreesInvesting/ds-incubator/issues/11#issuecomment-575837744)

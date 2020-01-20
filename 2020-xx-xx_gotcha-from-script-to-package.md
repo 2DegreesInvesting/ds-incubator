@@ -40,8 +40,8 @@ Mauro Lepore
       - [Extract commented sections into
         functions](#extract-commented-sections-into-functions)
   - [Error prone](#error-prone)
-      - [Separate functions, data, and interactive
-        code](#separate-functions-data-and-interactive-code)
+      - [Separate functions, data, and
+        scripts](#separate-functions-data-and-scripts)
       - [`if()` uses a single `TRUE` or
         `FALSE`](#if-uses-a-single-true-or-false)
       - [`1` is equal to `1L` but not
@@ -458,7 +458,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "2, 7 Nope!"
+#> [1] "3, 3 Nope!"
 ```
 
 Bad.
@@ -469,7 +469,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "2, 7 Nope!"
+#> [1] "3, 3 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
@@ -603,19 +603,64 @@ f <- function(x) {
 
 # Error prone
 
-## Separate functions, data, and interactive code
+## Separate functions, data, and scripts
 
-Setup.
+### A non-package project
+
+It’s easy for an analyst to maintain a project when functions, data, and
+scripts are separate.
+
+Good.
 
 ``` r
-readr::write_csv(mtcars, "some_data.csv")
+# R/all-functions.R
+f <- function(data) {
+  # ... some code
+}
+
+# data/all-datasets.R
+some_data <- readr::read_csv(here::here("data-raw", "some_data.csv"))
+
+# script/this-script.R
+library(tidyverse)
+
+source(here::here("R", "all-functions.R"))
+source(here::here("data", "all-datasets.R"))
+
+
+f(data = some_data)
 ```
 
-Clean up.
+It is error prone to mix functions, data, and scripts. The mess hides
+inter dependencies that can break your code unexpectedly. Also, this
+makes it hard for others to reproduce, or understand your code – [the
+maintainance programmer can only view your code through a toilet paper
+tube](https://github.com/2DegreesInvesting/resources/issues/38#issuecomment-576383067).
+
+Bad.
 
 ``` r
-fs::file_delete("some_data.csv")
+# sripts-functions-and-data.R
+library(tidyverse)
+
+some_data <- readr::read_csv(here::here("data-raw", "some_data.csv"))
+
+f <- function(some_data) {
+  some_data %>% 
+    dplyr::select() %>% 
+    # ... more code
+}
+
+f(some_data)
 ```
+
+### A package project
+
+When functions, data, and scripts are separate, it’s easy for a
+developer to transform a project into an R package. Functions go in the
+R/ directory, raw data in data-raw/, and data in data/. Scripts become
+examples, tests, and higher level documentation such as README, and the
+Home and articles pages of the package-website.
 
 ## `if()` uses a single `TRUE` or `FALSE`
 

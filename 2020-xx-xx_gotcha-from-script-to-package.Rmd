@@ -211,11 +211,6 @@ f <- function(path) {
 
 
 
-
-
-
-
-
 # Packaging
 
 ## Developer setup
@@ -372,9 +367,6 @@ f <- function(data) {
 ```
 
 <http://r-pkgs.had.co.nz/data.html#data-sysdata>
-
-
-
 
 
 
@@ -535,31 +527,57 @@ f <- function(x) {
 
 
 
-
-
-
 # Error prone
 
-## Separate functions, data, and interactive code
+## Separate functions, data, and scripts
+
+### A non-package project
+
+It's easy for an analyst to maintain a project when functions, data, and scripts are separate.
+
+Good.
+
+```R
+# R/all-functions.R
+f <- function(data) {
+  # ... some code
+}
+
+# data/all-datasets.R
+some_data <- readr::read_csv(here::here("data-raw", "some_data.csv"))
+
+# script/this-script.R
+library(tidyverse)
+
+source(here::here("R", "all-functions.R"))
+source(here::here("data", "all-datasets.R"))
 
 
-Setup.
-
-```{r}
-readr::write_csv(mtcars, "some_data.csv")
+f(data = some_data)
 ```
 
+It is error prone to mix functions, data, and scripts. The mess hides inter dependencies that can break your code unexpectedly. Also, this makes it hard for others to reproduce, or understand your code -- [the maintainance programmer can only view your code through a toilet paper tube](https://github.com/2DegreesInvesting/resources/issues/38#issuecomment-576383067).
 
+Bad.
 
+```R
+# sripts-functions-and-data.R
+library(tidyverse)
 
-Clean up.
+some_data <- readr::read_csv(here::here("data-raw", "some_data.csv"))
 
-```{r}
-fs::file_delete("some_data.csv")
+f <- function(some_data) {
+  some_data %>% 
+    dplyr::select() %>% 
+    # ... more code
+}
+
+f(some_data)
 ```
 
+### A package project
 
-
+When functions, data, and scripts are separate, it's easy for a developer to transform a project into an R package. Functions go in the R/ directory, raw data in data-raw/, and data in data/. Scripts become examples, tests, and higher level documentation such as README, and the Home and articles pages of the package-website.
 
 ## `if()` uses a single `TRUE` or `FALSE`
 
@@ -611,7 +629,6 @@ Bad.
 this_integer <- 1L
 if (!this_integer == 1) "Not the same" else "Wrong result"
 ```
-
 
 
 
@@ -689,4 +706,6 @@ try(TRUE <- "Whatever")
 > Only use `return()` for early returns. Otherwise, rely on R to return the result of the last evaluated expression
 
 <https://style.tidyverse.org/functions.html#return>
+
+
 
