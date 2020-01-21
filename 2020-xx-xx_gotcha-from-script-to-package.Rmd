@@ -529,6 +529,51 @@ f <- function(x) {
 
 # Error prone
 
+## Avoid hidden arguments: Extract functions with all arguments
+
+Good.
+
+```{r}
+f <- function(x, y, z) {
+  x + g(y, z)
+}
+
+g <- function(y, z) {
+  y + z
+}
+
+f(1, 1, 1)
+```
+
+Bad.
+
+```{r}
+# Fragile.
+f <- function(x, y, z) {
+  g <- function(y) {
+    # `z` is outside of the scope of g(). It's a hidden argument
+    y + z
+  }
+  
+  x + g(y)
+}
+
+f(1, 1, 1)
+
+# f() breaks when you move g() to the top level
+f <- function(x, y, z) {
+  x + g(y)
+}
+
+g <- function(y) {
+  y + z
+}
+
+try(f(1, 1, 1))
+```
+
+
+
 ## Separate functions, data, and scripts
 
 ### A non-package project
