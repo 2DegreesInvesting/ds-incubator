@@ -651,7 +651,7 @@ if (!this_integer == 1) "Not the same" else "Wrong result"
 
 ## Limit your code to 80 characters per line
 
-For reference, in RStdio you can set a margin column at 80 characters (_Tools > Global Options > Code > Show margin > Margin column_).
+For reference, in RStudio you can set a margin column at 80 characters (_Tools > Global Options > Code > Show margin > Margin column_).
 
 > Strive to limit your code to 80 characters per line. This fits comfortably on a printed page with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function.
 
@@ -722,5 +722,42 @@ try(TRUE <- "Whatever")
 
 <https://style.tidyverse.org/functions.html#return>
 
+## Return invisibly only when the main purpose is a side effect
 
+Good. 
+
+```{r}
+# Main purpose is a side effect: To throw an error if the input is bad
+check_f <- function(x) {
+  stopifnot(is.numeric(x))
+  
+  invisible(x)
+}
+```
+
+Good.
+
+```{r}
+# Main purpose is not a side effect. Returning visibly
+f <- function(x) {
+  x + 1
+}
+
+f(1)
+```
+
+Bad. 
+
+```{r}
+# Main purpose is not a side effect. Returning invisibly
+f <- function(x) {
+  out <- x + 1
+}
+
+# Returns invisibly
+f(1)
+
+out <- f(1)
+out
+```
 

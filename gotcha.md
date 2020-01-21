@@ -54,6 +54,8 @@ Gotchas when moving code from a script to an R package
         `FALSE`](#avoid-t-and-f-as-synonyms-for-true-and-false)
       - [Reserve `return()` to return
         early](#reserve-return-to-return-early)
+      - [Return invisibly only when the main purpose is a side
+        effect](#return-invisibly-only-when-the-main-purpose-is-a-side-effect)
 
 # Function interface
 
@@ -413,7 +415,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "5, 1 Nope!"
+#> [1] "4, 2 Nope!"
 ```
 
 Bad.
@@ -424,7 +426,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "5, 1 Nope!"
+#> [1] "4, 2 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
@@ -723,7 +725,7 @@ if (!this_integer == 1) "Not the same" else "Wrong result"
 
 ## Limit your code to 80 characters per line
 
-For reference, in RStdio you can set a margin column at 80 characters
+For reference, in RStudio you can set a margin column at 80 characters
 (*Tools \> Global Options \> Code \> Show margin \> Margin column*).
 
 > Strive to limit your code to 80 characters per line. This fits
@@ -797,3 +799,44 @@ try(TRUE <- "Whatever")
 > the result of the last evaluated expression
 
 <https://style.tidyverse.org/functions.html#return>
+
+## Return invisibly only when the main purpose is a side effect
+
+Good.
+
+``` r
+# Main purpose is a side effect: To throw an error if the input is bad
+check_f <- function(x) {
+  stopifnot(is.numeric(x))
+  
+  invisible(x)
+}
+```
+
+Good.
+
+``` r
+# Main purpose is not a side effect. Returning visibly
+f <- function(x) {
+  x + 1
+}
+
+f(1)
+#> [1] 2
+```
+
+Bad.
+
+``` r
+# Main purpose is not a side effect. Returning invisibly
+f <- function(x) {
+  out <- x + 1
+}
+
+# Returns invisibly
+f(1)
+
+out <- f(1)
+out
+#> [1] 2
+```
