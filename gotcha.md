@@ -460,7 +460,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "5, 5 Nope!"
+#> [1] "10, 3 Nope!"
 ```
 
 Bad.
@@ -471,7 +471,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "5, 5 Nope!"
+#> [1] "10, 3 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
