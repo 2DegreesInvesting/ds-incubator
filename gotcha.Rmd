@@ -1,5 +1,5 @@
 ---
-title: "gotchas when moving from a script to an R package"
+title: "Gotchas when moving code from a script to an R package"
 author: "http://bit.ly/r-gotcha"
 output:
   github_document:
