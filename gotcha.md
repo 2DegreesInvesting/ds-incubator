@@ -1,10 +1,7 @@
-Tackling gotchas: Refactoring code from a script to a package
+gotchas when moving from a script to an R package
 ================
-Mauro Lepore
+<http://bit.ly/r-gotcha>
 
-  - [Motivation](#motivation)
-      - [What is a gotcha?](#what-is-a-gotcha)
-      - [What is refactoring code?](#what-is-refactoring-code)
   - [Function interface](#function-interface)
       - [Avoid relying on the global
         environment](#avoid-relying-on-the-global-environment)
@@ -57,50 +54,6 @@ Mauro Lepore
         `FALSE`](#avoid-t-and-f-as-synonyms-for-true-and-false)
       - [Reserve `return()` to return
         early](#reserve-return-to-return-early)
-
-``` r
-knitr::opts_chunk$set(
-  echo = TRUE,
-  comment = "#>",
-  error = TRUE,
-  collapse = TRUE
-)
-```
-
-# Motivation
-
-> You and a friend are having a picnic by the side of a river. Suddenly
-> you hear a shout from the direction of the water—a child is drowning.
-> Without thinking, you both dive in, grab the child, and swim to shore.
-> Before you can recover, you hear another child cry for help. You and
-> your friend jump back in the river to rescue her as well. Then another
-> struggling child drifts into sight … and another … and another. The
-> two of you can barely keep up. Suddenly, you see your friend wading
-> out of the water, seeming to leave you alone. “Where are you going?”
-> you demand. Your friend answers, "I’m going Nopetream to tackle the
-> guy who’s throwing all these kids in the water.’
-
-– Irving Zola’s parable adapted by Dan Heath, author of “Nopetream: The
-Quest to Solve Problems Before They Happen” (coming out 2020-03-03).
-
-–
-
-<img src="https://4f0imd322ifhg1y4zfwk3wr7-wpengine.netdna-ssl.com/wp-content/uploads/2017/06/NoThanksButWereBusy.png" align="center" width = 750 />
-
-[“No Thanks, We’re Too
-Busy”.](https://www.astroarch.com/tvp_strategy/no-thanks-busy-pay-back-technical-debt-40188/)
-
-## What is a gotcha?
-
-*Code that is valid in a script but invalid or unexpected in a package.*
-
-– Adapted from <https://en.wikipedia.org/wiki/Gotcha_(programming)>
-
-## What is refactoring code?
-
-*Restructuring code without changing its external behavior.*
-
-– Adapted from <https://en.wikipedia.org/wiki/Code_refactoring>
 
 # Function interface
 
@@ -460,7 +413,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "10, 3 Nope!"
+#> [1] "10, 4 Nope!"
 ```
 
 Bad.
@@ -471,7 +424,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "10, 3 Nope!"
+#> [1] "10, 4 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
