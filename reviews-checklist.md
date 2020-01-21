@@ -4,21 +4,27 @@ Mauro Lepore
 
   - [master passes tests with no
     failures](#master-passes-tests-with-no-failures)
-  - [master passes checkes with 0 errors, 0 warnings, 0
-    notes](#master-passes-checkes-with-0-errors-0-warnings-0-notes)
-  - [PR loads](#pr-loads)
-  - [PR passes tests](#pr-passes-tests)
-  - [PR passes checks with 0 errors, 0 warnings, and 0
-    notes](#pr-passes-checks-with-0-errors-0-warnings-and-0-notes)
-  - [A minimal regression test captures expected
-    behaviour](#a-minimal-regression-test-captures-expected-behaviour)
-  - [Can document](#can-document)
-  - [Can run examples](#can-run-examples)
+  - [master passes checks with 0 errors, 0 warnings, 0
+    notes](#master-passes-checks-with-0-errors-0-warnings-0-notes)
+  - [Package loads](#package-loads)
+  - [Package passes tests](#package-passes-tests)
+  - [Package passes checks with 0 errors, 0 warnings, and 0
+    notes](#package-passes-checks-with-0-errors-0-warnings-and-0-notes)
+  - [Uses functions from other packages
+    correctly](#uses-functions-from-other-packages-correctly)
+  - [Captures expected behavior in `#'
+    @examples`](#captures-expected-behavior-in-examples)
+  - [Captures expected behavior in
+    tests](#captures-expected-behavior-in-tests)
+  - [Captures expected behavior of exported functions in
+    README](#captures-expected-behavior-of-exported-functions-in-readme)
+  - [Documents internal functions clearly
+    enough](#documents-internal-functions-clearly-enough)
+  - [Documents exported functions in
+    full](#documents-exported-functions-in-full)
+  - [Connects similar documentation (e.g. via `@rdname`, `@seealso`,
+    `@family`)](#connects-similar-documentation-e.g.-via-rdname-seealso-family)
   - [pkgdown website builds](#pkgdown-website-builds)
-  - [All exported functions appear in website’s
-    reference](#all-exported-functions-appear-in-websites-reference)
-  - [FIXME/TODO are flagged, and details are
-    given/referenced](#fixmetodo-are-flagged-and-details-are-givenreferenced)
 
 ## master passes tests with no failures
 
@@ -28,7 +34,7 @@ Mauro Lepore
 devtools::test()
 ```
 
-## master passes checkes with 0 errors, 0 warnings, 0 notes
+## master passes checks with 0 errors, 0 warnings, 0 notes
 
     git checkout master
 
@@ -36,7 +42,7 @@ devtools::test()
 devtools::check()
 ```
 
-## PR loads
+## Package loads
 
     git checkout pr
 
@@ -44,24 +50,24 @@ devtools::check()
 devtools::load_all()
 ```
 
-## PR passes tests
+## Package passes tests
 
 ``` r
 devtools::test()
 ```
 
-## PR passes checks with 0 errors, 0 warnings, and 0 notes
+## Package passes checks with 0 errors, 0 warnings, and 0 notes
 
 Some note may remain, but the number of errors warnings must be 0.
 
-``` r
-devtools::check()
-```
+## Uses functions from other packages correctly
 
-  - Called `use_package()` to use packages
-    (e.g. `use_package("dplyr")`).
-  - Using `package::function` format or `#' @importFrom package
-    function`
+  - Call `use_package()` to use packages (e.g. `use_package("dplyr")`).
+
+And,
+
+  - Use `package::function` or `#' @importFrom package function` to use
+    a specific function:
 
 <!-- end list -->
 
@@ -78,17 +84,16 @@ f <- function(data) {
 }
 ```
 
-## A minimal regression test captures expected behaviour
+## Captures expected behavior in `#' @examples`
 
-## Can document
+## Captures expected behavior in tests
 
-## Can run examples
+## Captures expected behavior of exported functions in README
+
+## Documents internal functions clearly enough
+
+## Documents exported functions in full
+
+## Connects similar documentation (e.g. via `@rdname`, `@seealso`, `@family`)
 
 ## pkgdown website builds
-
-## All exported functions appear in website’s reference
-
-## FIXME/TODO are flagged, and details are given/referenced
-
-[Common
-gotchas](https://github.com/2DegreesInvesting/ds-incubator/issues/11#issuecomment-575837744)

@@ -26,7 +26,7 @@ git checkout master
 devtools::test()
 ```
 
-## master passes checkes with 0 errors, 0 warnings, 0 notes
+## master passes checks with 0 errors, 0 warnings, 0 notes
 
 ```
 git checkout master
@@ -36,7 +36,7 @@ git checkout master
 devtools::check()
 ```
 
-## PR loads
+## Package loads
 
 ```
 git checkout pr
@@ -46,22 +46,23 @@ git checkout pr
 devtools::load_all()
 ```
 
-## PR passes tests
+## Package passes tests
 
 ```R
 devtools::test()
 ```
 
-## PR passes checks with 0 errors, 0 warnings, and 0 notes
+## Package passes checks with 0 errors, 0 warnings, and 0 notes
 
 Some note may remain, but the number of errors warnings must be 0.
 
-```R
-devtools::check()
-```
+## Uses functions from other packages correctly
 
-* Called `use_package()` to use packages (e.g. `use_package("dplyr")`).
-* Using `package::function` format or `#' @importFrom package function`
+* Call `use_package()` to use packages (e.g. `use_package("dplyr")`).
+
+And,
+
+* Use `package::function` or `#' @importFrom package function` to use a specific function:
 
 ```R
 f <- function(data) {
@@ -76,16 +77,16 @@ f <- function(data) {
 }
 ```
 
-## A minimal regression test captures expected behaviour
+## Captures expected behavior in `#' @examples`
 
-## Can document
+## Captures expected behavior in tests
 
-## Can run examples
+## Captures expected behavior of exported functions in README
+
+## Documents internal functions clearly enough
+
+## Documents exported functions in full
+
+## Connects similar documentation (e.g. via `@rdname`, `@seealso`, `@family`)
 
 ## pkgdown website builds
-
-## All exported functions appear in website's reference
-
-## FIXME/TODO are flagged, and details are given/referenced
-
-[Common gotchas](https://github.com/2DegreesInvesting/ds-incubator/issues/11#issuecomment-575837744)
