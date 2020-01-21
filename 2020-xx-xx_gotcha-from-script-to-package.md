@@ -40,6 +40,8 @@ Mauro Lepore
       - [Extract commented sections into
         functions](#extract-commented-sections-into-functions)
   - [Error prone](#error-prone)
+      - [Avoid hidden arguments: Extract functions with all
+        arguments](#avoid-hidden-arguments-extract-functions-with-all-arguments)
       - [Separate functions, data, and
         scripts](#separate-functions-data-and-scripts)
       - [`if()` uses a single `TRUE` or
@@ -458,7 +460,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "3, 3 Nope!"
+#> [1] "5, 5 Nope!"
 ```
 
 Bad.
@@ -469,7 +471,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "3, 3 Nope!"
+#> [1] "5, 5 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
@@ -602,6 +604,52 @@ f <- function(x) {
 ```
 
 # Error prone
+
+## Avoid hidden arguments: Extract functions with all arguments
+
+Good.
+
+``` r
+f <- function(x, y, z) {
+  x + g(y, z)
+}
+
+g <- function(y, z) {
+  y + z
+}
+
+f(1, 1, 1)
+#> [1] 3
+```
+
+Bad.
+
+``` r
+# Fragile.
+f <- function(x, y, z) {
+  g <- function(y) {
+    # `z` is outside of the scope of g(). It's a hidden argument
+    y + z
+  }
+  
+  x + g(y)
+}
+
+f(1, 1, 1)
+#> [1] 3
+
+# f() breaks when you move g() to the top level
+f <- function(x, y, z) {
+  x + g(y)
+}
+
+g <- function(y) {
+  y + z
+}
+
+try(f(1, 1, 1))
+#> Error in g(y) : object 'z' not found
+```
 
 ## Separate functions, data, and scripts
 
