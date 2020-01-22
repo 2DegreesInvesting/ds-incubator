@@ -1,0 +1,119 @@
+---
+output: github_document
+---
+
+# usethis::pr_sync( )
+
+__Before merging your pull request, the source repository adds a conflicting commit. Now what?__
+
+"_pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )_" ([usethis](https://usethis.r-lib.org/reference/pr_init.html))
+
+_<https://twitter.com/mauro_lepore>_
+
+License: [CCO](https://creativecommons.org/choose/zero/?lang=es)
+
+
+## `create_from_github()`
+
+<img src="https://i.imgur.com/1kHjVzm.png" width=760 />
+
+```
+# Fork on GitHub, then run from a terminal:
+git clone git@github.com:maurolepore/abc.git
+cd abc
+
+# Contrib@LAPTOP ~/abc (master)
+git remote add upstream git@github.com:an-org/abc.git
+git pull upstream master
+git branch --set-upstream-to=upstream/master
+```
+
+## `git_sitrep()`
+
+<img src="https://i.imgur.com/0K4llKf.png" width=700 />
+
+```
+git remote -v
+```
+
+
+## `pr_init("pr")`
+
+<img src="https://i.imgur.com/Eq7Ab1V.png" width=760>
+
+```
+# Contrib@LAPTOP ~/abc (master)
+git pull upstream master
+git branch pr
+git checkout pr
+```
+
+## `pr_push()`
+
+<img src="https://i.imgur.com/rBaykKn.png" width = 750 />
+
+```
+# Contrib@LAPTOP ~/abc (pr)
+git push origin
+git branch --set-upstream-to=origin/pr
+```
+
+## 
+
+### <https://github.com/maurolepore/abc/compare/pr>
+
+<img src="https://i.imgur.com/3HKmRef.png" width = 750 />
+
+__But before `[pr]` is merged, the maintainer adds a conflicting change to the source repository__
+
+<img src="https://i.imgur.com/ORnChBR.png" width = 750 />
+
+
+
+## `pr_sync()`
+
+<img src="https://i.imgur.com/oQeMUT0.png" width = 550 />
+
+```
+# Contrib@LAPTOP ~/abc (pr)
+# Using default remote "origin" and branch "pr"
+# `git pull` is shorthand for `git fetch && git merge FETCH_HEAD`
+git pull
+git pull upstream master
+git push
+```
+
+## Solve merge conflicts
+
+<img src="https://i.imgur.com/IfYF0zn.png" width = 750 />
+
+## `pr_push()`
+
+<img src="https://i.imgur.com/wdW5odN.png" width = 700 />
+
+```
+# Contrib@LAPTOP ~/abc (pr)
+# Retry sync
+git pull
+git pull upstream master
+git push
+```
+
+## `[pr]` now has no conflicts with `[upstream/master]`
+
+<img src="https://i.imgur.com/TxoA4MS.png" width = 750 />
+
+## `pr_finish()`
+
+<img src="https://i.imgur.com/LRCYjmD.png" width = 750 />
+
+```
+# Contrib@LAPTOP ~/abc (pr)
+git checkout master
+
+# Contrib@LAPTOP ~/abc (master)
+git pull upstream master
+git push -d origin pr
+git branch -d pr
+```
+

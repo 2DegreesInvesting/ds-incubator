@@ -1,3 +1,17 @@
+---
+title: pr-helpers
+author: Mauro Lepore
+date: '2019-10-29'
+slug: pr-helpers
+categories: []
+tags:
+  - usethis
+  - package
+  - r
+  - pr
+description: ''
+---
+
 # 2019-10-29, pull request helpers
 
 [GitHub issue for this meetup](https://github.com/2DegreesInvesting/ds-incubator/issues/3).
