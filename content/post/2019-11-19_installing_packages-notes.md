@@ -1,3 +1,14 @@
+---
+title: Installing packages in R
+author: CJ
+date: '2019-11-19'
+slug: installing-packages-notes
+categories: []
+tags:
+  - r
+description: ''
+---
+
 # Installing packages in R
 
 - Installing packages in R is more complicated than it seems

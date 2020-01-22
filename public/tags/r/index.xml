@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>r on Back to posts</title>
+    <link>/tags/r/</link>
+    <description>Recent content in r on Back to posts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2dii</copyright>
+    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reusing tidyverse code</title>
+      <link>/2019/12/17/2019-12-17_reusing-tidyverse-code/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/17/2019-12-17_reusing-tidyverse-code/</guid>
+      <description>ResourcesTidy eval in context, rstudio::conf 2019, Jenny Bryan.
+Reusing tidyverse code, UseR 2019, Lionel Henry.
+Advanced R, ed. 2, ch. 17-21, Hadley Wickham.
+rlang package, Lionel Henry, Hadley Wickham.
+</description>
+    </item>
+    
+    <item>
+      <title>Creating reproducible examples</title>
+      <link>/2019/12/10/2019-12-10_reprex/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/10/2019-12-10_reprex/</guid>
+      <description>reprexreprex usageReprex do’s and don’tsThis seems like a lot of work!Using datapasta with reprexThe working directoryBy default, reprex works on a temporary directory.
+reprex::reprex(getwd())yields
+getwd()#&amp;gt; [1] &amp;quot;C:/Users/Mauro/AppData/Local/Temp/RtmpcDRddU/reprex108c190d657&amp;quot;Use outfile = NA to work on your project’s working directory.
+reprex::reprex(getwd(), outfile = NA)yields
+getwd()#&amp;gt; [1] &amp;quot;C:/Users/Mauro/git/ds-incubator&amp;quot;(See the full description of outfile at ?reprex::reprex().)</description>
+    </item>
+    
+    <item>
+      <title>avoid-hidden-arguments</title>
+      <link>/2019/12/03/2019-12-03_avoid-hidden-arguments/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/03/2019-12-03_avoid-hidden-arguments/</guid>
+      <description>Avoid hidden arguments– Tidyverse design guide
+https://twitter.com/mauro_lepore
+License: CCO
+Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other statey &amp;lt;- 1add &amp;lt;- function(x) {x + y}add(1)#&amp;gt; [1] 2y &amp;lt;- 10 ## It is hard to keep track of thisadd(1) #&amp;gt; [1] 11Functions are easier to understand if the results depend only on the values of the inputsHow can I remediate the problem?</description>
+    </item>
+    
+    <item>
+      <title>Installing packages in R</title>
+      <link>/2019/11/19/2019-11-19_installing_packages-notes/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/19/2019-11-19_installing_packages-notes/</guid>
+      <description>Installing packages in R   Installing packages in R is more complicated than it seems
+  Structure of a package
+ R files Text based config files Help files Potentially source files in other languages (C, C++, Fortran, etc.)    Submitted to CRAN, hosted on GitHub, or hosted on other CRAN-like repository (BioConductor, private repos, local etc.)
+  Packages are primarily distributed as source packages (raw text files just as you would see in a GitHub repo for a package)</description>
+    </item>
+    
+    <item>
+      <title>usethis::pr_sync()</title>
+      <link>/2019/11/05/2019-11-05_pr-sync/</link>
+      <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/05/2019-11-05_pr-sync/</guid>
+      <description>usethis::pr_sync( )Before merging your pull request, the source repository adds a conflicting commit. Now what?
+“pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )” (usethis)
+https://twitter.com/mauro_lepore
+License: CCO
+create_from_github()# Fork on GitHub, then run from a terminal:git clone git@github.com:maurolepore/abc.gitcd abc# Contrib@LAPTOP ~/abc (master)git remote add upstream git@github.com:an-org/abc.gitgit pull upstream mastergit branch --set-upstream-to=upstream/mastergit_sitrep()git remote -vpr_init(&#34;</description>
+    </item>
+    
+    <item>
+      <title>Pull request helpers</title>
+      <link>/2019/10/29/2019-10-29_pr-helpers/</link>
+      <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/29/2019-10-29_pr-helpers/</guid>
+      <description>2019-10-29, pull request helpers GitHub issue for this meetup.
+We&#39;ll walk through the help file of the Helpers for GitHub pull requests
+Setup Read Setup advice and if you need more help:
+Need more help? See [More setup].
+For contributors  To contribute to a package, first use create_from_github(owner/repo) to fork the source repository, and then check out a local copy.
+ Or fork and clone as usual.
+pr_init()More setup   Instructions to setup GitHub, R, RStudio, and Git.</description>
+    </item>
+    
+    <item>
+      <title>encodings</title>
+      <link>/2019/10/22/2019-10-22-encodings/</link>
+      <pubDate>Tue, 22 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/22/2019-10-22-encodings/</guid>
+      <description>https://github.com/2DegreesInvesting/ds-incubator/issues/7</description>
+    </item>
+    
+    <item>
+      <title>Setup GitHub, R, RStudio, Git</title>
+      <link>/2019/10/15/2019-10-15_setup/</link>
+      <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/15/2019-10-15_setup/</guid>
+      <description>Googledoc
+2019-10-15, setup GitHub, R, RStudio, Git Pre-meetup setup (only Mauro) Meeting room Option 1:
+ https://zoom.us/j/597544351 record  Option 2 (if zoom fails):
+ https://meet.google.com/ags-rjcf-tqk Or +1 417-986-2948 and enter this PIN: 284 162 277# Record via screen-o- matic  Software setup   Move .gitconfig and .ssh out of ~/
+  Comment out relevant code in .Rprofile
+  Remove git credentials:
+  Control Panel &amp;gt; user accounts &amp;gt; credential manager &amp;gt; Windows credentials &amp;gt; Generic credentials</description>
+    </item>
+    
+    <item>
+      <title>Gotchas when moving code from a script to an R package</title>
+      <link>/1/01/01/gotcha/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/01/gotcha/</guid>
+      <description>Function interfaceAvoid relying on the global environmentAvoid modifying the global environment, e.g. with &amp;lt;&amp;lt;-Arguments that provide core data are requiredDescriptor arguments are usually requiredAvoid reading and writing operationsPackagingDeveloper setupuse_package(&#34;dplyr&#34;) not library(dplyr)The tidyverse is for EDA, not packagesuse_data_raw(), then use_data()use_data_raw(), then use_data()Use the .data pronounConsider using internal dataCode smells and feelsSimplify if() with objects named meaningfullyProgram for columns with clean_namesAvoid long-running temporary objectsIf possible, extract functions to the top levelExtract commented sections into functionsError proneAvoid hidden arguments: Extract functions with all argumentsSeparate functions, data, and scriptsA non-package projectA package projectif() uses a single TRUE or FALSE1 is equal to 1L but not identicalStyleLimit your code to 80 characters per lineNames should use only lowercase letters, numbers, and &#34;</description>
+    </item>
+    
+  </channel>
+</rss>

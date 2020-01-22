@@ -5,9 +5,10 @@ date: '2019-10-29'
 slug: pr-helpers
 categories: []
 tags:
-  - pr
   - r
+  - pr
   - usethis
+  - contribute
 description: ''
 ---
 

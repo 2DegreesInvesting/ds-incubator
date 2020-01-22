@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fs on Back to posts</title>
+    <link>/tags/fs/</link>
+    <description>Recent content in fs on Back to posts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2dii</copyright>
+    <lastBuildDate>Tue, 14 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/fs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Project-oriented workflow</title>
+      <link>/2020/01/14/2020-01-14_project-oriented-workflow/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/01/14/2020-01-14_project-oriented-workflow/</guid>
+      <description>Project-oriented workflow–Jenny Bryan
+Workflow versus productDefinitionsWorkflow: personal taste and habits.
+Product: essence of your project.
+Don’t hardwire your workflow into your product.
+Which is workflow or product?The editor you use to write your R code.
+The raw data.
+The name of your home directory.
+The R code someone needs to run on your raw data to get your results, including the explicit library() calls to load necessary packages.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,6 +1,6 @@
 ---
-title: debugging with rstudio
-author: Jackson Hoffart
+title: Debugging with rstudio
+author: 'Jackson Hoffart'
 date: '2020-01-21'
 slug: debugging-with-rstudio
 categories: []
@@ -11,4 +11,4 @@ tags:
 description: ''
 ---
 
-<https://github.com/2DegreesInvesting/ds-incubator/issues/21>
+By [Jackson Hoffart](https://github.com/jdhoffa); see [#21](https://github.com/2DegreesInvesting/ds-incubator/issues/21).

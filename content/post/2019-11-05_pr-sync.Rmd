@@ -1,5 +1,15 @@
 ---
-output: github_document
+title: 'usethis::pr_sync()'
+author: Mauro Lepore
+date: '2019-11-05'
+slug: pr-sync
+categories: []
+tags:
+  - r
+  - pr
+  - usethis
+  - contribute
+description: ''
 ---
 
 # usethis::pr_sync( )

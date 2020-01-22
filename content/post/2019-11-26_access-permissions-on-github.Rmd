@@ -1,5 +1,12 @@
 ---
-output: github_document
+title: access-permissions-on-github
+author: Mauro Lepore
+date: '2019-11-26'
+slug: access-permissions-on-github
+categories: []
+tags:
+  - github
+description: ''
 ---
 
 # Access permissions for a GitHub organization

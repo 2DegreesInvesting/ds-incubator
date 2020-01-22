@@ -1,23 +1,24 @@
-baseurl = "https://r2dii-demo-blog.netlify.com/"
+baseurl = "https://ds-incubator.netlify.com/"
 title = "Back to posts"
 theme = "ghostwriter"
+author = "Mauro Lepore, CJ Yetman, Klaus Hagedorn, and Clare Murray"
 languageCode = "en-us"
 copyright = "2dii"
-disqusShortname = "r2dii-demo-blog"
+disqusShortname = "ds-incubator"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 
 [Author]
     name = "2° Investing Initiative"
-    profile = "https://github.com/2DegreesInvesting"
+    profile = "https://github.com/orgs/2DegreesInvesting/people"
 
 [Taxonomies]
     tag = "tags"
 
 [Params]
     intro = true
-    headline = "2° Investing Initiative"
-    description = "Code and documentation (demo)"
-    github = "https://github.com/2DegreesInvesting/r2dii-demo-blog"
+    headline = "ds-incubator"
+    description = "Share best practices in coding"
+    github = "https://github.com/2DegreesInvesting/ds-incubator"
     twitter = "https://twitter.com/2degreesinvest"
     opengraph = true
     shareTwitter = true

@@ -1,5 +1,12 @@
 ---
-output: github_document
+title: Interdependent pull requests
+author: Mauro Lepore
+date: '2019-11-12'
+slug: pr-interdependent
+categories: []
+tags:
+  - pr
+description: ''
 ---
 
 # Interdependent pull requests

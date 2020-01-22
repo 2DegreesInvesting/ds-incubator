@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/debugging/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/01/21/2020-01-21-debugging-with-rstudio/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/guest-speaker/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rstudio/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/fs/</loc>
+    <lastmod>2020-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/here/</loc>
+    <lastmod>2020-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/01/14/2020-01-14_project-oriented-workflow/</loc>
+    <lastmod>2020-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/workflow/</loc>
+    <lastmod>2020-01-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/feedback/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/retrospective/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/01/07/2020-01-07-retrospective/</loc>
+    <lastmod>2020-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/develop/</loc>
+    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/12/17/2019-12-17_reusing-tidyverse-code/</loc>
+    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2019-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/12/10/2019-12-10_reprex/</loc>
+    <lastmod>2019-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/reprex/</loc>
+    <lastmod>2019-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/reproduce/</loc>
+    <lastmod>2019-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/12/03/2019-12-03_avoid-hidden-arguments/</loc>
+    <lastmod>2019-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/best-practice/</loc>
+    <lastmod>2019-12-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/11/26/2019-11-26_access-permissions-on-github/</loc>
+    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/github/</loc>
+    <lastmod>2019-11-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/11/19/2019-11-19_installing_packages-notes/</loc>
+    <lastmod>2019-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/11/12/2019-11-12_pr-interdependent/</loc>
+    <lastmod>2019-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/pr/</loc>
+    <lastmod>2019-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/contribute/</loc>
+    <lastmod>2019-11-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/usethis/</loc>
+    <lastmod>2019-11-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/11/05/2019-11-05_pr-sync/</loc>
+    <lastmod>2019-11-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/10/29/2019-10-29_pr-helpers/</loc>
+    <lastmod>2019-10-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/10/22/2019-10-22-encodings/</loc>
+    <lastmod>2019-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/git/</loc>
+    <lastmod>2019-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/10/15/2019-10-15_setup/</loc>
+    <lastmod>2019-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/1/01/01/gotcha/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>usethis on Back to posts</title>
+    <link>/tags/usethis/</link>
+    <description>Recent content in usethis on Back to posts</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2dii</copyright>
+    <lastBuildDate>Tue, 05 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/usethis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>usethis::pr_sync()</title>
+      <link>/2019/11/05/2019-11-05_pr-sync/</link>
+      <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/05/2019-11-05_pr-sync/</guid>
+      <description>usethis::pr_sync( )Before merging your pull request, the source repository adds a conflicting commit. Now what?
+“pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )” (usethis)
+https://twitter.com/mauro_lepore
+License: CCO
+create_from_github()# Fork on GitHub, then run from a terminal:git clone git@github.com:maurolepore/abc.gitcd abc# Contrib@LAPTOP ~/abc (master)git remote add upstream git@github.com:an-org/abc.gitgit pull upstream mastergit branch --set-upstream-to=upstream/mastergit_sitrep()git remote -vpr_init(&#34;</description>
+    </item>
+    
+    <item>
+      <title>Pull request helpers</title>
+      <link>/2019/10/29/2019-10-29_pr-helpers/</link>
+      <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/29/2019-10-29_pr-helpers/</guid>
+      <description>2019-10-29, pull request helpers GitHub issue for this meetup.
+We&#39;ll walk through the help file of the Helpers for GitHub pull requests
+Setup Read Setup advice and if you need more help:
+Need more help? See [More setup].
+For contributors  To contribute to a package, first use create_from_github(owner/repo) to fork the source repository, and then check out a local copy.
+ Or fork and clone as usual.
+pr_init()More setup   Instructions to setup GitHub, R, RStudio, and Git.</description>
+    </item>
+    
+  </channel>
+</rss>
