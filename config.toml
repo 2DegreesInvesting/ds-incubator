@@ -17,7 +17,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 [Params]
     intro = true
     headline = "ds-incubator"
-    description = "Share best practices in coding"
+    description = "We share best practices in coding"
     github = "https://github.com/2DegreesInvesting/ds-incubator"
     twitter = "https://twitter.com/2degreesinvest"
     opengraph = true
