@@ -1,0 +1,35 @@
+---
+title: "A toy demo"
+author: Mauro Lepore
+date: '2020-01-22'
+slug: r2dii-match-demo
+categories: [r2dii]
+tags:
+  - r2dii match
+  - demo
+  - tag 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment = "#>",
+  error = TRUE,
+  collapse = TRUE
+)
+```
+
+We start by using required packages.
+
+```{r}
+library(r2dii.dataraw)
+library(r2dii.match)
+```
+
+* [`match_name()`](https://2degreesinvesting.github.io/r2dii.match/reference/match_name.html) helps you to score the similarity between company names from a loanbook versus an asset-level dataset (ald).
+
+```{r}
+match_name(loanbook_demo, ald_demo)
+```
+
+[Learn more](https://2degreesinvesting.github.io/r2dii.match/index.html).

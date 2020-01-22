@@ -1,0 +1,32 @@
+baseurl = "https://r2dii-demo-blog.netlify.com/"
+title = "Back to posts"
+theme = "ghostwriter"
+languageCode = "en-us"
+copyright = "2dii"
+disqusShortname = "r2dii-demo-blog"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
+
+[Author]
+    name = "2° Investing Initiative"
+    profile = "https://github.com/2DegreesInvesting"
+
+[Taxonomies]
+    tag = "tags"
+
+[Params]
+    intro = true
+    headline = "2° Investing Initiative"
+    description = "Code and documentation (demo)"
+    github = "https://github.com/2DegreesInvesting/r2dii-demo-blog"
+    twitter = "https://twitter.com/2degreesinvest"
+    opengraph = true
+    shareTwitter = true
+    shareFacebook = true
+    shareGooglePlus = true
+    shareLinkedIn = false
+    dateFormat = "Mon, Jan 2, 2006"
+    highlightJsUrl = ""
+    highlightJsLocalUrl = ""
+
+[Permalinks]
+    post = "/:year/:month/:day/:filename/"
