@@ -24,7 +24,7 @@
 <meta name="author" content="Mauro Lepore" />
 
 
-<meta name="date" content="2020-01-22" />
+<meta name="date" content="2020-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">ds-incubator</a></li>
+<li><a href="./">http://bit.ly/2dii-ds-incubator</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -283,6 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -561,14 +562,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb58-4" title="4">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb58-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb58-6" title="6">}</a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;9, 3 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;4, 8 Nope!&quot;</span></a></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
 <a class="sourceLine" id="cb59-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-3" title="3">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb59-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-5" title="5">}</a>
-<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;9, 3 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;4, 8 Nope!&quot;</span></a></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">
@@ -894,9 +895,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
+"github": true,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
@@ -909,8 +910,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/gotcha.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
@@ -922,7 +923,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });
