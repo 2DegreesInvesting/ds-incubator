@@ -1,9 +1,4 @@
-# ds-incubator
+The goal of the ds-incubator (data science incubator) is to share best practices in coding. It helps us to become better data scientists and to improve out work at  at [2° Investing Initiative](http://2degrees-investing.org/).
 
-_data scientists' incubator_
+This project is managed by [Mauro](https://github.com/maurolepore) with support from [CJ](https://github.com/orgs/2DegreesInvesting/people/cjyetman) and guidance from [Klaus](https://github.com/orgs/2DegreesInvesting/people/2diiKlaus) and [Clare](https://github.com/orgs/2DegreesInvesting/people/Clare2D). Since mid-October, 2019 we meetup online weekly, and we plan a personal meetup in 2020. We welcome contributions from everyone at [2° Investing Initiative](http://2degrees-investing.org/).
 
-The goal of this repository is to share best practices in coding. It hosts materials and discussions for a series of weekly meetups starting on mid-October, 2019, and for a workshop planned for March 9 and 10, 2020.
-
-----
-
-Managed by [Mauro](https://github.com/maurolepore) with support from [CJ](https://github.com/orgs/2DegreesInvesting/people/cjyetman) and guidance from [Klaus](https://github.com/orgs/2DegreesInvesting/people/2diiKlaus) and [Clare](https://github.com/orgs/2DegreesInvesting/people/Clare2D). Thanks Didi for admin support.
