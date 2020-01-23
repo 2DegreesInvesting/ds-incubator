@@ -1,29 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>tidyverse on Back to posts</title>
-    <link>/tags/tidyverse/</link>
-    <description>Recent content in tidyverse on Back to posts</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>2dii</copyright>
-    <lastBuildDate>Tue, 17 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Reusing tidyverse code</title>
-      <link>/2019/12/17/2019-12-17_reusing-tidyverse-code/</link>
-      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/12/17/2019-12-17_reusing-tidyverse-code/</guid>
-      <description>ResourcesTidy eval in context, rstudio::conf 2019, Jenny Bryan.
-Reusing tidyverse code, UseR 2019, Lionel Henry.
-Advanced R, ed. 2, ch. 17-21, Hadley Wickham.
-rlang package, Lionel Henry, Hadley Wickham.
-</description>
-    </item>
-    
-  </channel>
-</rss>

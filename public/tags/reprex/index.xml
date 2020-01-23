@@ -1,29 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>reprex on Back to posts</title>
-    <link>/tags/reprex/</link>
-    <description>Recent content in reprex on Back to posts</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>2dii</copyright>
-    <lastBuildDate>Tue, 10 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/reprex/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Creating reproducible examples</title>
-      <link>/2019/12/10/2019-12-10_reprex/</link>
-      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/12/10/2019-12-10_reprex/</guid>
-      <description>reprexreprex usageReprex do’s and don’tsThis seems like a lot of work!Using datapasta with reprexThe working directoryBy default, reprex works on a temporary directory.
-reprex::reprex(getwd())yields
-getwd()#&amp;gt; [1] &amp;quot;C:/Users/Mauro/AppData/Local/Temp/RtmpcDRddU/reprex108c190d657&amp;quot;Use outfile = NA to work on your project’s working directory.
-reprex::reprex(getwd(), outfile = NA)yields
-getwd()#&amp;gt; [1] &amp;quot;C:/Users/Mauro/git/ds-incubator&amp;quot;(See the full description of outfile at ?reprex::reprex().)</description>
-    </item>
-    
-  </channel>
-</rss>
