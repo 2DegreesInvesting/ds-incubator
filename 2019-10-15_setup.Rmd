@@ -12,48 +12,9 @@ tags:
 description: ''
 ---
 
-[Googledoc](https://docs.google.com/document/d/1FWiGmwTsr3YuZeQ7NLtTQ42WIm9D5RLxuFuPK4M6FzQ/edit?usp=sharing)
+# 2019-10-15: Setup GitHub, R, RStudio, Git
 
-# 2019-10-15, setup GitHub, R, RStudio, Git
-
-### Pre-meetup setup (only Mauro)
-
-#### Meeting room
-
-Option 1:
-
-* https://zoom.us/j/597544351
-* record
-
-Option 2 (if zoom fails):
-
-* https://meet.google.com/ags-rjcf-tqk
-* Or +1 417-986-2948 and enter this PIN: 284 162 277#
-* Record via screen-o- matic
-
-#### Software setup
-
-* Move .gitconfig and .ssh out of ~/
-
-* Comment out relevant code in .Rprofile
-
-* Remove git credentials:
-
-_Control Panel > user accounts > credential manager > Windows credentials > Generic credentials_
-
-
-
-### Introduction
-
-* Welcome to [ds-incubator](https://github.com/2DegreesInvesting/ds-incubator): Why, who, what, when, how
-
-* Troubleshoot, ask, discuss: [Open a new issue](https://github.com/2DegreesInvesting/ds-incubator/issues/new)
-
-* I'll focus on Windows
-
-
-
-### Register a free GitHub account
+## Register a free GitHub account
 
 * Your username should be timeless, so you accumulate credit (exclude your employer; add your work email to your personal account).
 
@@ -67,7 +28,7 @@ This makes it easy for people to search your name and find your username. People
 
 
 
-### Install or update R and RStudio AND Install Git
+## Install or update R and RStudio AND Install Git
 
 How to (a) [think](https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio)
 (b) [about](https://community.rstudio.com/t/should-i-update-all-my-r-packages-frequently-yes-no-why/5856/4?u=mauro_lepore) (c) [upgrading software](https://cran.r-project.org/web/packages/installr/index.html).
@@ -81,7 +42,7 @@ How to (a) [think](https://happygitwithr.com/install-r-rstudio.html#install-r-rs
 
 
 
-### Introduce yourself to Git (TODO)
+## Introduce yourself to Git (TODO)
 
 ```
 # My ~/.gitconfig at the start
@@ -102,7 +63,7 @@ git config --global --list
 
 
 
-### Prove local Git can talk to GitHub (SKIP)
+## Prove local Git can talk to GitHub (SKIP)
 
 Login to http://github.com/
 
@@ -137,7 +98,7 @@ git push
 
 
 
-### Cache your username and password or set up SSH keys (DONE)
+## Cache your username and password or set up SSH keys (DONE)
 
 We should be done. We already added this:
 
@@ -153,7 +114,7 @@ SSH: Skip.
 
 
 
-### Prove RStudio can find local Git (TODO)
+## Prove RStudio can find local Git (TODO)
 
 Login to http://github.com/
 
@@ -174,6 +135,6 @@ Do it twice to confirm that the credential manager works as expected.
 
 
 
-### Contemplate if you’d like to install an optional Git client
+## Contemplate if you’d like to install an optional Git client
 
 I recommend GitKraken: https://www.gitkraken.com/download
