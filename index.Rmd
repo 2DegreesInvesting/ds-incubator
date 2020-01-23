@@ -9,6 +9,8 @@ description: "Share best practices in coding."
 
 # Introduction
 
+This book contains materials presented at ds-incubator meetups.
+
 ```{r child="README.md"}
 
 ```

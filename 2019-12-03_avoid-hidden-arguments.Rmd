@@ -11,8 +11,7 @@ tags:
 description: ''
 ---
 
-# Avoid hidden arguments
-
+# 2019-12-03: Avoid hidden arguments
 
 -- [Tidyverse design guide](https://principles.tidyverse.org/args-hidden.html)
 
@@ -101,7 +100,10 @@ data <- read.csv(path)
 prepare_data(data)
 ```
 
-# Some functions do need to depend on external state ...
+
+-
+
+**Some functions do need to depend on external state ...**
  
 ## A function has hidden arguments when it returns different results with the same inputs in a surprising way
 

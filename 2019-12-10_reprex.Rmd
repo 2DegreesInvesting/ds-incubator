@@ -15,7 +15,7 @@ description: ''
 readr::write_csv(datasets::BOD, "your-file.csv")
 ```
 
-## reprex
+# 2019-12-10 reprex
 
 * [reprex usage](https://reprex.tidyverse.org/index.html#usage)
 * [Reprex do’s and don’ts](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html)
@@ -24,9 +24,7 @@ readr::write_csv(datasets::BOD, "your-file.csv")
 
 
 
-# The working directory
-
-## 
+## The working directory
 
 By default, reprex works on a temporary directory.
 
@@ -41,7 +39,7 @@ getwd()
 #> [1] "C:/Users/Mauro/AppData/Local/Temp/RtmpcDRddU/reprex108c190d657"
 ```
 
-##
+
 
 Use `outfile = NA` to work on your project's working directory.
 
@@ -58,7 +56,9 @@ getwd()
 
 (See the full description of `outfile` at `?reprex::reprex()`.)
 
-##
+
+
+And
 
 ```r
 reprex::reprex(readr::read_csv("your-file.csv"), outfile = NA)
