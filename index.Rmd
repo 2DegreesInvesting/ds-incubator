@@ -6,6 +6,7 @@ author:
   - Jackson Hoffart
   - Klaus Hagedorn
   - Clare Murray
+data: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -17,7 +18,7 @@ description: "Share best practices in coding."
 
 # Introduction {-}
 
-This book contains materials presented at ds-incubator meetups.
+This book contains materials presented at meetups of the ds-incubator.
 
 ```{r child="README.md"}
 
