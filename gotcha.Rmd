@@ -22,9 +22,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Function interface
+# Date TBD: Gotchas when moving code from a script to an R package
 
-## Avoid relying on the global environment
+## Function interface
+
+### Avoid relying on the global environment
 
 Good.
 
@@ -54,7 +56,7 @@ f()
 
 
 
-## Avoid modifying the global environment, e.g. with `<<-`
+### Avoid modifying the global environment, e.g. with `<<-`
 
 Setup.
 
@@ -104,7 +106,7 @@ Clean up.
 fs::file_delete("some_data.csv")
 ```
 
-## Arguments that provide core data are required
+### Arguments that provide core data are required
 
 Good.
 
@@ -132,7 +134,7 @@ f()
 
 
 
-## Descriptor arguments are usually required
+### Descriptor arguments are usually required
 
 Good.
 
@@ -161,7 +163,7 @@ forecast <- function(data, start_year = 2020, time_span = 5) {
 
 
 
-## Avoid reading and writing operations
+### Avoid reading and writing operations
 
 Unless it is precisely the purpose of your function, avoid operations that read or write data (in general, avoid side effects).
 
@@ -187,9 +189,9 @@ f <- function(path) {
 
 
 
-# Packaging
+## Packaging
 
-## Developer setup
+### Developer setup
 
 ```R
 library(usethis)
@@ -204,7 +206,7 @@ edit_r_profile()
 
 
 
-## `use_package("dplyr")` not `library(dplyr)`
+### `use_package("dplyr")` not `library(dplyr)`
 
 Good.
 
@@ -222,7 +224,7 @@ library(dplyr)
 
 
 
-## The tidyverse is for EDA, not packages
+### The tidyverse is for EDA, not packages
 
 Good.
 
@@ -241,7 +243,7 @@ use_package("tidyverse")
 
 
 
-## `use_data_raw()`, then `use_data()`
+### `use_data_raw()`, then `use_data()`
 
 Good.
 
@@ -264,7 +266,7 @@ f <- function() {
 }
 ```
 
-## `use_data_raw()`, then `use_data()`
+### `use_data_raw()`, then `use_data()`
 
 Bad.
 
@@ -284,7 +286,7 @@ f <- function() {
 
 
 
-## Use the `.data` pronoun
+### Use the `.data` pronoun
 
 Good.
 
@@ -317,7 +319,7 @@ f <- function(data) {
 
 
 
-## Consider using internal data
+### Consider using internal data
 
 Good.
 
@@ -346,9 +348,9 @@ f <- function(data) {
 
 
 
-# Code smells and feels
+## Code smells and feels
 
-## Simplify `if()` with objects named meaningfully
+### Simplify `if()` with objects named meaningfully
 
 ```{r}
 x <- sample(c(1:10), size = 2, replace = TRUE)
@@ -381,7 +383,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 
 
 
-## Program for columns with `clean_names`
+### Program for columns with `clean_names`
 
 Good.
 
@@ -412,7 +414,7 @@ f(tibble::tibble(A.Column = 1, Another.Column = 1))
 
 
 
-## Avoid long-running temporary objects
+### Avoid long-running temporary objects
 
 Avoid temporary variables unless they run for only a few, consecutive lines.
 
@@ -446,7 +448,7 @@ tmp <- dplyr::select(tmp, disp)
 tmp <- head(tmp)
 ```
 
-## If possible, extract functions to the top level
+### If possible, extract functions to the top level
 
 Good.
 
@@ -472,7 +474,7 @@ f <- function(x) {
 }
 ```
 
-## Extract commented sections into functions
+### Extract commented sections into functions
 
 Good.
 
@@ -503,9 +505,9 @@ f <- function(x) {
 
 
 
-# Error prone
+## Error prone
 
-## Avoid hidden arguments: Extract functions with all arguments
+### Avoid hidden arguments: Extract functions with all arguments
 
 Good.
 
@@ -550,7 +552,7 @@ try(f(1, 1, 1))
 
 
 
-## Separate functions, data, and scripts
+### Separate functions, data, and scripts
 
 ### A non-package project
 
@@ -600,7 +602,7 @@ f(some_data)
 
 When functions, data, and scripts are separate, it's easy for a developer to transform a project into an R package. Functions go in the R/ directory, raw data in data-raw/, and data in data/. Scripts become examples, tests, and higher level documentation such as README, and the Home and articles pages of the package-website.
 
-## `if()` uses a single `TRUE` or `FALSE`
+### `if()` uses a single `TRUE` or `FALSE`
 
 ```{r}
 x <- c(1, 2)
@@ -627,7 +629,7 @@ Caveats: <https://github.com/2DegreesInvesting/ds-incubator/issues/13>
 
 
 
-## `1` is equal to `1L` but not identical
+### `1` is equal to `1L` but not identical
 
 Careful!
 
@@ -653,9 +655,9 @@ if (!this_integer == 1) "Not the same" else "Wrong result"
 
 
 
-# Style
+## Style
 
-## Limit your code to 80 characters per line
+### Limit your code to 80 characters per line
 
 For reference, in RStudio you can set a margin column at 80 characters (_Tools > Global Options > Code > Show margin > Margin column_).
 
@@ -669,7 +671,7 @@ For reference, in RStudio you can set a margin column at 80 characters (_Tools >
 
 
 
-## Names should use only lowercase letters, numbers, and "_".
+### Names should use only lowercase letters, numbers, and "_".
 
 * Generally, variable names should be nouns and function names should be verbs. 
 * Strive for names that are concise and meaningfully!
@@ -694,7 +696,7 @@ permutation()
 
 
 
-## Avoid `T` and `F` as synonyms for `TRUE` and `FALSE`
+### Avoid `T` and `F` as synonyms for `TRUE` and `FALSE`
 
 Good
 
@@ -722,7 +724,7 @@ try(TRUE <- "Whatever")
 
 
 
-## Reserve `return()` to return early
+### Reserve `return()` to return early
 
 > Only use `return()` for early returns. Otherwise, rely on R to return the result of the last evaluated expression
 
@@ -730,7 +732,7 @@ try(TRUE <- "Whatever")
 
 
 
-## Return invisibly only when the main purpose is a side effect
+### Return invisibly only when the main purpose is a side effect
 
 Good. 
 
