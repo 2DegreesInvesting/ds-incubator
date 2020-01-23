@@ -1,0 +1,142 @@
+---
+title: access-permissions-on-github
+author: Mauro Lepore
+date: '2019-11-26'
+slug: access-permissions-on-github
+categories: []
+tags:
+  - github
+description: ''
+---
+
+# 2019-11-26: Access permissions for a GitHub organization
+
+https://github.com/2DegreesInvesting/ds-incubator/issues/14
+
+https://twitter.com/mauro_lepore
+
+## Situation
+
+You want to propose changes to a source repo on a GitHub organization.
+
+* Set the usual plumbing (`create_from_github()`).
+
+* Initiate and work on your pull request (PR) (`pr_init()`).
+
+* Synchronize, push, and submit your PR (`pr_sync()`, `pr_push()`).
+
+## Set the usual plumbing
+
+* Fork source repo to your user account.
+
+* Create a local clone of your fork.
+
+* Connect your local clone with your fork (add remote origin).
+
+* Connect your local clone with the source repo (add remote upstream).
+
+## Initiate and work on your PR
+
+* Create a local branch to host PR.
+
+* Change the local clone.
+
+* Commit informing what changed and why.
+
+## Synchronize, push, and submit your PR
+
+* Synchronize the source repository to get the latest changes.
+
+* Push your PR to your fork.
+
+* Submit your PR from your fork to the source repo.
+
+## But something goes wrong
+
+The set up involves too many steps.
+
+Unless you do it systematically (e.g. with usethis) sooner or later you will forget some step. 
+
+For example, these are my most common mistakes:
+
+* I copy the wrong URL so remote origin points to the source repo instead of my fork.
+
+* I forget to create a new branch and add commits to my local `master` branch.
+
+## What happens when you push?
+
+1. Your commit(s) are now in the PR branch of your fork.
+1. Your commit(s) are now in the master branch of your fork.
+1. Your commit(s) are now in the PR branch  of the source repo.
+1. Your commit(s) are now in the master branch of the source repo.
+1. You fail to push and get an error.
+1. It depends on your role and permission level:
+    
+    * Roles: Owner, ..., member, collaborator.
+    * Permission levels: Admin, ..., push (write), read.
+
+## [Owner, billing manager & member](https://help.github.com/en/github/getting-started-with-github/access-permissions-on-github)
+
+__Organization members can have owner, billing manager, or member roles.__
+
+__Owners__ have complete administrative access to your organization, while __billing managers__ can manage billing settings. __Member__ is the default role for everyone else. 
+
+## Members, teams & outside collaborators
+
+* You can set the default of what __members__ can do for all repos.
+* You can manage access permissions for multiple members at a time with __teams__.
+* You can invite __outside collaborators__ to give them access to __specific repositories__.
+
+## Permission levels for repositories
+
+* __Read__: Recommended for non-code contributors who want to view or discuss your project.
+
+* __Triage__: Recommended for contributors who need to proactively manage issues and PRs without write access.
+
+* __Write__: Recommended for contributors who actively push to your project.
+
+* __Maintain__: Recommended for project managers who need to manage the repository without access to sensitive or destructive actions.
+
+...
+
+## Permission levels for repositories (continued)
+
+...
+
+* __Admin__: Recommended for people who need full access to the project, __including sensitive and destructive actions__ like managing security or deleting a repository.
+
+__Organization owners have admin permissions for every repository owned by the organization__ ([table](https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#repository-access-for-each-permission-level)).
+
+
+
+## Example
+
+### Org settings: People
+
+<img src="https://i.imgur.com/gmUDwRF.png" width = 700 />
+
+### An owner's privileges
+
+<img src="https://i.imgur.com/Y3R0Hhs.png" width = 750 />
+
+### Org settings: Member privileges
+
+<img src="https://i.imgur.com/qiyUNBO.png" width = 750 />
+
+### Repo settings: Collaborators & teams
+
+<img src="https://i.imgur.com/46vPoGT.png" width = 750 />
+
+### Repo settings: Branches
+
+<img src="https://i.imgur.com/raoaf6i.png" width = 750 />
+
+
+
+## Conclusion
+
+**"You do not rise to the level of your goals. You fall to the level of your systems" -- [James Clear, Atomic Habits](https://jamesclear.com/atomic-habits)**
+
+* __People should have just the access they need.__
+* __[Be pragmatic](https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=asc_df_0135957052/?tag=hyprod-20&linkCode=df0&hvadid=385599638286&hvpos=1o1&hvnetw=g&hvrand=10153582926800634949&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9027584&hvtargid=pla-826212996228&psc=1&tag=&ref=&adgrpid=79288120515&hvpone=&hvptwo=&hvadid=385599638286&hvpos=1o1&hvnetw=g&hvrand=10153582926800634949&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9027584&hvtargid=pla-826212996228).__
+

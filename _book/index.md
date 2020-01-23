@@ -19,15 +19,17 @@ description: "Share best practices in coding."
 
 This book contains materials presented at ds-incubator meetups.
 
-```{r child="README.md"}
 
-```
+The goal of the ds-incubator (data science incubator) is to share best practices in coding. It helps us to become better data scientists and to improve out work at  at [2° Investing Initiative](http://2degrees-investing.org/).
+
+This project is managed by [Mauro](https://github.com/maurolepore) with support from [CJ](https://github.com/orgs/2DegreesInvesting/people/cjyetman) and guidance from [Klaus](https://github.com/orgs/2DegreesInvesting/people/2diiKlaus) and [Clare](https://github.com/orgs/2DegreesInvesting/people/Clare2D). Since mid-October, 2019 we meetup online weekly, and we plan a personal meetup in 2020. We welcome contributions from everyone at [2° Investing Initiative](http://2degrees-investing.org/).
+
+Go to:
+
+* [Book](https://2degreesinvesting.github.io/ds-incubator/).
+* [Labeled meetups](https://github.com/2DegreesInvesting/ds-incubator/issues?q=is%3Aissue+is%3Aopen+label%3Ameetup).
+* [Labeled ideas](https://github.com/2DegreesInvesting/ds-incubator/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Aidea).
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">ds-incubator</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/2DegreesInvesting/ds-incubator" property="cc:attributionName" rel="cc:attributionURL">Mauro Lepore, CJ Yetman, Jackson Hoffart, Klaus Hagedorn, Clare Murray</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+
