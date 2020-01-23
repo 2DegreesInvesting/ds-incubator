@@ -9,7 +9,9 @@ tags:
 description: ''
 ---
 
-# 2019-11-19: Installing packages in R (by CJ)
+# 2019-11-19: Installing packages in R
+
+[CJ Yetman](https://github.com/orgs/2DegreesInvesting/people/cjyetman)
 
 - Installing packages in R is more complicated than it seems
 

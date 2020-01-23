@@ -10,6 +10,8 @@ tags:
 description: ''
 ---
 
-# 2019-10-22: Encodings (by CJ)
+# 2019-10-22: Encodings
+
+[CJ Yetman](https://github.com/orgs/2DegreesInvesting/people/cjyetman)
 
 <https://github.com/2DegreesInvesting/ds-incubator/issues/7>

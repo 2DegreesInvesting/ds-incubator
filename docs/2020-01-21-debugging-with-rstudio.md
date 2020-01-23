@@ -11,6 +11,8 @@ tags:
 description: ''
 ---
 
-# 2020-01-21: Debugging with rstudio (by [Jackson Hoffart](https://github.com/jdhoffa)
+# 2020-01-21: Debugging with rstudio
+
+[Jackson Hoffart](https://github.com/jdhoffa)
 
 <https://github.com/2DegreesInvesting/ds-incubator/issues/21>

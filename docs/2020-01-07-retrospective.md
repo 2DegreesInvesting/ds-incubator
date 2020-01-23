@@ -11,6 +11,8 @@ tags:
 description: ''
 ---
 
-# 2020-01-07: Retrospective (by CJ)
+# 2020-01-07: Retrospective
+
+[CJ Yetman](https://github.com/orgs/2DegreesInvesting/people/cjyetman) and [Mauro Lepore](https://github.com/orgs/2DegreesInvesting/people/maurolepore)
 
 <https://github.com/2DegreesInvesting/ds-incubator/issues/18>
