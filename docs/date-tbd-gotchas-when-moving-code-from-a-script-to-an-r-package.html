@@ -562,14 +562,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb58-4" title="4">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb58-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb58-6" title="6">}</a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;5, 5 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;2, 8 Nope!&quot;</span></a></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
 <a class="sourceLine" id="cb59-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-3" title="3">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb59-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-5" title="5">}</a>
-<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;5, 5 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;2, 8 Nope!&quot;</span></a></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">
@@ -873,6 +873,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//yihui.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+  comments powered by Disqus.</a></noscript>
             </section>
 
           </div>
