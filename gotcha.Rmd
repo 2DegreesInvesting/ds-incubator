@@ -1,27 +1,3 @@
----
-title: "Gotchas when moving code from a script to an R package"
-author: Mauro Lepore
-date: 'TBD'
-slug: gotchas
-categories: []
-tags:
-  - r
-  - pr
-description: ''
-output:
-  blogdown::html_page:
-    toc: true
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  echo = TRUE,
-  comment = "#>",
-  error = TRUE,
-  collapse = TRUE
-)
-```
-
 # Gotchas when moving code from a script to an R package {-}
 
 ## Function interface

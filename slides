@@ -1,13 +1,8 @@
 ---
-title: Project-oriented workflow
-output: ioslides_presentation
+title: "go to next slide"
+params:
+  child: "placeholder"
 ---
-
-```{r WARNING, include=FALSE}
-# WARNING: Don't push the knit button
-# To create slides.html run:
-# rmarkdown::render("slides.Rmd")
-```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -18,6 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, child="content/post/2020-01-14_project-oriented-workflow.Rmd"}
+```{r, child=params$child}
 ```
 
