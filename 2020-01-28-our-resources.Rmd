@@ -32,9 +32,12 @@
 
 
 
-
-
-
 ## Gotchas when moving code from a script to an R package
 
-## [r2dii.utils]()
+<img src="https://i.imgur.com/oS4ue2W.png" align="center" width = 750 />
+
+
+
+## [r2dii](https://2degreesinvesting.github.io/r2dii/articles/reference.html)
+
+<img src="https://i.imgur.com/CWMBbSb.png" align="center" width = 750 />

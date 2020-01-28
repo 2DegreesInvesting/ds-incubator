@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#future-proof-your-valuable-resources"><i class="fa fa-check"></i><b>14.4</b> Future-proof your valuable <span>resources</span></a></li>
 <li class="chapter" data-level="14.5" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#votepropose-ideas-for-meetups-11"><i class="fa fa-check"></i><b>14.5</b> Vote/propose <span>ideas for meetups (#11)</span></a></li>
 <li class="chapter" data-level="14.6" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#gotchas-when-moving-code-from-a-script-to-an-r-package"><i class="fa fa-check"></i><b>14.6</b> Gotchas when moving code from a script to an R package</a></li>
-<li class="chapter" data-level="14.7" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#r2dii.utils"><i class="fa fa-check"></i><b>14.7</b> <span>r2dii.utils</span></a></li>
+<li class="chapter" data-level="14.7" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#r2dii"><i class="fa fa-check"></i><b>14.7</b> <span>r2dii</span></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><i class="fa fa-check"></i>Gotchas when moving code from a script to an R package</a><ul>
 <li class="chapter" data-level="14.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#function-interface"><i class="fa fa-check"></i><b>14.8</b> Function interface</a><ul>
@@ -571,14 +571,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb58-4" title="4">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb58-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb58-6" title="6">}</a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;10, 1 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;6, 10 Yeah!&quot;</span></a></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
 <a class="sourceLine" id="cb59-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-3" title="3">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb59-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-5" title="5">}</a>
-<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;10, 1 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;6, 10 Yeah!&quot;</span></a></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">
