@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Date TBD: Gotchas when moving code from a script to an R package | ds-incubator</title>
+  <title>Chapter 15 Date TBD: Gotchas when moving code from a script to an R package | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Date TBD: Gotchas when moving code from a script to an R package | ds-incubator" />
+  <meta property="og:title" content="Chapter 15 Date TBD: Gotchas when moving code from a script to an R package | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Date TBD: Gotchas when moving code from a script to an R package | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 15 Date TBD: Gotchas when moving code from a script to an R package | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,7 +35,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="debugging-with-rstudio.html"/>
+<link rel="prev" href="our-resources.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -245,44 +245,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="debugging-with-rstudio.html"><a href="debugging-with-rstudio.html"><i class="fa fa-check"></i><b>13</b> 2020-01-21: Debugging with rstudio</a></li>
-<li class="chapter" data-level="14" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><i class="fa fa-check"></i><b>14</b> Date TBD: Gotchas when moving code from a script to an R package</a><ul>
-<li class="chapter" data-level="14.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#function-interface"><i class="fa fa-check"></i><b>14.1</b> Function interface</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-relying-on-the-global-environment"><i class="fa fa-check"></i><b>14.1.1</b> Avoid relying on the global environment</a></li>
-<li class="chapter" data-level="14.1.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-modifying-the-global-environment-e.g.-with--"><i class="fa fa-check"></i><b>14.1.2</b> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></a></li>
-<li class="chapter" data-level="14.1.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#arguments-that-provide-core-data-are-required"><i class="fa fa-check"></i><b>14.1.3</b> Arguments that provide core data are required</a></li>
-<li class="chapter" data-level="14.1.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#descriptor-arguments-are-usually-required"><i class="fa fa-check"></i><b>14.1.4</b> Descriptor arguments are usually required</a></li>
-<li class="chapter" data-level="14.1.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-reading-and-writing-operations"><i class="fa fa-check"></i><b>14.1.5</b> Avoid reading and writing operations</a></li>
+<li class="chapter" data-level="14" data-path="our-resources.html"><a href="our-resources.html"><i class="fa fa-check"></i><b>14</b> Our resources</a><ul>
+<li class="chapter" data-level="14.1" data-path="our-resources.html"><a href="our-resources.html#continue-to-use-coding"><i class="fa fa-check"></i><b>14.1</b> Continue to use # coding</a></li>
+<li class="chapter" data-level="14.2" data-path="our-resources.html"><a href="our-resources.html#future-proof-your-valuable-resources"><i class="fa fa-check"></i><b>14.2</b> Future-proof your valuable <span>resources</span></a></li>
+<li class="chapter" data-level="14.3" data-path="our-resources.html"><a href="our-resources.html#visit-the-ds-incubator-ebook-bit.ly2dii-ds-incubator"><i class="fa fa-check"></i><b>14.3</b> Visit the ds-incubator eBook: <span>bit.ly/2dii-ds-incubator</span></a></li>
+<li class="chapter" data-level="14.4" data-path="our-resources.html"><a href="our-resources.html#vote-propose-ideas-for-meetups-11httpsgithub.com2degreesinvestingds-incubatorissues11"><i class="fa fa-check"></i><b>14.4</b> Vote / propose [ideas for meetups (#11)]<span>https://github.com/2DegreesInvesting/ds-incubator/issues/11</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>14.2</b> Packaging</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#developer-setup"><i class="fa fa-check"></i><b>14.2.1</b> Developer setup</a></li>
-<li class="chapter" data-level="14.2.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>14.2.2</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
-<li class="chapter" data-level="14.2.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>14.2.3</b> The tidyverse is for EDA, not packages</a></li>
-<li class="chapter" data-level="14.2.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>14.2.4</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
-<li class="chapter" data-level="14.2.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data-1"><i class="fa fa-check"></i><b>14.2.5</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
-<li class="chapter" data-level="14.2.6" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>14.2.6</b> Use the <code>.data</code> pronoun</a></li>
-<li class="chapter" data-level="14.2.7" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#consider-using-internal-data"><i class="fa fa-check"></i><b>14.2.7</b> Consider using internal data</a></li>
+<li class="chapter" data-level="15" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><i class="fa fa-check"></i><b>15</b> Date TBD: Gotchas when moving code from a script to an R package</a><ul>
+<li class="chapter" data-level="15.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#function-interface"><i class="fa fa-check"></i><b>15.1</b> Function interface</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-relying-on-the-global-environment"><i class="fa fa-check"></i><b>15.1.1</b> Avoid relying on the global environment</a></li>
+<li class="chapter" data-level="15.1.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-modifying-the-global-environment-e.g.-with--"><i class="fa fa-check"></i><b>15.1.2</b> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></a></li>
+<li class="chapter" data-level="15.1.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#arguments-that-provide-core-data-are-required"><i class="fa fa-check"></i><b>15.1.3</b> Arguments that provide core data are required</a></li>
+<li class="chapter" data-level="15.1.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#descriptor-arguments-are-usually-required"><i class="fa fa-check"></i><b>15.1.4</b> Descriptor arguments are usually required</a></li>
+<li class="chapter" data-level="15.1.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-reading-and-writing-operations"><i class="fa fa-check"></i><b>15.1.5</b> Avoid reading and writing operations</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#code-smells-and-feels"><i class="fa fa-check"></i><b>14.3</b> Code smells and feels</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#simplify-if-with-objects-named-meaningfully"><i class="fa fa-check"></i><b>14.3.1</b> Simplify <code>if()</code> with objects named meaningfully</a></li>
-<li class="chapter" data-level="14.3.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#program-for-columns-with-clean_names"><i class="fa fa-check"></i><b>14.3.2</b> Program for columns with <code>clean_names</code></a></li>
-<li class="chapter" data-level="14.3.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-long-running-temporary-objects"><i class="fa fa-check"></i><b>14.3.3</b> Avoid long-running temporary objects</a></li>
-<li class="chapter" data-level="14.3.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-possible-extract-functions-to-the-top-level"><i class="fa fa-check"></i><b>14.3.4</b> If possible, extract functions to the top level</a></li>
-<li class="chapter" data-level="14.3.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#extract-commented-sections-into-functions"><i class="fa fa-check"></i><b>14.3.5</b> Extract commented sections into functions</a></li>
+<li class="chapter" data-level="15.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>15.2</b> Packaging</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#developer-setup"><i class="fa fa-check"></i><b>15.2.1</b> Developer setup</a></li>
+<li class="chapter" data-level="15.2.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>15.2.2</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
+<li class="chapter" data-level="15.2.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>15.2.3</b> The tidyverse is for EDA, not packages</a></li>
+<li class="chapter" data-level="15.2.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>15.2.4</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
+<li class="chapter" data-level="15.2.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data-1"><i class="fa fa-check"></i><b>15.2.5</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
+<li class="chapter" data-level="15.2.6" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>15.2.6</b> Use the <code>.data</code> pronoun</a></li>
+<li class="chapter" data-level="15.2.7" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#consider-using-internal-data"><i class="fa fa-check"></i><b>15.2.7</b> Consider using internal data</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#error-prone"><i class="fa fa-check"></i><b>14.4</b> Error prone</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-hidden-arguments-extract-functions-with-all-arguments"><i class="fa fa-check"></i><b>14.4.1</b> Avoid hidden arguments: Extract functions with all arguments</a></li>
-<li class="chapter" data-level="14.4.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#separate-functions-data-and-scripts"><i class="fa fa-check"></i><b>14.4.2</b> Separate functions, data, and scripts</a></li>
-<li class="chapter" data-level="14.4.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-non-package-project"><i class="fa fa-check"></i><b>14.4.3</b> A non-package project</a></li>
-<li class="chapter" data-level="14.4.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-package-project"><i class="fa fa-check"></i><b>14.4.4</b> A package project</a></li>
-<li class="chapter" data-level="14.4.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-uses-a-single-true-or-false"><i class="fa fa-check"></i><b>14.4.5</b> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></a></li>
-<li class="chapter" data-level="14.4.6" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#is-equal-to-1l-but-not-identical"><i class="fa fa-check"></i><b>14.4.6</b> <code>1</code> is equal to <code>1L</code> but not identical</a></li>
+<li class="chapter" data-level="15.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#code-smells-and-feels"><i class="fa fa-check"></i><b>15.3</b> Code smells and feels</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#simplify-if-with-objects-named-meaningfully"><i class="fa fa-check"></i><b>15.3.1</b> Simplify <code>if()</code> with objects named meaningfully</a></li>
+<li class="chapter" data-level="15.3.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#program-for-columns-with-clean_names"><i class="fa fa-check"></i><b>15.3.2</b> Program for columns with <code>clean_names</code></a></li>
+<li class="chapter" data-level="15.3.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-long-running-temporary-objects"><i class="fa fa-check"></i><b>15.3.3</b> Avoid long-running temporary objects</a></li>
+<li class="chapter" data-level="15.3.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-possible-extract-functions-to-the-top-level"><i class="fa fa-check"></i><b>15.3.4</b> If possible, extract functions to the top level</a></li>
+<li class="chapter" data-level="15.3.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#extract-commented-sections-into-functions"><i class="fa fa-check"></i><b>15.3.5</b> Extract commented sections into functions</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#style"><i class="fa fa-check"></i><b>14.5</b> Style</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>14.5.1</b> Limit your code to 80 characters per line</a></li>
-<li class="chapter" data-level="14.5.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>14.5.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
-<li class="chapter" data-level="14.5.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>14.5.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
-<li class="chapter" data-level="14.5.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>14.5.4</b> Reserve <code>return()</code> to return early</a></li>
-<li class="chapter" data-level="14.5.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>14.5.5</b> Return invisibly only when the main purpose is a side effect</a></li>
+<li class="chapter" data-level="15.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#error-prone"><i class="fa fa-check"></i><b>15.4</b> Error prone</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-hidden-arguments-extract-functions-with-all-arguments"><i class="fa fa-check"></i><b>15.4.1</b> Avoid hidden arguments: Extract functions with all arguments</a></li>
+<li class="chapter" data-level="15.4.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#separate-functions-data-and-scripts"><i class="fa fa-check"></i><b>15.4.2</b> Separate functions, data, and scripts</a></li>
+<li class="chapter" data-level="15.4.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-non-package-project"><i class="fa fa-check"></i><b>15.4.3</b> A non-package project</a></li>
+<li class="chapter" data-level="15.4.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-package-project"><i class="fa fa-check"></i><b>15.4.4</b> A package project</a></li>
+<li class="chapter" data-level="15.4.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-uses-a-single-true-or-false"><i class="fa fa-check"></i><b>15.4.5</b> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></a></li>
+<li class="chapter" data-level="15.4.6" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#is-equal-to-1l-but-not-identical"><i class="fa fa-check"></i><b>15.4.6</b> <code>1</code> is equal to <code>1L</code> but not identical</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#style"><i class="fa fa-check"></i><b>15.5</b> Style</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>15.5.1</b> Limit your code to 80 characters per line</a></li>
+<li class="chapter" data-level="15.5.2" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>15.5.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
+<li class="chapter" data-level="15.5.3" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>15.5.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
+<li class="chapter" data-level="15.5.4" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>15.5.4</b> Reserve <code>return()</code> to return early</a></li>
+<li class="chapter" data-level="15.5.5" data-path="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>15.5.5</b> Return invisibly only when the main purpose is a side effect</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -306,11 +312,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package" class="section level1">
-<h1><span class="header-section-number">Chapter 14</span> Date TBD: Gotchas when moving code from a script to an R package</h1>
+<h1><span class="header-section-number">Chapter 15</span> Date TBD: Gotchas when moving code from a script to an R package</h1>
 <div id="function-interface" class="section level2">
-<h2><span class="header-section-number">14.1</span> Function interface</h2>
+<h2><span class="header-section-number">15.1</span> Function interface</h2>
 <div id="avoid-relying-on-the-global-environment" class="section level3">
-<h3><span class="header-section-number">14.1.1</span> Avoid relying on the global environment</h3>
+<h3><span class="header-section-number">15.1.1</span> Avoid relying on the global environment</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
 <a class="sourceLine" id="cb32-2" title="2">  data</a>
@@ -342,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb33-17" title="17"><span class="co">#&gt; 1     1</span></a></code></pre></div>
 </div>
 <div id="avoid-modifying-the-global-environment-e.g.-with--" class="section level3">
-<h3><span class="header-section-number">14.1.2</span> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></h3>
+<h3><span class="header-section-number">15.1.2</span> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></h3>
 <p>Setup.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">readr<span class="op">::</span><span class="kw">write_csv</span>(mtcars, <span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
 <p>Good.</p>
@@ -396,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">fs<span class="op">::</span><span class="kw">file_delete</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div id="arguments-that-provide-core-data-are-required" class="section level3">
-<h3><span class="header-section-number">14.1.3</span> Arguments that provide core data are required</h3>
+<h3><span class="header-section-number">15.1.3</span> Arguments that provide core data are required</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
 <a class="sourceLine" id="cb38-2" title="2">  data</a>
@@ -415,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>– Adapted from <a href="https://principles.tidyverse.org/args-data-details.html" class="uri">https://principles.tidyverse.org/args-data-details.html</a></p>
 </div>
 <div id="descriptor-arguments-are-usually-required" class="section level3">
-<h3><span class="header-section-number">14.1.4</span> Descriptor arguments are usually required</h3>
+<h3><span class="header-section-number">15.1.4</span> Descriptor arguments are usually required</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, start_year, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
 <a class="sourceLine" id="cb40-2" title="2">  end_year &lt;-<span class="st"> </span>start_year <span class="op">+</span><span class="st"> </span>time_span</a>
@@ -435,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>– Adapted from <a href="https://principles.tidyverse.org/args-data-details.html" class="uri">https://principles.tidyverse.org/args-data-details.html</a></p>
 </div>
 <div id="avoid-reading-and-writing-operations" class="section level3">
-<h3><span class="header-section-number">14.1.5</span> Avoid reading and writing operations</h3>
+<h3><span class="header-section-number">15.1.5</span> Avoid reading and writing operations</h3>
 <p>Unless it is precisely the purpose of your function, avoid operations that read or write data (in general, avoid side effects).</p>
 <p>Good.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
@@ -453,16 +459,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="packaging" class="section level2">
-<h2><span class="header-section-number">14.2</span> Packaging</h2>
+<h2><span class="header-section-number">15.2</span> Packaging</h2>
 <div id="developer-setup" class="section level3">
-<h3><span class="header-section-number">14.2.1</span> Developer setup</h3>
+<h3><span class="header-section-number">15.2.1</span> Developer setup</h3>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">library</span>(usethis)</a>
 <a class="sourceLine" id="cb44-2" title="2"><span class="kw">library</span>(devtools)</a></code></pre></div>
 <p>Maybe edit your .Rprofile.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">edit_r_profile</span>()</a></code></pre></div>
 </div>
 <div id="use_packagedplyr-not-librarydplyr" class="section level3">
-<h3><span class="header-section-number">14.2.2</span> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></h3>
+<h3><span class="header-section-number">15.2.2</span> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <p>Bad.</p>
@@ -470,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://r-pkgs.org/whole-game.html" class="uri">https://r-pkgs.org/whole-game.html</a></p>
 </div>
 <div id="the-tidyverse-is-for-eda-not-packages" class="section level3">
-<h3><span class="header-section-number">14.2.3</span> The tidyverse is for EDA, not packages</h3>
+<h3><span class="header-section-number">15.2.3</span> The tidyverse is for EDA, not packages</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
 <a class="sourceLine" id="cb48-2" title="2"><span class="kw">use_package</span>(<span class="st">&quot;tidyr&quot;</span>)</a></code></pre></div>
@@ -479,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/" class="uri">https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/</a></p>
 </div>
 <div id="use_data_raw-then-use_data" class="section level3">
-<h3><span class="header-section-number">14.2.4</span> <code>use_data_raw()</code>, then <code>use_data()</code></h3>
+<h3><span class="header-section-number">15.2.4</span> <code>use_data_raw()</code>, then <code>use_data()</code></h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># &gt; Console</span></a>
 <a class="sourceLine" id="cb50-2" title="2"><span class="kw">use_data_raw</span>()</a>
@@ -499,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb50-16" title="16">}</a></code></pre></div>
 </div>
 <div id="use_data_raw-then-use_data-1" class="section level3">
-<h3><span class="header-section-number">14.2.5</span> <code>use_data_raw()</code>, then <code>use_data()</code></h3>
+<h3><span class="header-section-number">15.2.5</span> <code>use_data_raw()</code>, then <code>use_data()</code></h3>
 <p>Bad.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># R/any-file.R</span></a>
 <a class="sourceLine" id="cb51-2" title="2">dataset_name &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/dataset-name.xlsx&quot;</span>)</a>
@@ -510,7 +516,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="http://r-pkgs.had.co.nz/data.html" class="uri">http://r-pkgs.had.co.nz/data.html</a></p>
 </div>
 <div id="use-the-.data-pronoun" class="section level3">
-<h3><span class="header-section-number">14.2.6</span> Use the <code>.data</code> pronoun</h3>
+<h3><span class="header-section-number">15.2.6</span> Use the <code>.data</code> pronoun</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data, column_name) {</a>
 <a class="sourceLine" id="cb52-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data[[column_name]])</a>
@@ -528,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://rlang.r-lib.org/reference/tidyeval-data.html" class="uri">https://rlang.r-lib.org/reference/tidyeval-data.html</a></p>
 </div>
 <div id="consider-using-internal-data" class="section level3">
-<h3><span class="header-section-number">14.2.7</span> Consider using internal data</h3>
+<h3><span class="header-section-number">15.2.7</span> Consider using internal data</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># data-raw/my_internal_data.R</span></a>
 <a class="sourceLine" id="cb55-2" title="2"><span class="kw">use_data</span>(my_internal_data, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
@@ -548,9 +554,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="code-smells-and-feels" class="section level2">
-<h2><span class="header-section-number">14.3</span> Code smells and feels</h2>
+<h2><span class="header-section-number">15.3</span> Code smells and feels</h2>
 <div id="simplify-if-with-objects-named-meaningfully" class="section level3">
-<h3><span class="header-section-number">14.3.1</span> Simplify <code>if()</code> with objects named meaningfully</h3>
+<h3><span class="header-section-number">15.3.1</span> Simplify <code>if()</code> with objects named meaningfully</h3>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb57-2" title="2">say &lt;-<span class="st"> </span><span class="cf">function</span>(x, msg) <span class="kw">paste</span>(<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>), msg)</a>
 <a class="sourceLine" id="cb57-3" title="3"><span class="kw">say</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;Hey!&quot;</span>)</a>
@@ -562,18 +568,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb58-4" title="4">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb58-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb58-6" title="6">}</a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;2, 4 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;2, 10 Nope!&quot;</span></a></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
 <a class="sourceLine" id="cb59-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-3" title="3">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb59-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
 <a class="sourceLine" id="cb59-5" title="5">}</a>
-<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;2, 4 Nope!&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;2, 10 Nope!&quot;</span></a></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">
-<h3><span class="header-section-number">14.3.2</span> Program for columns with <code>clean_names</code></h3>
+<h3><span class="header-section-number">15.3.2</span> Program for columns with <code>clean_names</code></h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
 <a class="sourceLine" id="cb60-2" title="2">  clean &lt;-<span class="st"> </span>r2dii.utils<span class="op">::</span><span class="kw">clean_column_names</span>(data)</a>
@@ -602,7 +608,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://2degreesinvesting.github.io/r2dii.utils/reference/clean_column_names.html"><code>?clean_column_names()</code></a></p>
 </div>
 <div id="avoid-long-running-temporary-objects" class="section level3">
-<h3><span class="header-section-number">14.3.3</span> Avoid long-running temporary objects</h3>
+<h3><span class="header-section-number">15.3.3</span> Avoid long-running temporary objects</h3>
 <p>Avoid temporary variables unless they run for only a few, consecutive lines.</p>
 <p>Good.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
@@ -624,7 +630,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb64-6" title="6">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a></code></pre></div>
 </div>
 <div id="if-possible-extract-functions-to-the-top-level" class="section level3">
-<h3><span class="header-section-number">14.3.4</span> If possible, extract functions to the top level</h3>
+<h3><span class="header-section-number">15.3.4</span> If possible, extract functions to the top level</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb65-2" title="2">  <span class="kw">g</span>(x)</a>
@@ -643,7 +649,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb66-7" title="7">}</a></code></pre></div>
 </div>
 <div id="extract-commented-sections-into-functions" class="section level3">
-<h3><span class="header-section-number">14.3.5</span> Extract commented sections into functions</h3>
+<h3><span class="header-section-number">15.3.5</span> Extract commented sections into functions</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
 <a class="sourceLine" id="cb67-2" title="2">  y &lt;-<span class="st"> </span><span class="kw">calculate_y</span>(x)</a>
@@ -666,9 +672,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="error-prone" class="section level2">
-<h2><span class="header-section-number">14.4</span> Error prone</h2>
+<h2><span class="header-section-number">15.4</span> Error prone</h2>
 <div id="avoid-hidden-arguments-extract-functions-with-all-arguments" class="section level3">
-<h3><span class="header-section-number">14.4.1</span> Avoid hidden arguments: Extract functions with all arguments</h3>
+<h3><span class="header-section-number">15.4.1</span> Avoid hidden arguments: Extract functions with all arguments</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
 <a class="sourceLine" id="cb69-2" title="2">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y, z)</a>
@@ -707,10 +713,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb70-24" title="24"><span class="co">#&gt; Error in g(y) : object &#39;z&#39; not found</span></a></code></pre></div>
 </div>
 <div id="separate-functions-data-and-scripts" class="section level3">
-<h3><span class="header-section-number">14.4.2</span> Separate functions, data, and scripts</h3>
+<h3><span class="header-section-number">15.4.2</span> Separate functions, data, and scripts</h3>
 </div>
 <div id="a-non-package-project" class="section level3">
-<h3><span class="header-section-number">14.4.3</span> A non-package project</h3>
+<h3><span class="header-section-number">15.4.3</span> A non-package project</h3>
 <p>It’s easy for an analyst to maintain a project when functions, data, and scripts are separate.</p>
 <p>Good.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># R/all-functions.R</span></a>
@@ -745,11 +751,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb72-12" title="12"><span class="kw">f</span>(some_data)</a></code></pre></div>
 </div>
 <div id="a-package-project" class="section level3">
-<h3><span class="header-section-number">14.4.4</span> A package project</h3>
+<h3><span class="header-section-number">15.4.4</span> A package project</h3>
 <p>When functions, data, and scripts are separate, it’s easy for a developer to transform a project into an R package. Functions go in the R/ directory, raw data in data-raw/, and data in data/. Scripts become examples, tests, and higher level documentation such as README, and the Home and articles pages of the package-website.</p>
 </div>
 <div id="if-uses-a-single-true-or-false" class="section level3">
-<h3><span class="header-section-number">14.4.5</span> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></h3>
+<h3><span class="header-section-number">15.4.5</span> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></h3>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb73-2" title="2">y &lt;-<span class="st"> </span>0L</a></code></pre></div>
 <p>Good</p>
@@ -768,7 +774,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Caveats: <a href="https://github.com/2DegreesInvesting/ds-incubator/issues/13" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/13</a></p>
 </div>
 <div id="is-equal-to-1l-but-not-identical" class="section level3">
-<h3><span class="header-section-number">14.4.6</span> <code>1</code> is equal to <code>1L</code> but not identical</h3>
+<h3><span class="header-section-number">15.4.6</span> <code>1</code> is equal to <code>1L</code> but not identical</h3>
 <p>Careful!</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span>1L</a>
 <a class="sourceLine" id="cb76-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
@@ -785,9 +791,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="style" class="section level2">
-<h2><span class="header-section-number">14.5</span> Style</h2>
+<h2><span class="header-section-number">15.5</span> Style</h2>
 <div id="limit-your-code-to-80-characters-per-line" class="section level3">
-<h3><span class="header-section-number">14.5.1</span> Limit your code to 80 characters per line</h3>
+<h3><span class="header-section-number">15.5.1</span> Limit your code to 80 characters per line</h3>
 <p>For reference, in RStudio you can set a margin column at 80 characters (<em>Tools &gt; Global Options &gt; Code &gt; Show margin &gt; Margin column</em>).</p>
 <blockquote>
 <p>Strive to limit your code to 80 characters per line. This fits comfortably on a printed page with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function.</p>
@@ -799,7 +805,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>– <a href="https://style.tidyverse.org/functions.html#long-lines-1" class="uri">https://style.tidyverse.org/functions.html#long-lines-1</a></p>
 </div>
 <div id="names-should-use-only-lowercase-letters-numbers-and-_." class="section level3">
-<h3><span class="header-section-number">14.5.2</span> Names should use only lowercase letters, numbers, and "_".</h3>
+<h3><span class="header-section-number">15.5.2</span> Names should use only lowercase letters, numbers, and "_".</h3>
 <ul>
 <li>Generally, variable names should be nouns and function names should be verbs.</li>
 <li>Strive for names that are concise and meaningfully!</li>
@@ -817,7 +823,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="avoid-t-and-f-as-synonyms-for-true-and-false" class="section level3">
-<h3><span class="header-section-number">14.5.3</span> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></h3>
+<h3><span class="header-section-number">15.5.3</span> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></h3>
 <p>Good</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Bad.</p>
@@ -834,14 +840,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://www.r-bloggers.com/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/" class="uri">https://www.r-bloggers.com/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/</a></p>
 </div>
 <div id="reserve-return-to-return-early" class="section level3">
-<h3><span class="header-section-number">14.5.4</span> Reserve <code>return()</code> to return early</h3>
+<h3><span class="header-section-number">15.5.4</span> Reserve <code>return()</code> to return early</h3>
 <blockquote>
 <p>Only use <code>return()</code> for early returns. Otherwise, rely on R to return the result of the last evaluated expression</p>
 </blockquote>
 <p><a href="https://style.tidyverse.org/functions.html#return" class="uri">https://style.tidyverse.org/functions.html#return</a></p>
 </div>
 <div id="return-invisibly-only-when-the-main-purpose-is-a-side-effect" class="section level3">
-<h3><span class="header-section-number">14.5.5</span> Return invisibly only when the main purpose is a side effect</h3>
+<h3><span class="header-section-number">15.5.5</span> Return invisibly only when the main purpose is a side effect</h3>
 <p>Good.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># Main purpose is a side effect: To throw an error if the input is bad</span></a>
 <a class="sourceLine" id="cb84-2" title="2">check_f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
@@ -888,7 +894,7 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="debugging-with-rstudio.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="our-resources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

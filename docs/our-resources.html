@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 2019-12-03: Avoid hidden arguments | ds-incubator</title>
+  <title>Chapter 14 Our resources | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 2019-12-03: Avoid hidden arguments | ds-incubator" />
+  <meta property="og:title" content="Chapter 14 Our resources | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 2019-12-03: Avoid hidden arguments | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 14 Our resources | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="access-permissions-for-a-github-organization.html"/>
-<link rel="next" href="reprex.html"/>
+<link rel="prev" href="debugging-with-rstudio.html"/>
+<link rel="next" href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -311,143 +311,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="avoid-hidden-arguments" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> 2019-12-03: Avoid hidden arguments</h1>
-<p>– <a href="https://principles.tidyverse.org/args-hidden.html">Tidyverse design guide</a></p>
-<p><a href="https://twitter.com/mauro_lepore" class="uri">https://twitter.com/mauro_lepore</a></p>
-<p>License: <a href="https://creativecommons.org/choose/zero/?lang=es">CCO</a></p>
-<div id="hidden-arguments-make-code-harder-to-reason-about-because-to-correctly-predict-the-output-you-also-need-to-know-some-other-state" class="section level2">
-<h2><span class="header-section-number">8.1</span> Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other state</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">y &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb12-2" title="2">add &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb12-3" title="3">  x <span class="op">+</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb12-4" title="4">}</a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="kw">add</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb12-6" title="6"><span class="co">#&gt; [1] 2</span></a>
-<a class="sourceLine" id="cb12-7" title="7"></a>
-<a class="sourceLine" id="cb12-8" title="8">y &lt;-<span class="st"> </span><span class="dv">10</span> <span class="co">## It is hard to keep track of this</span></a>
-<a class="sourceLine" id="cb12-9" title="9"></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="kw">add</span>(<span class="dv">1</span>)  </a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="co">#&gt; [1] 11</span></a></code></pre></div>
+<div id="our-resources" class="section level1">
+<h1><span class="header-section-number">Chapter 14</span> Our resources</h1>
+<div id="continue-to-use-coding" class="section level2">
+<h2><span class="header-section-number">14.1</span> Continue to use # coding</h2>
+<p><img src="https://i.imgur.com/3bPZ77k.png" align="center" height = 500 /></p>
 </div>
-<div id="functions-are-easier-to-understand-if-the-results-depend-only-on-the-values-of-the-inputs" class="section level2">
-<h2><span class="header-section-number">8.2</span> Functions are easier to understand if the results depend only on the values of the inputs</h2>
+<div id="future-proof-your-valuable-resources" class="section level2">
+<h2><span class="header-section-number">14.2</span> Future-proof your valuable <a href="https://github.com/2DegreesInvesting/resources/issues">resources</a></h2>
+<p><img src="https://i.imgur.com/kNLIAdq.png" align="center" width = 750 /></p>
 </div>
-<div id="how-can-i-remediate-the-problem" class="section level2">
-<h2><span class="header-section-number">8.3</span> How can I remediate the problem?</h2>
-<p>If you have an existing function with a hidden input:</p>
-<ol style="list-style-type: decimal">
-<li>Make sure the input is an explicit option.</li>
-<li>Make sure it’s printed.</li>
-</ol>
+<div id="visit-the-ds-incubator-ebook-bit.ly2dii-ds-incubator" class="section level2">
+<h2><span class="header-section-number">14.3</span> Visit the ds-incubator eBook: <a href="https://bit.ly/2dii-ds-incubator">bit.ly/2dii-ds-incubator</a></h2>
+<p><img src="https://i.imgur.com/EpVk559.png" align="center" width = 750 /></p>
 </div>
-<div id="for-example-take-prepare_data" class="section level2">
-<h2><span class="header-section-number">8.4</span> For example, take <code>prepare_data()</code></h2>
-<p>The output depends on <code>data</code>, but it is hidden.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb13-2" title="2">  data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(path)</a>
-<a class="sourceLine" id="cb13-3" title="3">  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb13-4" title="4">}</a>
-<a class="sourceLine" id="cb13-5" title="5"></a>
-<a class="sourceLine" id="cb13-6" title="6">path &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
-<a class="sourceLine" id="cb13-7" title="7">readr<span class="op">::</span><span class="kw">write_csv</span>(mtcars, path)</a>
-<a class="sourceLine" id="cb13-8" title="8"></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="kw">prepare_data</span>()</a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="co">#&gt;   mpg cyl</span></a>
-<a class="sourceLine" id="cb13-11" title="11"><span class="co">#&gt; 1  21   6</span></a>
-<a class="sourceLine" id="cb13-12" title="12"><span class="co">#&gt; 2  21   6</span></a></code></pre></div>
-</div>
-<div id="prepare_data-gains-the-explicit-argument-data" class="section level2">
-<h2><span class="header-section-number">8.5</span> 1. <code>prepare_data()</code> gains the explicit argument <code>data</code></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> <span class="kw">read.csv</span>(path)) {</a>
-<a class="sourceLine" id="cb14-2" title="2">  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb14-3" title="3">}</a>
-<a class="sourceLine" id="cb14-4" title="4"></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="kw">prepare_data</span>()</a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="co">#&gt;   mpg cyl</span></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="co">#&gt; 1  21   6</span></a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="co">#&gt; 2  21   6</span></a></code></pre></div>
-</div>
-<div id="prepare_data-now-prints-data" class="section level2">
-<h2><span class="header-section-number">8.6</span> 2. <code>prepare_data()</code> now prints <code>data</code></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> <span class="kw">read.csv</span>(path)) {</a>
-<a class="sourceLine" id="cb15-2" title="2">  <span class="cf">if</span> (<span class="kw">missing</span>(data)) {</a>
-<a class="sourceLine" id="cb15-3" title="3">    <span class="kw">message</span>(</a>
-<a class="sourceLine" id="cb15-4" title="4">      <span class="st">&quot;Using `data` with names: &quot;</span>, <span class="kw">paste</span>(<span class="kw">names</span>(data), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</a>
-<a class="sourceLine" id="cb15-5" title="5">    )</a>
-<a class="sourceLine" id="cb15-6" title="6">  }</a>
-<a class="sourceLine" id="cb15-7" title="7">  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb15-8" title="8">}</a>
-<a class="sourceLine" id="cb15-9" title="9"></a>
-<a class="sourceLine" id="cb15-10" title="10"><span class="kw">prepare_data</span>()</a>
-<a class="sourceLine" id="cb15-11" title="11"><span class="co">#&gt; Using `data` with names: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></a>
-<a class="sourceLine" id="cb15-12" title="12"><span class="co">#&gt;   mpg cyl</span></a>
-<a class="sourceLine" id="cb15-13" title="13"><span class="co">#&gt; 1  21   6</span></a>
-<a class="sourceLine" id="cb15-14" title="14"><span class="co">#&gt; 2  21   6</span></a>
-<a class="sourceLine" id="cb15-15" title="15"></a>
-<a class="sourceLine" id="cb15-16" title="16"><span class="kw">prepare_data</span>(<span class="kw">read.csv</span>(path))</a>
-<a class="sourceLine" id="cb15-17" title="17"><span class="co">#&gt;   mpg cyl</span></a>
-<a class="sourceLine" id="cb15-18" title="18"><span class="co">#&gt; 1  21   6</span></a>
-<a class="sourceLine" id="cb15-19" title="19"><span class="co">#&gt; 2  21   6</span></a></code></pre></div>
-</div>
-<div id="but-data-should-be-supplied" class="section level2">
-<h2><span class="header-section-number">8.7</span> But <code>data</code> should be supplied</h2>
-<blockquote>
-<p>Data arguments provide the core data. They are required, and are usually vectors and often determine the type and size of the output. Data arguments are often called <code>data</code>, <code>x</code>, or <code>y</code> – <a href="https://principles.tidyverse.org/args-data-details.html">tidyverse design guide</a>.</p>
-</blockquote>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb16-2" title="2">  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb16-3" title="3">}</a>
-<a class="sourceLine" id="cb16-4" title="4"></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="kw">try</span>(<span class="kw">prepare_data</span>())</a>
-<a class="sourceLine" id="cb16-6" title="6"><span class="co">#&gt; Error in prepare_data() : argument &quot;data&quot; is missing, with no default</span></a>
-<a class="sourceLine" id="cb16-7" title="7"></a>
-<a class="sourceLine" id="cb16-8" title="8">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(path)</a>
-<a class="sourceLine" id="cb16-9" title="9"><span class="kw">prepare_data</span>(data)</a>
-<a class="sourceLine" id="cb16-10" title="10"><span class="co">#&gt;   mpg cyl</span></a>
-<a class="sourceLine" id="cb16-11" title="11"><span class="co">#&gt; 1  21   6</span></a>
-<a class="sourceLine" id="cb16-12" title="12"><span class="co">#&gt; 2  21   6</span></a></code></pre></div>
-<ul>
-<li></li>
-</ul>
-<p><strong>Some functions do need to depend on external state …</strong></p>
-</div>
-<div id="a-function-has-hidden-arguments-when-it-returns-different-results-with-the-same-inputs-in-a-surprising-way" class="section level2">
-<h2><span class="header-section-number">8.8</span> A function has hidden arguments when it returns different results with the same inputs in a surprising way</h2>
-</div>
-<div id="surprising" class="section level2">
-<h2><span class="header-section-number">8.9</span> Surprising</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">getOption</span>(<span class="st">&quot;stringsAsFactors&quot;</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="st">&quot;a&quot;</span>)<span class="op">$</span>x</a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="co">#&gt; [1] a</span></a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="co">#&gt; Levels: a</span></a>
-<a class="sourceLine" id="cb17-6" title="6"></a>
-<a class="sourceLine" id="cb17-7" title="7">old_options &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb17-8" title="8"><span class="kw">on.exit</span>(old_options)</a>
-<a class="sourceLine" id="cb17-9" title="9"></a>
-<a class="sourceLine" id="cb17-10" title="10"><span class="kw">getOption</span>(<span class="st">&quot;stringsAsFactors&quot;</span>)</a>
-<a class="sourceLine" id="cb17-11" title="11"><span class="co">#&gt; [1] FALSE</span></a>
-<a class="sourceLine" id="cb17-12" title="12"><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="st">&quot;a&quot;</span>)<span class="op">$</span>x</a>
-<a class="sourceLine" id="cb17-13" title="13"><span class="co">#&gt; [1] &quot;a&quot;</span></a></code></pre></div>
-<p>Global options should not affect computation.</p>
-</div>
-<div id="not-surprising" class="section level2">
-<h2><span class="header-section-number">8.10</span> Not surprising</h2>
-<p><code>read_csv(path)</code> depends not only on <code>path</code> but also on the contents of the file, but that is not surprising.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb18-2" title="2">path &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
-<a class="sourceLine" id="cb18-3" title="3"></a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="kw">write_csv</span>(mtcars, path)</a>
-<a class="sourceLine" id="cb18-5" title="5"></a>
-<a class="sourceLine" id="cb18-6" title="6"><span class="kw">names</span>(<span class="kw">read_csv</span>(path))</a>
-<a class="sourceLine" id="cb18-7" title="7"><span class="co">#&gt;  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;</span></a>
-<a class="sourceLine" id="cb18-8" title="8"><span class="co">#&gt; [11] &quot;carb&quot;</span></a>
-<a class="sourceLine" id="cb18-9" title="9"></a>
-<a class="sourceLine" id="cb18-10" title="10"><span class="kw">write_csv</span>(iris, path)</a>
-<a class="sourceLine" id="cb18-11" title="11"></a>
-<a class="sourceLine" id="cb18-12" title="12"><span class="kw">names</span>(<span class="kw">read_csv</span>(path))</a>
-<a class="sourceLine" id="cb18-13" title="13"><span class="co">#&gt; [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</span></a></code></pre></div>
+<div id="vote-propose-ideas-for-meetups-11httpsgithub.com2degreesinvestingds-incubatorissues11" class="section level2">
+<h2><span class="header-section-number">14.4</span> Vote / propose [ideas for meetups (#11)]<a href="https://github.com/2DegreesInvesting/ds-incubator/issues/11" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/11</a>)</h2>
+<p><img src="https://i.imgur.com/59e4PnW.png" align="center" width = 750 /></p>
 
 </div>
 </div>
@@ -466,8 +346,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="access-permissions-for-a-github-organization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reprex.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="debugging-with-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="date-tbd-gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -498,7 +378,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-12-03_avoid-hidden-arguments.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-01-28-our-resources.Rmd",
 "text": "Edit"
 },
 "history": {
