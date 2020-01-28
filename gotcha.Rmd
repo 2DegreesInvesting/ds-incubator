@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Date TBD: Gotchas when moving code from a script to an R package
+# Gotchas when moving code from a script to an R package {-}
 
 ## Function interface
 

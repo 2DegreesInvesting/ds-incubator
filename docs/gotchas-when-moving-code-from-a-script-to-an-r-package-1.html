@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Gotchas when moving code from a script to an R package | ds-incubator</title>
+  <meta name="description" content="Share best practices in coding." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Gotchas when moving code from a script to an R package | ds-incubator" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Share best practices in coding." />
+  <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Gotchas when moving code from a script to an R package | ds-incubator" />
+  
+  <meta name="twitter:description" content="Share best practices in coding." />
+  
+
+<meta name="author" content="Mauro Lepore" />
+<meta name="author" content="CJ Yetman" />
+<meta name="author" content="Jackson Hoffart" />
+<meta name="author" content="Klaus Hagedorn" />
+<meta name="author" content="Clare Murray" />
+
+
+<meta name="date" content="2019-10-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reviewing-our-resources.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">https://bit.ly/2dii-ds-incubator</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html"><i class="fa fa-check"></i><b>1</b> 2019-10-15: Setup GitHub, R, RStudio, Git</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#register-a-free-github-account"><i class="fa fa-check"></i><b>1.1</b> Register a free GitHub account</a></li>
+<li class="chapter" data-level="1.2" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#install-or-update-r-and-rstudio-and-install-git"><i class="fa fa-check"></i><b>1.2</b> Install or update R and RStudio AND Install Git</a></li>
+<li class="chapter" data-level="1.3" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#introduce-yourself-to-git-todo"><i class="fa fa-check"></i><b>1.3</b> Introduce yourself to Git (TODO)</a></li>
+<li class="chapter" data-level="1.4" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#prove-local-git-can-talk-to-github-skip"><i class="fa fa-check"></i><b>1.4</b> Prove local Git can talk to GitHub (SKIP)</a></li>
+<li class="chapter" data-level="1.5" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#cache-your-username-and-password-or-set-up-ssh-keys-done"><i class="fa fa-check"></i><b>1.5</b> Cache your username and password or set up SSH keys (DONE)</a></li>
+<li class="chapter" data-level="1.6" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#prove-rstudio-can-find-local-git-todo"><i class="fa fa-check"></i><b>1.6</b> Prove RStudio can find local Git (TODO)</a></li>
+<li class="chapter" data-level="1.7" data-path="setup-github-r-rstudio-git.html"><a href="setup-github-r-rstudio-git.html#contemplate-if-youd-like-to-install-an-optional-git-client"><i class="fa fa-check"></i><b>1.7</b> Contemplate if you’d like to install an optional Git client</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="encodings.html"><a href="encodings.html"><i class="fa fa-check"></i><b>2</b> 2019-10-22: Encodings</a></li>
+<li class="chapter" data-level="3" data-path="pull-request-helpers.html"><a href="pull-request-helpers.html"><i class="fa fa-check"></i><b>3</b> 2019-10-29: pull request helpers</a><ul>
+<li class="chapter" data-level="3.1" data-path="pull-request-helpers.html"><a href="pull-request-helpers.html#setup"><i class="fa fa-check"></i><b>3.1</b> Setup</a></li>
+<li class="chapter" data-level="3.2" data-path="pull-request-helpers.html"><a href="pull-request-helpers.html#for-contributors"><i class="fa fa-check"></i><b>3.2</b> For contributors</a></li>
+<li class="chapter" data-level="3.3" data-path="pull-request-helpers.html"><a href="pull-request-helpers.html#more-setup"><i class="fa fa-check"></i><b>3.3</b> More setup</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="usethispr-sync.html"><a href="usethispr-sync.html"><i class="fa fa-check"></i><b>4</b> 2019-11-05: <code>usethis::pr_sync( )</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="usethispr-sync.html"><a href="usethispr-sync.html#create_from_github"><i class="fa fa-check"></i><b>4.1</b> <code>create_from_github()</code></a></li>
+<li class="chapter" data-level="4.2" data-path="usethispr-sync.html"><a href="usethispr-sync.html#git_sitrep"><i class="fa fa-check"></i><b>4.2</b> <code>git_sitrep()</code></a></li>
+<li class="chapter" data-level="4.3" data-path="usethispr-sync.html"><a href="usethispr-sync.html#pr_initpr"><i class="fa fa-check"></i><b>4.3</b> <code>pr_init("pr")</code></a></li>
+<li class="chapter" data-level="4.4" data-path="usethispr-sync.html"><a href="usethispr-sync.html#pr_push"><i class="fa fa-check"></i><b>4.4</b> <code>pr_push()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="usethispr-sync.html"><a href="usethispr-sync.html#pr_sync"><i class="fa fa-check"></i><b>4.5</b> <code>pr_sync()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="usethispr-sync.html"><a href="usethispr-sync.html#solve-merge-conflicts"><i class="fa fa-check"></i><b>4.6</b> Solve merge conflicts</a></li>
+<li class="chapter" data-level="4.7" data-path="usethispr-sync.html"><a href="usethispr-sync.html#pr_push-1"><i class="fa fa-check"></i><b>4.7</b> <code>pr_push()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="usethispr-sync.html"><a href="usethispr-sync.html#pr-now-has-no-conflicts-with-upstreammaster"><i class="fa fa-check"></i><b>4.8</b> <code>[pr]</code> now has no conflicts with <code>[upstream/master]</code></a></li>
+<li class="chapter" data-level="4.9" data-path="usethispr-sync.html"><a href="usethispr-sync.html#pr_finish"><i class="fa fa-check"></i><b>4.9</b> <code>pr_finish()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html"><i class="fa fa-check"></i><b>5</b> 2019-11-12: Interdependent pull requests</a><ul>
+<li class="chapter" data-level="5.1" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#situation"><i class="fa fa-check"></i><b>5.1</b> Situation</a></li>
+<li class="chapter" data-level="5.2" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_initpr1"><i class="fa fa-check"></i><b>5.2</b> <code>pr_init("pr1")</code></a></li>
+<li class="chapter" data-level="5.3" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#new-f"><i class="fa fa-check"></i><b>5.3</b> New <code>f()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_push-2"><i class="fa fa-check"></i><b>5.4</b> <code>pr_push()</code></a></li>
+<li class="chapter" data-level="5.5" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_initpr2"><i class="fa fa-check"></i><b>5.5</b> <code>pr_init("pr2")</code></a></li>
+<li class="chapter" data-level="5.6" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#new-g"><i class="fa fa-check"></i><b>5.6</b> New <code>g()</code></a></li>
+<li class="chapter" data-level="5.7" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_push-3"><i class="fa fa-check"></i><b>5.7</b> <code>pr_push()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_fetch-maintainer"><i class="fa fa-check"></i><b>5.8</b> <code>pr_fetch()</code> (Maintainer)</a></li>
+<li class="chapter" data-level="5.9" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#edit-pr1-maintainer"><i class="fa fa-check"></i><b>5.9</b> Edit <code>pr1</code> (Maintainer)</a></li>
+<li class="chapter" data-level="5.10" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_push-maintainer"><i class="fa fa-check"></i><b>5.10</b> <code>pr_push()</code> (Maintainer)</a></li>
+<li class="chapter" data-level="5.11" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_sync-1"><i class="fa fa-check"></i><b>5.11</b> <code>pr_sync()</code></a></li>
+<li class="chapter" data-level="5.12" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#fix-pr2-then-pr_push"><i class="fa fa-check"></i><b>5.12</b> Fix <code>pr2</code> then <code>pr_push()</code></a></li>
+<li class="chapter" data-level="5.13" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#squash-merge-pr2-maintainer"><i class="fa fa-check"></i><b>5.13</b> Squash-merge <code>pr2</code> (Maintainer)</a></li>
+<li class="chapter" data-level="5.14" data-path="interdependent-pull-requests.html"><a href="interdependent-pull-requests.html#pr_finish-1"><i class="fa fa-check"></i><b>5.14</b> <code>pr_finish()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="installing-packages-in-r.html"><a href="installing-packages-in-r.html"><i class="fa fa-check"></i><b>6</b> 2019-11-19: Installing packages in R</a></li>
+<li class="chapter" data-level="7" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html"><i class="fa fa-check"></i><b>7</b> 2019-11-26: Access permissions for a GitHub organization</a><ul>
+<li class="chapter" data-level="7.1" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#situation-1"><i class="fa fa-check"></i><b>7.1</b> Situation</a></li>
+<li class="chapter" data-level="7.2" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#set-the-usual-plumbing"><i class="fa fa-check"></i><b>7.2</b> Set the usual plumbing</a></li>
+<li class="chapter" data-level="7.3" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#initiate-and-work-on-your-pr"><i class="fa fa-check"></i><b>7.3</b> Initiate and work on your PR</a></li>
+<li class="chapter" data-level="7.4" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#synchronize-push-and-submit-your-pr"><i class="fa fa-check"></i><b>7.4</b> Synchronize, push, and submit your PR</a></li>
+<li class="chapter" data-level="7.5" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#but-something-goes-wrong"><i class="fa fa-check"></i><b>7.5</b> But something goes wrong</a></li>
+<li class="chapter" data-level="7.6" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#what-happens-when-you-push"><i class="fa fa-check"></i><b>7.6</b> What happens when you push?</a></li>
+<li class="chapter" data-level="7.7" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#owner-billing-manager-member"><i class="fa fa-check"></i><b>7.7</b> <span>Owner, billing manager &amp; member</span></a></li>
+<li class="chapter" data-level="7.8" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#members-teams-outside-collaborators"><i class="fa fa-check"></i><b>7.8</b> Members, teams &amp; outside collaborators</a></li>
+<li class="chapter" data-level="7.9" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#permission-levels-for-repositories"><i class="fa fa-check"></i><b>7.9</b> Permission levels for repositories</a></li>
+<li class="chapter" data-level="7.10" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#permission-levels-for-repositories-continued"><i class="fa fa-check"></i><b>7.10</b> Permission levels for repositories (continued)</a></li>
+<li class="chapter" data-level="7.11" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#example"><i class="fa fa-check"></i><b>7.11</b> Example</a><ul>
+<li class="chapter" data-level="7.11.1" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#org-settings-people"><i class="fa fa-check"></i><b>7.11.1</b> Org settings: People</a></li>
+<li class="chapter" data-level="7.11.2" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#an-owners-privileges"><i class="fa fa-check"></i><b>7.11.2</b> An owner’s privileges</a></li>
+<li class="chapter" data-level="7.11.3" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#org-settings-member-privileges"><i class="fa fa-check"></i><b>7.11.3</b> Org settings: Member privileges</a></li>
+<li class="chapter" data-level="7.11.4" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#repo-settings-collaborators-teams"><i class="fa fa-check"></i><b>7.11.4</b> Repo settings: Collaborators &amp; teams</a></li>
+<li class="chapter" data-level="7.11.5" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#repo-settings-branches"><i class="fa fa-check"></i><b>7.11.5</b> Repo settings: Branches</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="access-permissions-for-a-github-organization.html"><a href="access-permissions-for-a-github-organization.html#conclusion"><i class="fa fa-check"></i><b>7.12</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html"><i class="fa fa-check"></i><b>8</b> 2019-12-03: Avoid hidden arguments</a><ul>
+<li class="chapter" data-level="8.1" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#hidden-arguments-make-code-harder-to-reason-about-because-to-correctly-predict-the-output-you-also-need-to-know-some-other-state"><i class="fa fa-check"></i><b>8.1</b> Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other state</a></li>
+<li class="chapter" data-level="8.2" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#functions-are-easier-to-understand-if-the-results-depend-only-on-the-values-of-the-inputs"><i class="fa fa-check"></i><b>8.2</b> Functions are easier to understand if the results depend only on the values of the inputs</a></li>
+<li class="chapter" data-level="8.3" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#how-can-i-remediate-the-problem"><i class="fa fa-check"></i><b>8.3</b> How can I remediate the problem?</a></li>
+<li class="chapter" data-level="8.4" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#for-example-take-prepare_data"><i class="fa fa-check"></i><b>8.4</b> For example, take <code>prepare_data()</code></a></li>
+<li class="chapter" data-level="8.5" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#prepare_data-gains-the-explicit-argument-data"><i class="fa fa-check"></i><b>8.5</b> 1. <code>prepare_data()</code> gains the explicit argument <code>data</code></a></li>
+<li class="chapter" data-level="8.6" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#prepare_data-now-prints-data"><i class="fa fa-check"></i><b>8.6</b> 2. <code>prepare_data()</code> now prints <code>data</code></a></li>
+<li class="chapter" data-level="8.7" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#but-data-should-be-supplied"><i class="fa fa-check"></i><b>8.7</b> But <code>data</code> should be supplied</a></li>
+<li class="chapter" data-level="8.8" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#a-function-has-hidden-arguments-when-it-returns-different-results-with-the-same-inputs-in-a-surprising-way"><i class="fa fa-check"></i><b>8.8</b> A function has hidden arguments when it returns different results with the same inputs in a surprising way</a></li>
+<li class="chapter" data-level="8.9" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#surprising"><i class="fa fa-check"></i><b>8.9</b> Surprising</a></li>
+<li class="chapter" data-level="8.10" data-path="avoid-hidden-arguments.html"><a href="avoid-hidden-arguments.html#not-surprising"><i class="fa fa-check"></i><b>8.10</b> Not surprising</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reprex.html"><a href="reprex.html"><i class="fa fa-check"></i><b>9</b> 2019-12-10 reprex</a><ul>
+<li class="chapter" data-level="9.1" data-path="reprex.html"><a href="reprex.html#the-working-directory"><i class="fa fa-check"></i><b>9.1</b> The working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="reusing-tidyverse-code.html"><a href="reusing-tidyverse-code.html"><i class="fa fa-check"></i><b>10</b> 2019-12-17: Reusing tidyverse code</a><ul>
+<li class="chapter" data-level="10.1" data-path="reusing-tidyverse-code.html"><a href="reusing-tidyverse-code.html#resources"><i class="fa fa-check"></i><b>10.1</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="retrospective.html"><a href="retrospective.html"><i class="fa fa-check"></i><b>11</b> 2020-01-07: Retrospective</a></li>
+<li class="chapter" data-level="12" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html"><i class="fa fa-check"></i><b>12</b> 2020-01-14: Project-oriented workflow</a><ul>
+<li class="chapter" data-level="12.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#workflow-versus-product"><i class="fa fa-check"></i><b>12.1</b> Workflow versus product</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#definitions"><i class="fa fa-check"></i><b>12.1.1</b> Definitions</a></li>
+<li class="chapter" data-level="12.1.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#which-is-workflow-or-product"><i class="fa fa-check"></i><b>12.1.2</b> Which is workflow or product?</a></li>
+<li class="chapter" data-level="12.1.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#example-remove-workflow"><i class="fa fa-check"></i><b>12.1.3</b> Example: Remove workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#self-contained-projects"><i class="fa fa-check"></i><b>12.2</b> Self-contained projects</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#self-contained-projects-can-be-moved-around-on-your-computer-or-onto-other-computers-and-will-still-just-work."><i class="fa fa-check"></i><b>12.2.1</b> Self-contained projects can be moved around on your computer or onto other computers and will still “just work”.</a></li>
+<li class="chapter" data-level="12.2.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-do-they-look-like"><i class="fa fa-check"></i><b>12.2.2</b> What do they look like?</a></li>
+<li class="chapter" data-level="12.2.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#violations"><i class="fa fa-check"></i><b>12.2.3</b> Violations …</a></li>
+<li class="chapter" data-level="12.2.4" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead"><i class="fa fa-check"></i><b>12.2.4</b> What should you do instead?</a></li>
+<li class="chapter" data-level="12.2.5" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-1"><i class="fa fa-check"></i><b>12.2.5</b> What should you do instead?</a></li>
+<li class="chapter" data-level="12.2.6" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-2"><i class="fa fa-check"></i><b>12.2.6</b> What should you do instead?</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#setwd"><i class="fa fa-check"></i><b>12.3</b> setwd( )</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-wrong"><i class="fa fa-check"></i><b>12.3.1</b> What’s wrong?</a></li>
+<li class="chapter" data-level="12.3.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-wrong-1"><i class="fa fa-check"></i><b>12.3.2</b> What’s wrong?</a></li>
+<li class="chapter" data-level="12.3.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-3"><i class="fa fa-check"></i><b>12.3.3</b> What should you do instead?</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#rmlist-ls"><i class="fa fa-check"></i><b>12.4</b> rm(list = ls( ))</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-wrong-2"><i class="fa fa-check"></i><b>12.4.1</b> What’s wrong?</a></li>
+<li class="chapter" data-level="12.4.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-better"><i class="fa fa-check"></i><b>12.4.2</b> What’s better?</a></li>
+<li class="chapter" data-level="12.4.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#discuss-must-have-or-nice-to-have"><i class="fa fa-check"></i><b>12.4.3</b> Discuss: Must have or nice to have?</a></li>
+<li class="chapter" data-level="12.4.4" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#learn-more"><i class="fa fa-check"></i><b>12.4.4</b> Learn more</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="debugging-with-rstudio.html"><a href="debugging-with-rstudio.html"><i class="fa fa-check"></i><b>13</b> 2020-01-21: Debugging with rstudio</a></li>
+<li class="chapter" data-level="14" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html"><i class="fa fa-check"></i><b>14</b> Reviewing our resources</a><ul>
+<li class="chapter" data-level="14.1" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#ds-incubator-ebook-bit.ly2dii-ds-incubator"><i class="fa fa-check"></i><b>14.1</b> ds-incubator eBook: <span>bit.ly/2dii-ds-incubator</span></a></li>
+<li class="chapter" data-level="14.2" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#ds-incubator-on-rstudio.cloud-bit.lyrs-cloud-ds-incubator"><i class="fa fa-check"></i><b>14.2</b> ds-incubator on rstudio.cloud: <span>bit.ly/rs-cloud-ds-incubator</span></a></li>
+<li class="chapter" data-level="14.3" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#continue-to-use-coding"><i class="fa fa-check"></i><b>14.3</b> Continue to use # coding</a></li>
+<li class="chapter" data-level="14.4" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#future-proof-your-valuable-resources"><i class="fa fa-check"></i><b>14.4</b> Future-proof your valuable <span>resources</span></a></li>
+<li class="chapter" data-level="14.5" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#votepropose-ideas-for-meetups-11"><i class="fa fa-check"></i><b>14.5</b> Vote/propose <span>ideas for meetups (#11)</span></a></li>
+<li class="chapter" data-level="14.6" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#gotchas-when-moving-code-from-a-script-to-an-r-package"><i class="fa fa-check"></i><b>14.6</b> Gotchas when moving code from a script to an R package</a></li>
+<li class="chapter" data-level="14.7" data-path="reviewing-our-resources.html"><a href="reviewing-our-resources.html#r2dii.utils"><i class="fa fa-check"></i><b>14.7</b> <span>r2dii.utils</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><i class="fa fa-check"></i>Gotchas when moving code from a script to an R package</a><ul>
+<li class="chapter" data-level="14.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#function-interface"><i class="fa fa-check"></i><b>14.8</b> Function interface</a><ul>
+<li class="chapter" data-level="14.8.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#avoid-relying-on-the-global-environment"><i class="fa fa-check"></i><b>14.8.1</b> Avoid relying on the global environment</a></li>
+<li class="chapter" data-level="14.8.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#avoid-modifying-the-global-environment-e.g.-with--"><i class="fa fa-check"></i><b>14.8.2</b> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></a></li>
+<li class="chapter" data-level="14.8.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#arguments-that-provide-core-data-are-required"><i class="fa fa-check"></i><b>14.8.3</b> Arguments that provide core data are required</a></li>
+<li class="chapter" data-level="14.8.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#descriptor-arguments-are-usually-required"><i class="fa fa-check"></i><b>14.8.4</b> Descriptor arguments are usually required</a></li>
+<li class="chapter" data-level="14.8.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#avoid-reading-and-writing-operations"><i class="fa fa-check"></i><b>14.8.5</b> Avoid reading and writing operations</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#packaging"><i class="fa fa-check"></i><b>14.9</b> Packaging</a><ul>
+<li class="chapter" data-level="14.9.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#developer-setup"><i class="fa fa-check"></i><b>14.9.1</b> Developer setup</a></li>
+<li class="chapter" data-level="14.9.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>14.9.2</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
+<li class="chapter" data-level="14.9.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>14.9.3</b> The tidyverse is for EDA, not packages</a></li>
+<li class="chapter" data-level="14.9.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>14.9.4</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
+<li class="chapter" data-level="14.9.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#use_data_raw-then-use_data-1"><i class="fa fa-check"></i><b>14.9.5</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
+<li class="chapter" data-level="14.9.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>14.9.6</b> Use the <code>.data</code> pronoun</a></li>
+<li class="chapter" data-level="14.9.7" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#consider-using-internal-data"><i class="fa fa-check"></i><b>14.9.7</b> Consider using internal data</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#code-smells-and-feels"><i class="fa fa-check"></i><b>14.10</b> Code smells and feels</a><ul>
+<li class="chapter" data-level="14.10.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#simplify-if-with-objects-named-meaningfully"><i class="fa fa-check"></i><b>14.10.1</b> Simplify <code>if()</code> with objects named meaningfully</a></li>
+<li class="chapter" data-level="14.10.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#program-for-columns-with-clean_names"><i class="fa fa-check"></i><b>14.10.2</b> Program for columns with <code>clean_names</code></a></li>
+<li class="chapter" data-level="14.10.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#avoid-long-running-temporary-objects"><i class="fa fa-check"></i><b>14.10.3</b> Avoid long-running temporary objects</a></li>
+<li class="chapter" data-level="14.10.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#if-possible-extract-functions-to-the-top-level"><i class="fa fa-check"></i><b>14.10.4</b> If possible, extract functions to the top level</a></li>
+<li class="chapter" data-level="14.10.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#extract-commented-sections-into-functions"><i class="fa fa-check"></i><b>14.10.5</b> Extract commented sections into functions</a></li>
+</ul></li>
+<li class="chapter" data-level="14.11" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#error-prone"><i class="fa fa-check"></i><b>14.11</b> Error prone</a><ul>
+<li class="chapter" data-level="14.11.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#avoid-hidden-arguments-extract-functions-with-all-arguments"><i class="fa fa-check"></i><b>14.11.1</b> Avoid hidden arguments: Extract functions with all arguments</a></li>
+<li class="chapter" data-level="14.11.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#separate-functions-data-and-scripts"><i class="fa fa-check"></i><b>14.11.2</b> Separate functions, data, and scripts</a></li>
+<li class="chapter" data-level="14.11.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#a-non-package-project"><i class="fa fa-check"></i><b>14.11.3</b> A non-package project</a></li>
+<li class="chapter" data-level="14.11.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#a-package-project"><i class="fa fa-check"></i><b>14.11.4</b> A package project</a></li>
+<li class="chapter" data-level="14.11.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#if-uses-a-single-true-or-false"><i class="fa fa-check"></i><b>14.11.5</b> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></a></li>
+<li class="chapter" data-level="14.11.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#is-equal-to-1l-but-not-identical"><i class="fa fa-check"></i><b>14.11.6</b> <code>1</code> is equal to <code>1L</code> but not identical</a></li>
+</ul></li>
+<li class="chapter" data-level="14.12" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#style"><i class="fa fa-check"></i><b>14.12</b> Style</a><ul>
+<li class="chapter" data-level="14.12.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>14.12.1</b> Limit your code to 80 characters per line</a></li>
+<li class="chapter" data-level="14.12.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>14.12.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
+<li class="chapter" data-level="14.12.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>14.12.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
+<li class="chapter" data-level="14.12.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>14.12.4</b> Reserve <code>return()</code> to return early</a></li>
+<li class="chapter" data-level="14.12.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package-1.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>14.12.5</b> Return invisibly only when the main purpose is a side effect</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ds-incubator</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gotchas-when-moving-code-from-a-script-to-an-r-package-1" class="section level1 unnumbered">
+<h1>Gotchas when moving code from a script to an R package</h1>
+<div id="function-interface" class="section level2">
+<h2><span class="header-section-number">14.8</span> Function interface</h2>
+<div id="avoid-relying-on-the-global-environment" class="section level3">
+<h3><span class="header-section-number">14.8.1</span> Avoid relying on the global environment</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb32-2" title="2">  data</a>
+<a class="sourceLine" id="cb32-3" title="3">}</a>
+<a class="sourceLine" id="cb32-4" title="4"></a>
+<a class="sourceLine" id="cb32-5" title="5">my_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb32-6" title="6"><span class="kw">f</span>(my_data)</a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb32-8" title="8"><span class="co">#&gt;       x</span></a>
+<a class="sourceLine" id="cb32-9" title="9"><span class="co">#&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb32-10" title="10"><span class="co">#&gt; 1     1</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> my_data2) {</a>
+<a class="sourceLine" id="cb33-2" title="2">  data</a>
+<a class="sourceLine" id="cb33-3" title="3">}</a>
+<a class="sourceLine" id="cb33-4" title="4"></a>
+<a class="sourceLine" id="cb33-5" title="5"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb33-6" title="6"><span class="co">#&gt; [1] &quot;f&quot;       &quot;my_data&quot;</span></a>
+<a class="sourceLine" id="cb33-7" title="7"><span class="kw">try</span>(<span class="kw">f</span>())</a>
+<a class="sourceLine" id="cb33-8" title="8"><span class="co">#&gt; Error in f() : object &#39;my_data2&#39; not found</span></a>
+<a class="sourceLine" id="cb33-9" title="9"></a>
+<a class="sourceLine" id="cb33-10" title="10">my_data2 &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb33-11" title="11"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb33-12" title="12"><span class="co">#&gt; [1] &quot;f&quot;        &quot;my_data&quot;  &quot;my_data2&quot;</span></a>
+<a class="sourceLine" id="cb33-13" title="13"><span class="kw">f</span>()</a>
+<a class="sourceLine" id="cb33-14" title="14"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb33-15" title="15"><span class="co">#&gt;       x</span></a>
+<a class="sourceLine" id="cb33-16" title="16"><span class="co">#&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb33-17" title="17"><span class="co">#&gt; 1     1</span></a></code></pre></div>
+</div>
+<div id="avoid-modifying-the-global-environment-e.g.-with--" class="section level3">
+<h3><span class="header-section-number">14.8.2</span> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></h3>
+<p>Setup.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">readr<span class="op">::</span><span class="kw">write_csv</span>(mtcars, <span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
+<p>Good.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">some_data_path &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb35-2" title="2">  fs<span class="op">::</span><span class="kw">path</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb35-3" title="3">}</a>
+<a class="sourceLine" id="cb35-4" title="4"></a>
+<a class="sourceLine" id="cb35-5" title="5"><span class="kw">some_data_path</span>()</a>
+<a class="sourceLine" id="cb35-6" title="6"><span class="co">#&gt; some_data.csv</span></a>
+<a class="sourceLine" id="cb35-7" title="7"></a>
+<a class="sourceLine" id="cb35-8" title="8">read_some_data &lt;-<span class="st"> </span><span class="cf">function</span>(path) {</a>
+<a class="sourceLine" id="cb35-9" title="9">  <span class="kw">suppressMessages</span>(<span class="kw">head</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(path)))</a>
+<a class="sourceLine" id="cb35-10" title="10">}</a>
+<a class="sourceLine" id="cb35-11" title="11"></a>
+<a class="sourceLine" id="cb35-12" title="12">path &lt;-<span class="st"> </span><span class="kw">some_data_path</span>()  <span class="co"># Define path</span></a>
+<a class="sourceLine" id="cb35-13" title="13"><span class="kw">read_some_data</span>(path)</a>
+<a class="sourceLine" id="cb35-14" title="14"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
+<a class="sourceLine" id="cb35-15" title="15"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></a>
+<a class="sourceLine" id="cb35-16" title="16"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb35-17" title="17"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></a>
+<a class="sourceLine" id="cb35-18" title="18"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></a>
+<a class="sourceLine" id="cb35-19" title="19"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></a>
+<a class="sourceLine" id="cb35-20" title="20"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></a>
+<a class="sourceLine" id="cb35-21" title="21"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2</span></a>
+<a class="sourceLine" id="cb35-22" title="22"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">some_data_path &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb36-2" title="2">  path &lt;&lt;-<span class="st"> &quot;some_data.csv&quot;</span></a>
+<a class="sourceLine" id="cb36-3" title="3">}</a>
+<a class="sourceLine" id="cb36-4" title="4"></a>
+<a class="sourceLine" id="cb36-5" title="5">read_some_data &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb36-6" title="6">  <span class="kw">suppressMessages</span>(<span class="kw">head</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(path)))</a>
+<a class="sourceLine" id="cb36-7" title="7">}</a>
+<a class="sourceLine" id="cb36-8" title="8"></a>
+<a class="sourceLine" id="cb36-9" title="9"><span class="kw">some_data_path</span>()  <span class="co"># Define path</span></a>
+<a class="sourceLine" id="cb36-10" title="10"><span class="kw">read_some_data</span>()</a>
+<a class="sourceLine" id="cb36-11" title="11"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
+<a class="sourceLine" id="cb36-12" title="12"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></a>
+<a class="sourceLine" id="cb36-13" title="13"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb36-14" title="14"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></a>
+<a class="sourceLine" id="cb36-15" title="15"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></a>
+<a class="sourceLine" id="cb36-16" title="16"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></a>
+<a class="sourceLine" id="cb36-17" title="17"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></a>
+<a class="sourceLine" id="cb36-18" title="18"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2</span></a>
+<a class="sourceLine" id="cb36-19" title="19"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</span></a></code></pre></div>
+<blockquote>
+<p>“[Avoid global variables because they] introduce non-obvious dependencies between functions” – <a href="https://adv-r.hadley.nz/environments.html">Advanced R, Environments</a>).</p>
+</blockquote>
+<p>For valid uses of <code>&lt;&lt;-</code> see (<a href="https://adv-r.hadley.nz/function-factories.html#stateful-funs">Advanced R, Function factories</a>).</p>
+<p>Clean up.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">fs<span class="op">::</span><span class="kw">file_delete</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
+</div>
+<div id="arguments-that-provide-core-data-are-required" class="section level3">
+<h3><span class="header-section-number">14.8.3</span> Arguments that provide core data are required</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb38-2" title="2">  data</a>
+<a class="sourceLine" id="cb38-3" title="3">}</a>
+<a class="sourceLine" id="cb38-4" title="4"></a>
+<a class="sourceLine" id="cb38-5" title="5"><span class="kw">f</span>(mtcars)</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> mtcars) {</a>
+<a class="sourceLine" id="cb39-2" title="2">  data</a>
+<a class="sourceLine" id="cb39-3" title="3">}</a>
+<a class="sourceLine" id="cb39-4" title="4"></a>
+<a class="sourceLine" id="cb39-5" title="5"><span class="kw">f</span>()</a></code></pre></div>
+<blockquote>
+<p>Arguments that provide core data are required (have no default); they are often called <code>data</code>, <code>x</code>, or <code>y</code>).</p>
+</blockquote>
+<p>– Adapted from <a href="https://principles.tidyverse.org/args-data-details.html" class="uri">https://principles.tidyverse.org/args-data-details.html</a></p>
+</div>
+<div id="descriptor-arguments-are-usually-required" class="section level3">
+<h3><span class="header-section-number">14.8.4</span> Descriptor arguments are usually required</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, start_year, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb40-2" title="2">  end_year &lt;-<span class="st"> </span>start_year <span class="op">+</span><span class="st"> </span>time_span</a>
+<a class="sourceLine" id="cb40-3" title="3">  time_period &lt;-<span class="st"> </span>data<span class="op">$</span>year <span class="op">&gt;=</span><span class="st"> </span>start_year <span class="op">&amp;</span><span class="st"> </span>data<span class="op">$</span>year <span class="op">&lt;=</span><span class="st"> </span>end_year</a>
+<a class="sourceLine" id="cb40-4" title="4">  </a>
+<a class="sourceLine" id="cb40-5" title="5">  data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="st">    </span><span class="kw">filter</span>(time_period) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="st">    </span><span class="co"># ...</span></a>
+<a class="sourceLine" id="cb40-8" title="8">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">start_year =</span> <span class="dv">2020</span>, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb41-2" title="2">  <span class="co"># ...</span></a>
+<a class="sourceLine" id="cb41-3" title="3">}</a></code></pre></div>
+<blockquote>
+<p>Descriptor arguments describe essential details of the operation, and are usually required.</p>
+</blockquote>
+<p>– Adapted from <a href="https://principles.tidyverse.org/args-data-details.html" class="uri">https://principles.tidyverse.org/args-data-details.html</a></p>
+</div>
+<div id="avoid-reading-and-writing-operations" class="section level3">
+<h3><span class="header-section-number">14.8.5</span> Avoid reading and writing operations</h3>
+<p>Unless it is precisely the purpose of your function, avoid operations that read or write data (in general, avoid side effects).</p>
+<p>Good.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb42-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, 1L)</a>
+<a class="sourceLine" id="cb42-3" title="3">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(path) {</a>
+<a class="sourceLine" id="cb43-2" title="2">  data &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(path)</a>
+<a class="sourceLine" id="cb43-3" title="3">  dplyr<span class="op">::</span><span class="kw">select</span>(data, 1L)</a>
+<a class="sourceLine" id="cb43-4" title="4">}</a></code></pre></div>
+<ul>
+<li><a href="https://github.com/2DegreesInvesting/resources/issues/68">What is a pure function</a>.</li>
+<li><a href="https://github.com/2DegreesInvesting/ds-incubator/blob/master/2019-12-03_avoid-hidden-arguments.pdf">Avoid hidden arguments (ds-incubator)</a>.</li>
+</ul>
+</div>
+</div>
+<div id="packaging" class="section level2">
+<h2><span class="header-section-number">14.9</span> Packaging</h2>
+<div id="developer-setup" class="section level3">
+<h3><span class="header-section-number">14.9.1</span> Developer setup</h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">library</span>(usethis)</a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="kw">library</span>(devtools)</a></code></pre></div>
+<p>Maybe edit your .Rprofile.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">edit_r_profile</span>()</a></code></pre></div>
+</div>
+<div id="use_packagedplyr-not-librarydplyr" class="section level3">
+<h3><span class="header-section-number">14.9.2</span> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<p><a href="https://r-pkgs.org/whole-game.html" class="uri">https://r-pkgs.org/whole-game.html</a></p>
+</div>
+<div id="the-tidyverse-is-for-eda-not-packages" class="section level3">
+<h3><span class="header-section-number">14.9.3</span> The tidyverse is for EDA, not packages</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="kw">use_package</span>(<span class="st">&quot;tidyr&quot;</span>)</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<p><a href="https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/" class="uri">https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/</a></p>
+</div>
+<div id="use_data_raw-then-use_data" class="section level3">
+<h3><span class="header-section-number">14.9.4</span> <code>use_data_raw()</code>, then <code>use_data()</code></h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># &gt; Console</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="kw">use_data_raw</span>()</a>
+<a class="sourceLine" id="cb50-3" title="3"></a>
+<a class="sourceLine" id="cb50-4" title="4"><span class="co"># data-raw/dataset-name.R</span></a>
+<a class="sourceLine" id="cb50-5" title="5">dataset_name &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data-raw/dataset-name.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="kw">use_data</span>(dataset_name)</a>
+<a class="sourceLine" id="cb50-7" title="7"></a>
+<a class="sourceLine" id="cb50-8" title="8"><span class="co"># R/dataset_name.R</span></a>
+<a class="sourceLine" id="cb50-9" title="9"><span class="co">#&#39; A dataset</span></a>
+<a class="sourceLine" id="cb50-10" title="10"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb50-11" title="11"><span class="st">&quot;dataset_name&quot;</span></a>
+<a class="sourceLine" id="cb50-12" title="12"></a>
+<a class="sourceLine" id="cb50-13" title="13"><span class="co"># R/any-file.R</span></a>
+<a class="sourceLine" id="cb50-14" title="14">f &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb50-15" title="15">  dataset_name</a>
+<a class="sourceLine" id="cb50-16" title="16">}</a></code></pre></div>
+</div>
+<div id="use_data_raw-then-use_data-1" class="section level3">
+<h3><span class="header-section-number">14.9.5</span> <code>use_data_raw()</code>, then <code>use_data()</code></h3>
+<p>Bad.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># R/any-file.R</span></a>
+<a class="sourceLine" id="cb51-2" title="2">dataset_name &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/dataset-name.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb51-3" title="3"></a>
+<a class="sourceLine" id="cb51-4" title="4">f &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb51-5" title="5">  dataset_name</a>
+<a class="sourceLine" id="cb51-6" title="6">}</a></code></pre></div>
+<p><a href="http://r-pkgs.had.co.nz/data.html" class="uri">http://r-pkgs.had.co.nz/data.html</a></p>
+</div>
+<div id="use-the-.data-pronoun" class="section level3">
+<h3><span class="header-section-number">14.9.6</span> Use the <code>.data</code> pronoun</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data, column_name) {</a>
+<a class="sourceLine" id="cb52-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data[[column_name]])</a>
+<a class="sourceLine" id="cb52-3" title="3">}</a></code></pre></div>
+<p>Ok.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb53-2" title="2">  <span class="kw">stopifnot</span>(<span class="kw">hasName</span>(mtcars, <span class="st">&quot;cyl&quot;</span>))</a>
+<a class="sourceLine" id="cb53-3" title="3">  </a>
+<a class="sourceLine" id="cb53-4" title="4">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data<span class="op">$</span>cyl)</a>
+<a class="sourceLine" id="cb53-5" title="5">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb54-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, cyl)</a>
+<a class="sourceLine" id="cb54-3" title="3">}</a></code></pre></div>
+<p><a href="https://rlang.r-lib.org/reference/tidyeval-data.html" class="uri">https://rlang.r-lib.org/reference/tidyeval-data.html</a></p>
+</div>
+<div id="consider-using-internal-data" class="section level3">
+<h3><span class="header-section-number">14.9.7</span> Consider using internal data</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># data-raw/my_internal_data.R</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="kw">use_data</span>(my_internal_data, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb55-3" title="3"></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="co"># R/any.R</span></a>
+<a class="sourceLine" id="cb55-5" title="5">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb55-6" title="6">  dplyr<span class="op">::</span><span class="kw">left_join</span>(data, my_internal_data)</a>
+<a class="sourceLine" id="cb55-7" title="7">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># R/any.R</span></a>
+<a class="sourceLine" id="cb56-2" title="2">my_internal_data &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(cyl)</a>
+<a class="sourceLine" id="cb56-3" title="3"></a>
+<a class="sourceLine" id="cb56-4" title="4">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb56-5" title="5">  dplyr<span class="op">::</span><span class="kw">left_join</span>(data, my_internal_data)</a>
+<a class="sourceLine" id="cb56-6" title="6">}</a></code></pre></div>
+<p><a href="http://r-pkgs.had.co.nz/data.html#data-sysdata" class="uri">http://r-pkgs.had.co.nz/data.html#data-sysdata</a></p>
+</div>
+</div>
+<div id="code-smells-and-feels" class="section level2">
+<h2><span class="header-section-number">14.10</span> Code smells and feels</h2>
+<div id="simplify-if-with-objects-named-meaningfully" class="section level3">
+<h3><span class="header-section-number">14.10.1</span> Simplify <code>if()</code> with objects named meaningfully</h3>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb57-2" title="2">say &lt;-<span class="st"> </span><span class="cf">function</span>(x, msg) <span class="kw">paste</span>(<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>), msg)</a>
+<a class="sourceLine" id="cb57-3" title="3"><span class="kw">say</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;Hey!&quot;</span>)</a>
+<a class="sourceLine" id="cb57-4" title="4"><span class="co">#&gt; [1] &quot;1, 2 Hey!&quot;</span></a></code></pre></div>
+<p>Good.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">is_even_between_5and10 &lt;-<span class="st"> </span>(x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">between</span>(x, 5L, 10L)</a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="cf">if</span> (<span class="kw">all</span>(is_even_between_5and10)) {</a>
+<a class="sourceLine" id="cb58-3" title="3">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
+<a class="sourceLine" id="cb58-4" title="4">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb58-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
+<a class="sourceLine" id="cb58-6" title="6">}</a>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] &quot;10, 1 Nope!&quot;</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
+<a class="sourceLine" id="cb59-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
+<a class="sourceLine" id="cb59-3" title="3">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb59-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
+<a class="sourceLine" id="cb59-5" title="5">}</a>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co">#&gt; [1] &quot;10, 1 Nope!&quot;</span></a></code></pre></div>
+<p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
+</div>
+<div id="program-for-columns-with-clean_names" class="section level3">
+<h3><span class="header-section-number">14.10.2</span> Program for columns with <code>clean_names</code></h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb60-2" title="2">  clean &lt;-<span class="st"> </span>r2dii.utils<span class="op">::</span><span class="kw">clean_column_names</span>(data)</a>
+<a class="sourceLine" id="cb60-3" title="3">  </a>
+<a class="sourceLine" id="cb60-4" title="4">  <span class="kw">stopifnot</span>(<span class="kw">hasName</span>(clean, <span class="st">&quot;a_column&quot;</span>))</a>
+<a class="sourceLine" id="cb60-5" title="5">  result &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(clean, .data<span class="op">$</span>a_column)</a>
+<a class="sourceLine" id="cb60-6" title="6">  </a>
+<a class="sourceLine" id="cb60-7" title="7">  r2dii.utils<span class="op">::</span><span class="kw">unclean_column_names</span>(result, data)</a>
+<a class="sourceLine" id="cb60-8" title="8">}</a>
+<a class="sourceLine" id="cb60-9" title="9"></a>
+<a class="sourceLine" id="cb60-10" title="10"><span class="kw">f</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">A.Column =</span> <span class="dv">1</span>, <span class="dt">Another.Column =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb60-11" title="11"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb60-12" title="12"><span class="co">#&gt;   A.Column</span></a>
+<a class="sourceLine" id="cb60-13" title="13"><span class="co">#&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb60-14" title="14"><span class="co">#&gt; 1        1</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb61-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data<span class="op">$</span>A.Column)</a>
+<a class="sourceLine" id="cb61-3" title="3">}</a>
+<a class="sourceLine" id="cb61-4" title="4"></a>
+<a class="sourceLine" id="cb61-5" title="5"><span class="kw">f</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">A.Column =</span> <span class="dv">1</span>, <span class="dt">Another.Column =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb61-6" title="6"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb61-7" title="7"><span class="co">#&gt;   A.Column</span></a>
+<a class="sourceLine" id="cb61-8" title="8"><span class="co">#&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb61-9" title="9"><span class="co">#&gt; 1        1</span></a></code></pre></div>
+<p><a href="https://2degreesinvesting.github.io/r2dii.utils/reference/clean_column_names.html"><code>?clean_column_names()</code></a></p>
+</div>
+<div id="avoid-long-running-temporary-objects" class="section level3">
+<h3><span class="header-section-number">14.10.3</span> Avoid long-running temporary objects</h3>
+<p>Avoid temporary variables unless they run for only a few, consecutive lines.</p>
+<p>Good.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb62-2" title="2">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(tmp, disp)</a>
+<a class="sourceLine" id="cb62-3" title="3">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a>
+<a class="sourceLine" id="cb62-4" title="4"></a>
+<a class="sourceLine" id="cb62-5" title="5"><span class="co"># ... more unrelated code</span></a></code></pre></div>
+<p>Better.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(disp) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb64-2" title="2">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(tmp, disp)</a>
+<a class="sourceLine" id="cb64-3" title="3"></a>
+<a class="sourceLine" id="cb64-4" title="4"><span class="co"># ... more unrelated code (makes your forget what `tmp` holds)</span></a>
+<a class="sourceLine" id="cb64-5" title="5"></a>
+<a class="sourceLine" id="cb64-6" title="6">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a></code></pre></div>
+</div>
+<div id="if-possible-extract-functions-to-the-top-level" class="section level3">
+<h3><span class="header-section-number">14.10.4</span> If possible, extract functions to the top level</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb65-2" title="2">  <span class="kw">g</span>(x)</a>
+<a class="sourceLine" id="cb65-3" title="3">}</a>
+<a class="sourceLine" id="cb65-4" title="4"></a>
+<a class="sourceLine" id="cb65-5" title="5">g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb65-6" title="6">  x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb65-7" title="7">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb66-2" title="2">  g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb66-3" title="3">    x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb66-4" title="4">  }</a>
+<a class="sourceLine" id="cb66-5" title="5">  </a>
+<a class="sourceLine" id="cb66-6" title="6">  <span class="kw">g</span>(x)</a>
+<a class="sourceLine" id="cb66-7" title="7">}</a></code></pre></div>
+</div>
+<div id="extract-commented-sections-into-functions" class="section level3">
+<h3><span class="header-section-number">14.10.5</span> Extract commented sections into functions</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb67-2" title="2">  y &lt;-<span class="st"> </span><span class="kw">calculate_y</span>(x)</a>
+<a class="sourceLine" id="cb67-3" title="3">  </a>
+<a class="sourceLine" id="cb67-4" title="4">  <span class="co"># ... more code</span></a>
+<a class="sourceLine" id="cb67-5" title="5">}</a>
+<a class="sourceLine" id="cb67-6" title="6"></a>
+<a class="sourceLine" id="cb67-7" title="7">calculate_y &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb67-8" title="8">  x<span class="op">^</span>x <span class="op">*</span><span class="st"> </span>x<span class="op">/</span>2L</a>
+<a class="sourceLine" id="cb67-9" title="9">  <span class="co"># ... more code specifically about calculating y</span></a>
+<a class="sourceLine" id="cb67-10" title="10">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb68-2" title="2">  <span class="co"># calculate y</span></a>
+<a class="sourceLine" id="cb68-3" title="3">  y &lt;-<span class="st"> </span>x<span class="op">^</span>x <span class="op">*</span><span class="st"> </span>x<span class="op">/</span>2L</a>
+<a class="sourceLine" id="cb68-4" title="4">  <span class="co"># ... more code specifically about calculating y</span></a>
+<a class="sourceLine" id="cb68-5" title="5">  </a>
+<a class="sourceLine" id="cb68-6" title="6">  <span class="co"># ... more code</span></a>
+<a class="sourceLine" id="cb68-7" title="7">}</a></code></pre></div>
+</div>
+</div>
+<div id="error-prone" class="section level2">
+<h2><span class="header-section-number">14.11</span> Error prone</h2>
+<div id="avoid-hidden-arguments-extract-functions-with-all-arguments" class="section level3">
+<h3><span class="header-section-number">14.11.1</span> Avoid hidden arguments: Extract functions with all arguments</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
+<a class="sourceLine" id="cb69-2" title="2">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y, z)</a>
+<a class="sourceLine" id="cb69-3" title="3">}</a>
+<a class="sourceLine" id="cb69-4" title="4"></a>
+<a class="sourceLine" id="cb69-5" title="5">g &lt;-<span class="st"> </span><span class="cf">function</span>(y, z) {</a>
+<a class="sourceLine" id="cb69-6" title="6">  y <span class="op">+</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb69-7" title="7">}</a>
+<a class="sourceLine" id="cb69-8" title="8"></a>
+<a class="sourceLine" id="cb69-9" title="9"><span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb69-10" title="10"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># Fragile.</span></a>
+<a class="sourceLine" id="cb70-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
+<a class="sourceLine" id="cb70-3" title="3">  g &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</a>
+<a class="sourceLine" id="cb70-4" title="4">    <span class="co"># `z` is outside of the scope of g(). It&#39;s a hidden argument</span></a>
+<a class="sourceLine" id="cb70-5" title="5">    y <span class="op">+</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb70-6" title="6">  }</a>
+<a class="sourceLine" id="cb70-7" title="7">  </a>
+<a class="sourceLine" id="cb70-8" title="8">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y)</a>
+<a class="sourceLine" id="cb70-9" title="9">}</a>
+<a class="sourceLine" id="cb70-10" title="10"></a>
+<a class="sourceLine" id="cb70-11" title="11"><span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb70-12" title="12"><span class="co">#&gt; [1] 3</span></a>
+<a class="sourceLine" id="cb70-13" title="13"></a>
+<a class="sourceLine" id="cb70-14" title="14"><span class="co"># f() breaks when you move g() to the top level</span></a>
+<a class="sourceLine" id="cb70-15" title="15">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
+<a class="sourceLine" id="cb70-16" title="16">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y)</a>
+<a class="sourceLine" id="cb70-17" title="17">}</a>
+<a class="sourceLine" id="cb70-18" title="18"></a>
+<a class="sourceLine" id="cb70-19" title="19">g &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</a>
+<a class="sourceLine" id="cb70-20" title="20">  y <span class="op">+</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb70-21" title="21">}</a>
+<a class="sourceLine" id="cb70-22" title="22"></a>
+<a class="sourceLine" id="cb70-23" title="23"><span class="kw">try</span>(<span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb70-24" title="24"><span class="co">#&gt; Error in g(y) : object &#39;z&#39; not found</span></a></code></pre></div>
+</div>
+<div id="separate-functions-data-and-scripts" class="section level3">
+<h3><span class="header-section-number">14.11.2</span> Separate functions, data, and scripts</h3>
+</div>
+<div id="a-non-package-project" class="section level3">
+<h3><span class="header-section-number">14.11.3</span> A non-package project</h3>
+<p>It’s easy for an analyst to maintain a project when functions, data, and scripts are separate.</p>
+<p>Good.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># R/all-functions.R</span></a>
+<a class="sourceLine" id="cb71-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb71-3" title="3">  <span class="co"># ... some code</span></a>
+<a class="sourceLine" id="cb71-4" title="4">}</a>
+<a class="sourceLine" id="cb71-5" title="5"></a>
+<a class="sourceLine" id="cb71-6" title="6"><span class="co"># data/all-datasets.R</span></a>
+<a class="sourceLine" id="cb71-7" title="7">some_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;some_data.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb71-8" title="8"></a>
+<a class="sourceLine" id="cb71-9" title="9"><span class="co"># script/this-script.R</span></a>
+<a class="sourceLine" id="cb71-10" title="10"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb71-11" title="11"></a>
+<a class="sourceLine" id="cb71-12" title="12"><span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;all-functions.R&quot;</span>))</a>
+<a class="sourceLine" id="cb71-13" title="13"><span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;all-datasets.R&quot;</span>))</a>
+<a class="sourceLine" id="cb71-14" title="14"></a>
+<a class="sourceLine" id="cb71-15" title="15"></a>
+<a class="sourceLine" id="cb71-16" title="16"><span class="kw">f</span>(<span class="dt">data =</span> some_data)</a></code></pre></div>
+<p>It is error prone to mix functions, data, and scripts. The mess hides inter dependencies that can break your code unexpectedly. Also, this makes it hard for others to reproduce, or understand your code – <a href="https://github.com/2DegreesInvesting/resources/issues/38#issuecomment-576383067">the maintainance programmer can only view your code through a toilet paper tube</a>.</p>
+<p>Bad.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># sripts-functions-and-data.R</span></a>
+<a class="sourceLine" id="cb72-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb72-3" title="3"></a>
+<a class="sourceLine" id="cb72-4" title="4">some_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;some_data.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb72-5" title="5"></a>
+<a class="sourceLine" id="cb72-6" title="6">f &lt;-<span class="st"> </span><span class="cf">function</span>(some_data) {</a>
+<a class="sourceLine" id="cb72-7" title="7">  some_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb72-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb72-9" title="9"><span class="st">    </span><span class="co"># ... more code</span></a>
+<a class="sourceLine" id="cb72-10" title="10">}</a>
+<a class="sourceLine" id="cb72-11" title="11"></a>
+<a class="sourceLine" id="cb72-12" title="12"><span class="kw">f</span>(some_data)</a></code></pre></div>
+</div>
+<div id="a-package-project" class="section level3">
+<h3><span class="header-section-number">14.11.4</span> A package project</h3>
+<p>When functions, data, and scripts are separate, it’s easy for a developer to transform a project into an R package. Functions go in the R/ directory, raw data in data-raw/, and data in data/. Scripts become examples, tests, and higher level documentation such as README, and the Home and articles pages of the package-website.</p>
+</div>
+<div id="if-uses-a-single-true-or-false" class="section level3">
+<h3><span class="header-section-number">14.11.5</span> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></h3>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb73-2" title="2">y &lt;-<span class="st"> </span>0L</a></code></pre></div>
+<p>Good</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="cf">if</span> (<span class="kw">identical</span>(x, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))) {</a>
+<a class="sourceLine" id="cb74-3" title="3">  <span class="kw">say</span>(<span class="kw">identical</span>(x, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="st">&quot;is what you gave.&quot;</span>)</a>
+<a class="sourceLine" id="cb74-4" title="4">}</a>
+<a class="sourceLine" id="cb74-5" title="5"><span class="co">#&gt; [1] &quot;TRUE is what you gave.&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) {</a>
+<a class="sourceLine" id="cb75-3" title="3">  <span class="kw">say</span>(x <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="st">&quot;is what you gave.&quot;</span>)</a>
+<a class="sourceLine" id="cb75-4" title="4">}</a>
+<a class="sourceLine" id="cb75-5" title="5"><span class="co">#&gt; Warning in if (x == c(1, 2)) {: the condition has length &gt; 1 and only the first</span></a>
+<a class="sourceLine" id="cb75-6" title="6"><span class="co">#&gt; element will be used</span></a>
+<a class="sourceLine" id="cb75-7" title="7"><span class="co">#&gt; [1] &quot;TRUE, TRUE is what you gave.&quot;</span></a></code></pre></div>
+<p>Caveats: <a href="https://github.com/2DegreesInvesting/ds-incubator/issues/13" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/13</a></p>
+</div>
+<div id="is-equal-to-1l-but-not-identical" class="section level3">
+<h3><span class="header-section-number">14.11.6</span> <code>1</code> is equal to <code>1L</code> but not identical</h3>
+<p>Careful!</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb76-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb76-3" title="3"><span class="kw">identical</span>(<span class="dv">1</span>, 1L)</a>
+<a class="sourceLine" id="cb76-4" title="4"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<p>Good</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">this_integer &lt;-<span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">identical</span>(this_integer, <span class="dv">1</span>)) <span class="st">&quot;Not the same&quot;</span> <span class="cf">else</span> <span class="st">&quot;Wrong result&quot;</span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="co">#&gt; [1] &quot;Not the same&quot;</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">this_integer &lt;-<span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb78-2" title="2"><span class="cf">if</span> (<span class="op">!</span>this_integer <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="st">&quot;Not the same&quot;</span> <span class="cf">else</span> <span class="st">&quot;Wrong result&quot;</span></a>
+<a class="sourceLine" id="cb78-3" title="3"><span class="co">#&gt; [1] &quot;Wrong result&quot;</span></a></code></pre></div>
+</div>
+</div>
+<div id="style" class="section level2">
+<h2><span class="header-section-number">14.12</span> Style</h2>
+<div id="limit-your-code-to-80-characters-per-line" class="section level3">
+<h3><span class="header-section-number">14.12.1</span> Limit your code to 80 characters per line</h3>
+<p>For reference, in RStudio you can set a margin column at 80 characters (<em>Tools &gt; Global Options &gt; Code &gt; Show margin &gt; Margin column</em>).</p>
+<blockquote>
+<p>Strive to limit your code to 80 characters per line. This fits comfortably on a printed page with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work in a separate function.</p>
+</blockquote>
+<p>– <a href="https://style.tidyverse.org/syntax.html#long-lines" class="uri">https://style.tidyverse.org/syntax.html#long-lines</a></p>
+<blockquote>
+<p>If a function definition runs over multiple lines, indent the second line to where the definition starts.</p>
+</blockquote>
+<p>– <a href="https://style.tidyverse.org/functions.html#long-lines-1" class="uri">https://style.tidyverse.org/functions.html#long-lines-1</a></p>
+</div>
+<div id="names-should-use-only-lowercase-letters-numbers-and-_." class="section level3">
+<h3><span class="header-section-number">14.12.2</span> Names should use only lowercase letters, numbers, and "_".</h3>
+<ul>
+<li>Generally, variable names should be nouns and function names should be verbs.</li>
+<li>Strive for names that are concise and meaningfully!</li>
+<li>Reserve dots exclusively for the S3 object system.</li>
+</ul>
+<p>Good.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="kw">add_row</span>()</a>
+<a class="sourceLine" id="cb79-2" title="2"><span class="kw">permute</span>()</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="kw">row_adder</span>()</a>
+<a class="sourceLine" id="cb80-2" title="2"><span class="kw">permutation</span>()</a></code></pre></div>
+<ul>
+<li><a href="https://style.tidyverse.org/syntax.html#object-names" class="uri">https://style.tidyverse.org/syntax.html#object-names</a></li>
+<li><a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a></li>
+</ul>
+</div>
+<div id="avoid-t-and-f-as-synonyms-for-true-and-false" class="section level3">
+<h3><span class="header-section-number">14.12.3</span> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></h3>
+<p>Good</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> T)</a></code></pre></div>
+<p><code>TRUE</code> and <code>FALSE</code> are reserved words; <code>T</code> and <code>F</code> are not.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1">T &lt;-<span class="st"> &quot;Whatever&quot;</span></a>
+<a class="sourceLine" id="cb83-2" title="2">T</a>
+<a class="sourceLine" id="cb83-3" title="3"><span class="co">#&gt; [1] &quot;Whatever&quot;</span></a>
+<a class="sourceLine" id="cb83-4" title="4"></a>
+<a class="sourceLine" id="cb83-5" title="5"><span class="co"># Forbidden</span></a>
+<a class="sourceLine" id="cb83-6" title="6"><span class="kw">try</span>(<span class="ot">TRUE</span> &lt;-<span class="st"> &quot;Whatever&quot;</span>)</a>
+<a class="sourceLine" id="cb83-7" title="7"><span class="co">#&gt; Error in TRUE &lt;- &quot;Whatever&quot; : </span></a>
+<a class="sourceLine" id="cb83-8" title="8"><span class="co">#&gt;   invalid (do_set) left-hand side to assignment</span></a></code></pre></div>
+<p><a href="https://www.r-bloggers.com/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/" class="uri">https://www.r-bloggers.com/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/</a></p>
+</div>
+<div id="reserve-return-to-return-early" class="section level3">
+<h3><span class="header-section-number">14.12.4</span> Reserve <code>return()</code> to return early</h3>
+<blockquote>
+<p>Only use <code>return()</code> for early returns. Otherwise, rely on R to return the result of the last evaluated expression</p>
+</blockquote>
+<p><a href="https://style.tidyverse.org/functions.html#return" class="uri">https://style.tidyverse.org/functions.html#return</a></p>
+</div>
+<div id="return-invisibly-only-when-the-main-purpose-is-a-side-effect" class="section level3">
+<h3><span class="header-section-number">14.12.5</span> Return invisibly only when the main purpose is a side effect</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># Main purpose is a side effect: To throw an error if the input is bad</span></a>
+<a class="sourceLine" id="cb84-2" title="2">check_f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb84-3" title="3">  <span class="kw">stopifnot</span>(<span class="kw">is.numeric</span>(x))</a>
+<a class="sourceLine" id="cb84-4" title="4">  </a>
+<a class="sourceLine" id="cb84-5" title="5">  <span class="kw">invisible</span>(x)</a>
+<a class="sourceLine" id="cb84-6" title="6">}</a></code></pre></div>
+<p>Good.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Main purpose is not a side effect. Returning visibly</span></a>
+<a class="sourceLine" id="cb85-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb85-3" title="3">  x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb85-4" title="4">}</a>
+<a class="sourceLine" id="cb85-5" title="5"></a>
+<a class="sourceLine" id="cb85-6" title="6"><span class="kw">f</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb85-7" title="7"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Main purpose is not a side effect. Returning invisibly</span></a>
+<a class="sourceLine" id="cb86-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb86-3" title="3">  out &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb86-4" title="4">}</a>
+<a class="sourceLine" id="cb86-5" title="5"></a>
+<a class="sourceLine" id="cb86-6" title="6"><span class="co"># Returns invisibly</span></a>
+<a class="sourceLine" id="cb86-7" title="7"><span class="kw">f</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb86-8" title="8"></a>
+<a class="sourceLine" id="cb86-9" title="9">out &lt;-<span class="st"> </span><span class="kw">f</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb86-10" title="10">out</a>
+<a class="sourceLine" id="cb86-11" title="11"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
+
+</div>
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://ds-incubator.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reviewing-our-resources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/gotcha.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
