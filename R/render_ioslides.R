@@ -20,9 +20,9 @@
 #' }
 render_ioslides <- function(path, ...) {
   stopifnot(!missing(path))
-  stopifnot(fs::file_exists("slides"))
+  stopifnot(fs::file_exists("slides.txt"))
 
-  tf <- fs::file_copy("slides", "slides.Rmd")
+  tf <- fs::file_copy("slides.txt", "slides.Rmd")
   on.exit(fs::file_delete(tf))
 
   rmarkdown::render(
