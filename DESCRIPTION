@@ -1,0 +1,7 @@
+Type: Package
+Package: dsincubabor
+Title: Share best practices in coding
+Version: 0.0.0.9000
+URL: https://github.com/2DegreesInvesting/ds-incubator
+RoxygenNote: 7.0.2
+Encoding: UTF-8
