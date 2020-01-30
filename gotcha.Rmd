@@ -242,8 +242,6 @@ f <- function() {
 }
 ```
 
-### `use_data_raw()`, then `use_data()`
-
 Bad.
 
 ```R
@@ -259,6 +257,19 @@ f <- function() {
 
 
 
+### Call `package::dataset` not `load("data/dataset.rds")`
+
+Good.
+
+```R
+package::dataset
+```
+
+Bad.
+
+```R
+load("data/dataset.rds")
+```
 
 
 
