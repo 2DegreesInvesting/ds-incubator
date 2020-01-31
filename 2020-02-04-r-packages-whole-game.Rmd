@@ -3,7 +3,7 @@
 ***Preparing for a hackaton in March***
 
 ```{r include=FALSE, echo=FALSE, eval=FALSE}
-render_ioslides("2020-02-04-r-pkgs-whole-game.Rmd")
+render_ioslides("2020-02-04-r-packages-whole-game.Rmd")
 ```
 
 _<https://twitter.com/mauro_lepore>_
