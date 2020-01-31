@@ -1,9 +1,19 @@
 # 2020-02-04: R packages: The whole game
 
-Hadley Wickham and Jennifer Bryan
-
-<https://r-pkgs.org/whole-game.html>
-
-```R
+```{r include=FALSE, echo=FALSE, eval=FALSE}
 render_ioslides("2020-02-04-r-packages-the-whole-game.Rmd")
 ```
+
+_<https://twitter.com/mauro_lepore>_
+
+Adapted from [R packages: The whole game, by Hadley Wickham and Jenny Bryan](https://r-pkgs.org/whole-game.html)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  comment = "#>",
+  error = TRUE,
+  collapse = TRUE
+)
+```
+
