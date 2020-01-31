@@ -39,3 +39,6 @@ You may also explore the history of Jenny's commits. Each commit is tagged with 
 <img src="https://i.imgur.com/LBpxoss.png" align="center" width = 750 />
 
 Return to master with `git checkout master`.
+
+
+.
