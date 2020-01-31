@@ -1,0 +1,9 @@
+# 2020-02-04: R packages: The whole game
+
+Hadley Wickham and Jennifer Bryan
+
+<https://r-pkgs.org/whole-game.html>
+
+```R
+render_ioslides("2020-02-04-r-packages-the-whole-game.Rmd")
+```
