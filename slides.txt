@@ -13,6 +13,15 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r echo = FALSE}
+countdown::countdown(
+  minutes = 0L,
+  seconds = 10L,
+  color_background = "grey",
+  play_sound = TRUE
+)
+```
+
 ```{r, child=params$child}
 ```
 
