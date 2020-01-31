@@ -26,12 +26,16 @@ _<https://twitter.com/mauro_lepore>_
 
 ## Your turn
 
+Reproduce the code in [R packages, Chapter 2: The whole game](https://r-pkgs.org/whole-game.html).
 
-Reproduce the code in [R packages, Chapter 2: The whole game](https://r-pkgs.org/whole-game.html). You may use the [foofactors project on rstudio.cloud](https://rstudio.cloud/spaces/47358/project/897065). The branch `master` is an empty package. 
+You may use the [foofactors project on rstudio.cloud](https://rstudio.cloud/spaces/47358/project/897065). The branch `master` is an empty package. To see the end product, you may checkout the branch `jenny` with `git checkout jenny`. 
 
+...
 
-To see the end product, you may checkout the branch `jenny` with `git checkout jenny`. You may also explore the history of Jenny's commits. Each commit is tagged with numbers 1-14. To see what the package looked like at, say, Jenny's 4th commit, you would can run `git checkout 4`. 
+## Your turn
+
+You may also explore the history of Jenny's commits. Each commit is tagged with numbers 1-14. To see what the package looked like at, say, Jenny's 4th commit, run `git checkout 4`. 
 
 <img src="https://i.imgur.com/LBpxoss.png" align="center" width = 750 />
 
-To return to the branch master you can run `git checkout master`.
+Return to master with `git checkout master`.
