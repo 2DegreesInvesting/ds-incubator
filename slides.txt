@@ -15,10 +15,9 @@ knitr::opts_chunk$set(
 
 ```{r echo = FALSE}
 countdown::countdown(
-  minutes = 0L,
-  seconds = 10L,
-  color_background = "grey",
-  play_sound = TRUE
+  minutes = 10L,
+  seconds = 00L,
+  color_background = "grey"
 )
 ```
 
