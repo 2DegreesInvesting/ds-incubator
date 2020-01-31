@@ -3,7 +3,7 @@
 ***Preparing for a hackaton in March***
 
 ```{r include=FALSE, echo=FALSE, eval=FALSE}
-render_ioslides("2020-02-04-r-packages-the-whole-game.Rmd")
+render_ioslides("2020-02-04-r-pkgs-whole-game.Rmd")
 ```
 
 _<https://twitter.com/mauro_lepore>_
@@ -21,8 +21,6 @@ _<https://twitter.com/mauro_lepore>_
 * Code from [jennybc/foofactors](https://github.com/jennybc/foofactors), by Jenny Bryan.
 
 * [foofactors on rstudio.cloud](https://rstudio.cloud/spaces/47358/project/897002).
-
-<img src="https://i.imgur.com/ex4q4Yw.png" align="center" width = 750 />
 
 
 
