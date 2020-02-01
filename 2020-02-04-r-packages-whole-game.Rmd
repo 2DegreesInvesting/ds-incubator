@@ -41,16 +41,6 @@ render_ioslides("2020-02-04-r-packages-whole-game.Rmd")
 
 
 
-## Demo
-
-<img src="https://i.imgur.com/xsVHThJ.png" align="center" width = 750 />
-
-
-
-<http://bit.ly/ds-inc-rs-cloud-invite>
-
-
-
 ## Your turn
 
 Reproduce the code in [R packages, Chapter 2: The whole game](https://r-pkgs.org/whole-game.html).
@@ -62,4 +52,8 @@ Join the [ds-incubator workspace on rstudio.cloud](https://login.rstudio.cloud/i
 
 
 ## <http://bit.ly/ds-inc-rs-cloud-invite>
+
+Demo
+
+<img src="https://i.imgur.com/xsVHThJ.png" align="center" width = 750 />
 
