@@ -10,6 +10,8 @@
 
 ## The demo package
 
+On RStudio desktop, I created the demo package and pushed it to GitHub.
+
 ```R
 create_package("demo")
 use_git()
@@ -17,7 +19,14 @@ use_github("2degreesinvesting")
 ```
 
 * <https://github.com/2DegreesInvesting/demo>
-* <https://rstudio.cloud/project/908233>
+
+## The demo package
+
+* On GitHub, I forked the demo package from 2degreesinvesting to maurolepore.
+
+* On the ds-incubator workspace on rstudio.cloud, I created a new repo from GitHub and added packages from the base project (devtools and friends).
+
+<img src="https://i.imgur.com/hmsP7WH.png" align="center" width = 750 />
 
 
 
