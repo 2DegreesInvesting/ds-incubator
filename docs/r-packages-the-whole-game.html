@@ -256,13 +256,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html"><i class="fa fa-check"></i><b>15</b> 2020-02-04: R packages: The whole game</a><ul>
 <li class="chapter" data-level="15.1" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html#httpsr-pkgs.orgwhole-game.html"><i class="fa fa-check"></i><b>15.1</b> <span>https://r-pkgs.org/whole-game.html</span></a></li>
-<li class="chapter" data-level="15.2" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html#r-rstudio-setup"><i class="fa fa-check"></i><b>15.2</b> R / RStudio setup</a></li>
-<li class="chapter" data-level="15.3" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html#r-rstudio-setup-1"><i class="fa fa-check"></i><b>15.3</b> R / RStudio setup</a></li>
-<li class="chapter" data-level="15.4" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html#your-turn"><i class="fa fa-check"></i><b>15.4</b> Your turn</a></li>
+<li class="chapter" data-level="15.2" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html#the-demo-package"><i class="fa fa-check"></i><b>15.2</b> The demo package</a></li>
+<li class="chapter" data-level="15.3" data-path="r-packages-the-whole-game.html"><a href="r-packages-the-whole-game.html#packaging-gotchas"><i class="fa fa-check"></i><b>15.3</b> <span>Packaging gotchas</span></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><i class="fa fa-check"></i>Gotchas when moving code from a script to an R package</a><ul>
-<li class="chapter" data-level="15.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>15.5</b> Packaging</a><ul>
-<li class="chapter" data-level="15.5.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-1"><i class="fa fa-check"></i><b>15.5.1</b> Setup</a></li>
+<li class="chapter" data-level="15.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>15.4</b> Packaging</a></li>
+<li class="chapter" data-level="15.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-r-rstudio-git-github"><i class="fa fa-check"></i><b>15.5</b> Setup: R, RStudio, Git, GitHub</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-devtools-and-testthat"><i class="fa fa-check"></i><b>15.5.1</b> Setup: devtools and testthat</a></li>
 <li class="chapter" data-level="15.5.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>15.5.2</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
 <li class="chapter" data-level="15.5.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#consider-using-internal-data"><i class="fa fa-check"></i><b>15.5.3</b> Consider using internal data</a></li>
 <li class="chapter" data-level="15.5.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>15.5.4</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
@@ -325,19 +325,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">15.1</span> <a href="https://r-pkgs.org/whole-game.html" class="uri">https://r-pkgs.org/whole-game.html</a></h2>
 <p><img src="https://i.imgur.com/spXKlG3.png" align="center" width = 750 /></p>
 </div>
-<div id="r-rstudio-setup" class="section level2">
-<h2><span class="header-section-number">15.2</span> R / RStudio setup</h2>
-<p><img src="https://i.imgur.com/f3lZDdt.png" align="center" width = 750 /></p>
+<div id="the-demo-package" class="section level2">
+<h2><span class="header-section-number">15.2</span> The demo package</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">create_package</span>(<span class="st">&quot;demo&quot;</span>)</a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="kw">use_git</span>()</a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="kw">use_github</span>(<span class="st">&quot;2degreesinvesting&quot;</span>)</a></code></pre></div>
+<p><a href="https://github.com/2DegreesInvesting/demo" class="uri">https://github.com/2DegreesInvesting/demo</a></p>
 </div>
-<div id="r-rstudio-setup-1" class="section level2">
-<h2><span class="header-section-number">15.3</span> R / RStudio setup</h2>
-<p><img src="https://i.imgur.com/aBcCczz.png" align="center" width = 750 /></p>
-</div>
-<div id="your-turn" class="section level2">
-<h2><span class="header-section-number">15.4</span> Your turn</h2>
-<p>Reproduce the code in <a href="https://r-pkgs.org/whole-game.html">R packages, Chapter 2: The whole game</a>.</p>
-<p>Join the <a href="https://login.rstudio.cloud/invite?space_name=ds-incubator&amp;code=4ANw0H%2B0vnani%2BVlgotILJ9yAt3y8mMubZTgZx0c&amp;setup=1">ds-incubator workspace on rstudio.cloud</a> and use the foofactors project. The branch <code>master</code> points to an empty package. The branch <code>jenny</code> points to the finished product. All other branches show the evolution of the project.</p>
-<p><img src="https://i.imgur.com/QotIoOR.png" align="center" width = 750 /></p>
+<div id="packaging-gotchas" class="section level2">
+<h2><span class="header-section-number">15.3</span> <a href="https://2degreesinvesting.github.io/ds-incubator/gotchas-when-moving-code-from-a-script-to-an-r-package.html">Packaging gotchas</a></h2>
 
 </div>
 </div>

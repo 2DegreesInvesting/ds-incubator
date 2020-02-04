@@ -2,7 +2,22 @@
 
 ## Packaging
 
-### Setup
+## Setup: R, RStudio, Git, GitHub
+
+These steps will direct you to relevant chapters from "Happy Git with R" by Jenny Bryan et. al.
+
+- [Register a free GitHub account](https://happygitwithr.com/github-acct.html#github-acct)
+- [Install or update R and RStudio](https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio)
+- [Install Git](https://happygitwithr.com/install-git.html#install-git)
+- [Introduce yourself to Git](https://happygitwithr.com/hello-git.html#hello-git)
+- [Prove local Git can talk to GitHub](https://happygitwithr.com/push-pull-github.html#push-pull-github)
+- [Cache your username and password or set up SSH keys](https://happygitwithr.com/credential-caching.html#credential-caching)
+- [Create and save a GitHub Personal Access Token (PAT)](https://happygitwithr.com/credential-caching.html#credential-caching)
+- [Prove RStudio can find local Git and, therefore, can talk to GitHub](https://happygitwithr.com/rstudio-git-github.html#rstudio-git-github)
+
+
+
+### Setup: devtools and testthat
 
 Make the devtools and testthat packages available in every R session. Edit your .Rprofile file to include this code (you may use `usethis::edit_r_profile())`:
 
@@ -391,7 +406,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "1, 7 Nope!"
+#> [1] "10, 6 Yeah!"
 ```
 
 Bad.
@@ -403,7 +418,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "1, 7 Nope!"
+#> [1] "10, 6 Yeah!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>

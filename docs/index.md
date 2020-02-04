@@ -28,6 +28,7 @@ This project is managed by [Mauro](https://github.com/maurolepore) with support 
 Links:
 
 * [Website / eBook](https://2degreesinvesting.github.io/ds-incubator/).
+* [Videos](https://www.youtube.com/playlist?list=PLvgdJdJDL-APbB315sB3Lv_2VP2g0ioFO).
 * [Meetups](https://github.com/2DegreesInvesting/ds-incubator/issues?q=is%3Aissue+is%3Aopen+label%3Ameetup).
 * [Ideas](https://github.com/2DegreesInvesting/ds-incubator/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3Aidea).
 
