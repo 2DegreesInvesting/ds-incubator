@@ -28,7 +28,7 @@
 <meta name="author" content="Clare Murray" />
 
 
-<meta name="date" content="2019-10-22" />
+<meta name="date" content="2019-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -293,10 +293,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="15.9" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#style"><i class="fa fa-check"></i><b>15.9</b> Style</a><ul>
 <li class="chapter" data-level="15.9.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>15.9.1</b> Limit your code to 80 characters per line</a></li>
-<li><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_.-avoid-t-and-f-as-synonyms-for-true-and-false-reserve-return-to-return-early-return-invisibly-only-when-the-main-purpose-is-a-side-effect"><span class="toc-section-number">15.9.2</span> Names should use only lowercase letters, numbers, and "_".
-### Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code>
-### Reserve <code>return()</code> to return early
-### Return invisibly only when the main purpose is a side effect</a></li>
+<li class="chapter" data-level="15.9.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>15.9.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
+<li class="chapter" data-level="15.9.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>15.9.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
+<li class="chapter" data-level="15.9.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>15.9.4</b> Reserve <code>return()</code> to return early</a></li>
+<li class="chapter" data-level="15.9.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>15.9.5</b> Return invisibly only when the main purpose is a side effect</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -328,9 +328,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-demo-package" class="section level2">
 <h2><span class="header-section-number">15.2</span> The demo package</h2>
 <p>On RStudio desktop, I created the demo package and pushed it to GitHub.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">create_package</span>(<span class="st">&quot;demo&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">use_git</span>()</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">use_github</span>(<span class="st">&quot;2degreesinvesting&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">create_package</span>(<span class="st">&quot;demo&quot;</span>)</a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="kw">use_git</span>()</a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="kw">use_github</span>(<span class="st">&quot;2degreesinvesting&quot;</span>)</a></code></pre></div>
 <ul>
 <li><p>On GitHub, I forked the demo package from <a href="https://github.com/2DegreesInvesting/demo">2degreesinvesting/demo</a> to <a href="https://github.com/maurolepore/demo">maurolepore/demo</a>.</p></li>
 <li><p>On the ds-incubator workspace on rstudio.cloud, I created a new repo from GitHub and added packages from the base project (devtools and friends).</p></li>
