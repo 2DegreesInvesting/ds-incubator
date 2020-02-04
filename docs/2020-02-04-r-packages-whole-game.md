@@ -29,3 +29,5 @@ use_github("2degreesinvesting")
 
 
 ## [Packaging gotchas](https://2degreesinvesting.github.io/ds-incubator/gotchas-when-moving-code-from-a-script-to-an-r-package.html)
+
+We'll add to demo the new dataset [`scenario_demo`](https://github.com/2DegreesInvesting/r2dii.dataraw/blob/master/data-raw/scenario_demo.csv).
