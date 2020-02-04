@@ -16,7 +16,8 @@ use_git()
 use_github("2degreesinvesting")
 ```
 
-<https://github.com/2DegreesInvesting/demo>
+* <https://github.com/2DegreesInvesting/demo>
+* <https://rstudio.cloud/project/908233>
 
 
 
