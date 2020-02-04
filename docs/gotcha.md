@@ -1,5 +1,173 @@
 # Gotchas when moving code from a script to an R package {-}
 
+## Packaging
+
+### Setup
+
+Make the devtools and testthat packages available in every R session. Edit your .Rprofile file to include this code (you may use `usethis::edit_r_profile())`:
+
+```R
+if (interactive()) {
+  suppressMessages(require(devtools))
+  suppressMessages(require(testthat))
+}
+```
+
+(Your .Rprofile should NOT include data analysis packages such as dplyr or ggplot2.)
+
+Ensure you always start each session with a blank slate:
+
+<img src="https://i.imgur.com/Pdd3YFT.png" align="center" width = 750 />
+
+Save, close and restart R.
+
+
+
+### `use_data_raw()`, then `use_data()`
+
+Good.
+
+```R
+# > Console
+use_data_raw()
+
+# data-raw/dataset-name.R
+dataset_name <- readxl::read_excel("data-raw/dataset-name.xlsx")
+use_data(dataset_name)
+
+# R/dataset_name.R
+#' A dataset
+#' 
+"dataset_name"
+
+# R/any-file.R
+f <- function() {
+  dataset_name
+}
+```
+
+Bad.
+
+```R
+# R/any-file.R
+dataset_name <- readxl::read_excel("data/dataset-name.xlsx")
+
+f <- function() {
+  dataset_name
+}
+```
+
+Bad.
+
+```R
+f <- function() {
+  load("data/dataset_name.rda")
+}
+```
+
+<http://r-pkgs.had.co.nz/data.html>
+
+
+
+### Consider using internal data
+
+Good.
+
+```R
+# data-raw/my_internal_data.R
+use_data(my_internal_data, internal = TRUE)
+
+# R/any.R
+f <- function(data) {
+  dplyr::left_join(data, my_internal_data)
+}
+```
+
+Bad.
+
+```R
+# R/any.R
+my_internal_data <- mtcars %>% dplyr::select(cyl)
+
+f <- function(data) {
+  dplyr::left_join(data, my_internal_data)
+}
+```
+
+<http://r-pkgs.had.co.nz/data.html#data-sysdata>
+
+
+
+### `use_package("dplyr")` not `library(dplyr)`
+
+Good.
+
+```R
+use_package("dplyr")
+```
+
+Bad.
+
+```R
+library(dplyr)
+```
+
+<https://r-pkgs.org/whole-game.html>
+
+
+
+### The tidyverse is for EDA, not packages
+
+Good.
+
+```R
+use_package("dplyr")
+use_package("tidyr")
+```
+
+Bad.
+
+```R
+use_package("tidyverse")
+```
+
+<https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/>
+
+
+
+### Use the `.data` pronoun
+
+Good.
+
+```R
+f <- function(data, column_name) {
+  dplyr::select(data, .data[[column_name]])
+}
+```
+
+Ok.
+
+```R
+f <- function(data) {
+  stopifnot(hasName(mtcars, "cyl"))
+  
+  dplyr::select(data, .data$cyl)
+}
+```
+
+
+Bad. 
+
+```R
+f <- function(data) {
+  dplyr::select(data, cyl)
+}
+```
+
+<https://rlang.r-lib.org/reference/tidyeval-data.html>
+
+
+
 ## Function interface
 
 ### Avoid relying on the global environment
@@ -201,176 +369,6 @@ f <- function(path) {
 
 
 
-## Packaging
-
-### Developer setup
-
-```R
-library(usethis)
-library(devtools)
-```
-
-Maybe edit your .Rprofile.
-
-```R
-edit_r_profile()
-```
-
-
-
-### `use_package("dplyr")` not `library(dplyr)`
-
-Good.
-
-```R
-use_package("dplyr")
-```
-
-Bad.
-
-```R
-library(dplyr)
-```
-
-<https://r-pkgs.org/whole-game.html>
-
-
-
-### The tidyverse is for EDA, not packages
-
-Good.
-
-```R
-use_package("dplyr")
-use_package("tidyr")
-```
-
-Bad.
-
-```R
-use_package("tidyverse")
-```
-
-<https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/>
-
-
-
-### `use_data_raw()`, then `use_data()`
-
-Good.
-
-```R
-# > Console
-use_data_raw()
-
-# data-raw/dataset-name.R
-dataset_name <- readxl::read_excel("data-raw/dataset-name.xlsx")
-use_data(dataset_name)
-
-# R/dataset_name.R
-#' A dataset
-#' 
-"dataset_name"
-
-# R/any-file.R
-f <- function() {
-  dataset_name
-}
-```
-
-Bad.
-
-```R
-# R/any-file.R
-dataset_name <- readxl::read_excel("data/dataset-name.xlsx")
-
-f <- function() {
-  dataset_name
-}
-```
-
-<http://r-pkgs.had.co.nz/data.html>
-
-
-
-### Call `package::dataset` not `load("data/dataset.rds")`
-
-Good.
-
-```R
-package::dataset
-```
-
-Bad.
-
-```R
-load("data/dataset.rds")
-```
-
-
-
-### Use the `.data` pronoun
-
-Good.
-
-```R
-f <- function(data, column_name) {
-  dplyr::select(data, .data[[column_name]])
-}
-```
-
-Ok.
-
-```R
-f <- function(data) {
-  stopifnot(hasName(mtcars, "cyl"))
-  
-  dplyr::select(data, .data$cyl)
-}
-```
-
-
-Bad. 
-
-```R
-f <- function(data) {
-  dplyr::select(data, cyl)
-}
-```
-
-<https://rlang.r-lib.org/reference/tidyeval-data.html>
-
-
-
-### Consider using internal data
-
-Good.
-
-```R
-# data-raw/my_internal_data.R
-use_data(my_internal_data, internal = TRUE)
-
-# R/any.R
-f <- function(data) {
-  dplyr::left_join(data, my_internal_data)
-}
-```
-
-Bad.
-
-```R
-# R/any.R
-my_internal_data <- mtcars %>% dplyr::select(cyl)
-
-f <- function(data) {
-  dplyr::left_join(data, my_internal_data)
-}
-```
-
-<http://r-pkgs.had.co.nz/data.html#data-sysdata>
-
-
-
 ## Code smells and feels
 
 ### Simplify `if()` with objects named meaningfully
@@ -393,7 +391,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "10, 9 Nope!"
+#> [1] "1, 7 Nope!"
 ```
 
 Bad.
@@ -405,7 +403,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "10, 9 Nope!"
+#> [1] "1, 7 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
