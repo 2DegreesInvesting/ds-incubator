@@ -5,9 +5,7 @@ output:
 ---
 # 2020-02-04: R packages: Setup 
 
-```{r include=FALSE, echo=FALSE, eval=FALSE}
-render_ioslides("2020-02-04-r-packages-setup.Rmd")
-```
+
 
 ## <https://r-pkgs.org/whole-game.html>
 
