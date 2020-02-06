@@ -2,7 +2,7 @@
 
 ## Packaging
 
-## Setup: R, RStudio, Git, GitHub
+### Setup: R, RStudio, Git, GitHub
 
 These steps will direct you to relevant chapters from "Happy Git with R" by Jenny Bryan et. al.
 

@@ -2,7 +2,7 @@
 
 ## Packaging
 
-## Setup: R, RStudio, Git, GitHub
+### Setup: R, RStudio, Git, GitHub
 
 These steps will direct you to relevant chapters from "Happy Git with R" by Jenny Bryan et. al.
 
@@ -406,7 +406,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "6, 9 Nope!"
+#> [1] "2, 2 Nope!"
 ```
 
 Bad.
@@ -418,7 +418,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "6, 9 Nope!"
+#> [1] "2, 2 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
