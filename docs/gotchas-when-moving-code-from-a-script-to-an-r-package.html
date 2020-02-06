@@ -266,8 +266,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.4.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>15.4.3</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
 <li class="chapter" data-level="15.4.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#consider-using-internal-data"><i class="fa fa-check"></i><b>15.4.4</b> Consider using internal data</a></li>
 <li class="chapter" data-level="15.4.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>15.4.5</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
-<li class="chapter" data-level="15.4.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>15.4.6</b> The tidyverse is for EDA, not packages</a></li>
-<li class="chapter" data-level="15.4.7" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>15.4.7</b> Use the <code>.data</code> pronoun</a></li>
+<li class="chapter" data-level="15.4.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#namespacefunction_from_other_package"><i class="fa fa-check"></i><b>15.4.6</b> <code>namespace::function_from_other_package()</code></a></li>
+<li class="chapter" data-level="15.4.7" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>15.4.7</b> The tidyverse is for EDA, not packages</a></li>
+<li class="chapter" data-level="15.4.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>15.4.8</b> Use the <code>.data</code> pronoun</a></li>
 </ul></li>
 <li class="chapter" data-level="15.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#function-interface"><i class="fa fa-check"></i><b>15.5</b> Function interface</a><ul>
 <li class="chapter" data-level="15.5.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-relying-on-the-global-environment"><i class="fa fa-check"></i><b>15.5.1</b> Avoid relying on the global environment</a></li>
@@ -408,31 +409,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <p><a href="https://r-pkgs.org/whole-game.html" class="uri">https://r-pkgs.org/whole-game.html</a></p>
 </div>
-<div id="the-tidyverse-is-for-eda-not-packages" class="section level3">
-<h3><span class="header-section-number">15.4.6</span> The tidyverse is for EDA, not packages</h3>
+<div id="namespacefunction_from_other_package" class="section level3">
+<h3><span class="header-section-number">15.4.6</span> <code>namespace::function_from_other_package()</code></h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw">use_package</span>(<span class="st">&quot;tidyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb9-2" title="2">  utils<span class="op">::</span><span class="kw">head</span>(dplyr<span class="op">::</span><span class="kw">select</span>(data, dplyr<span class="op">::</span><span class="kw">last_col</span>()))</a>
+<a class="sourceLine" id="cb9-3" title="3">}</a></code></pre></div>
+<p>Good.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">#&#39; @importFrom magrittr %&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#&#39; @importFrom utils head</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co">#&#39; @importFrom dplyr select last_col</span></a>
+<a class="sourceLine" id="cb10-4" title="4">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb10-5" title="5">  data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="st">    </span><span class="kw">select</span>(<span class="kw">last_col</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="st">    </span><span class="kw">head</span>()</a>
+<a class="sourceLine" id="cb10-8" title="8">}</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb11-2" title="2">  <span class="kw">head</span>(<span class="kw">select</span>(data, <span class="kw">last_col</span>()))</a>
+<a class="sourceLine" id="cb11-3" title="3">}</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb12-2" title="2">  data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">    </span><span class="kw">select</span>(<span class="kw">last_col</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">    </span><span class="kw">head</span>()</a>
+<a class="sourceLine" id="cb12-5" title="5">}</a></code></pre></div>
+</div>
+<div id="the-tidyverse-is-for-eda-not-packages" class="section level3">
+<h3><span class="header-section-number">15.4.7</span> The tidyverse is for EDA, not packages</h3>
+<p>Good.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw">use_package</span>(<span class="st">&quot;tidyr&quot;</span>)</a></code></pre></div>
+<p>Bad.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">use_package</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <p><a href="https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/" class="uri">https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/</a></p>
 </div>
 <div id="use-the-.data-pronoun" class="section level3">
-<h3><span class="header-section-number">15.4.7</span> Use the <code>.data</code> pronoun</h3>
+<h3><span class="header-section-number">15.4.8</span> Use the <code>.data</code> pronoun</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data, column_name) {</a>
-<a class="sourceLine" id="cb11-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data[[column_name]])</a>
-<a class="sourceLine" id="cb11-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data, column_name) {</a>
+<a class="sourceLine" id="cb15-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data[[column_name]])</a>
+<a class="sourceLine" id="cb15-3" title="3">}</a></code></pre></div>
 <p>Ok.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb12-2" title="2">  <span class="kw">stopifnot</span>(<span class="kw">hasName</span>(mtcars, <span class="st">&quot;cyl&quot;</span>))</a>
-<a class="sourceLine" id="cb12-3" title="3">  </a>
-<a class="sourceLine" id="cb12-4" title="4">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data<span class="op">$</span>cyl)</a>
-<a class="sourceLine" id="cb12-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb16-2" title="2">  <span class="kw">stopifnot</span>(<span class="kw">hasName</span>(mtcars, <span class="st">&quot;cyl&quot;</span>))</a>
+<a class="sourceLine" id="cb16-3" title="3">  </a>
+<a class="sourceLine" id="cb16-4" title="4">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data<span class="op">$</span>cyl)</a>
+<a class="sourceLine" id="cb16-5" title="5">}</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb13-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, cyl)</a>
-<a class="sourceLine" id="cb13-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb17-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, cyl)</a>
+<a class="sourceLine" id="cb17-3" title="3">}</a></code></pre></div>
 <p><a href="https://rlang.r-lib.org/reference/tidyeval-data.html" class="uri">https://rlang.r-lib.org/reference/tidyeval-data.html</a></p>
 </div>
 </div>
@@ -441,103 +468,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="avoid-relying-on-the-global-environment" class="section level3">
 <h3><span class="header-section-number">15.5.1</span> Avoid relying on the global environment</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb14-2" title="2">  data</a>
-<a class="sourceLine" id="cb14-3" title="3">}</a>
-<a class="sourceLine" id="cb14-4" title="4"></a>
-<a class="sourceLine" id="cb14-5" title="5">my_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="kw">f</span>(my_data)</a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="co">#&gt;       x</span></a>
-<a class="sourceLine" id="cb14-9" title="9"><span class="co">#&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb14-10" title="10"><span class="co">#&gt; 1     1</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb18-2" title="2">  data</a>
+<a class="sourceLine" id="cb18-3" title="3">}</a>
+<a class="sourceLine" id="cb18-4" title="4"></a>
+<a class="sourceLine" id="cb18-5" title="5">my_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb18-6" title="6"><span class="kw">f</span>(my_data)</a>
+<a class="sourceLine" id="cb18-7" title="7"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb18-8" title="8"><span class="co">#&gt;       x</span></a>
+<a class="sourceLine" id="cb18-9" title="9"><span class="co">#&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb18-10" title="10"><span class="co">#&gt; 1     1</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> my_data2) {</a>
-<a class="sourceLine" id="cb15-2" title="2">  data</a>
-<a class="sourceLine" id="cb15-3" title="3">}</a>
-<a class="sourceLine" id="cb15-4" title="4"></a>
-<a class="sourceLine" id="cb15-5" title="5"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb15-6" title="6"><span class="co">#&gt; [1] &quot;f&quot;       &quot;my_data&quot;</span></a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="kw">try</span>(<span class="kw">f</span>())</a>
-<a class="sourceLine" id="cb15-8" title="8"><span class="co">#&gt; Error in f() : object &#39;my_data2&#39; not found</span></a>
-<a class="sourceLine" id="cb15-9" title="9"></a>
-<a class="sourceLine" id="cb15-10" title="10">my_data2 &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb15-11" title="11"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb15-12" title="12"><span class="co">#&gt; [1] &quot;f&quot;        &quot;my_data&quot;  &quot;my_data2&quot;</span></a>
-<a class="sourceLine" id="cb15-13" title="13"><span class="kw">f</span>()</a>
-<a class="sourceLine" id="cb15-14" title="14"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb15-15" title="15"><span class="co">#&gt;       x</span></a>
-<a class="sourceLine" id="cb15-16" title="16"><span class="co">#&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb15-17" title="17"><span class="co">#&gt; 1     1</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> my_data2) {</a>
+<a class="sourceLine" id="cb19-2" title="2">  data</a>
+<a class="sourceLine" id="cb19-3" title="3">}</a>
+<a class="sourceLine" id="cb19-4" title="4"></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb19-6" title="6"><span class="co">#&gt; [1] &quot;f&quot;       &quot;my_data&quot;</span></a>
+<a class="sourceLine" id="cb19-7" title="7"><span class="kw">try</span>(<span class="kw">f</span>())</a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="co">#&gt; Error in f() : object &#39;my_data2&#39; not found</span></a>
+<a class="sourceLine" id="cb19-9" title="9"></a>
+<a class="sourceLine" id="cb19-10" title="10">my_data2 &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb19-11" title="11"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb19-12" title="12"><span class="co">#&gt; [1] &quot;f&quot;        &quot;my_data&quot;  &quot;my_data2&quot;</span></a>
+<a class="sourceLine" id="cb19-13" title="13"><span class="kw">f</span>()</a>
+<a class="sourceLine" id="cb19-14" title="14"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb19-15" title="15"><span class="co">#&gt;       x</span></a>
+<a class="sourceLine" id="cb19-16" title="16"><span class="co">#&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb19-17" title="17"><span class="co">#&gt; 1     1</span></a></code></pre></div>
 </div>
 <div id="avoid-modifying-the-global-environment-e.g.-with--" class="section level3">
 <h3><span class="header-section-number">15.5.2</span> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></h3>
 <p>Setup.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">readr<span class="op">::</span><span class="kw">write_csv</span>(mtcars, <span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">readr<span class="op">::</span><span class="kw">write_csv</span>(mtcars, <span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
 <p>Good.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">some_data_path &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb17-2" title="2">  fs<span class="op">::</span><span class="kw">path</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb17-3" title="3">}</a>
-<a class="sourceLine" id="cb17-4" title="4"></a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="kw">some_data_path</span>()</a>
-<a class="sourceLine" id="cb17-6" title="6"><span class="co">#&gt; some_data.csv</span></a>
-<a class="sourceLine" id="cb17-7" title="7"></a>
-<a class="sourceLine" id="cb17-8" title="8">read_some_data &lt;-<span class="st"> </span><span class="cf">function</span>(path) {</a>
-<a class="sourceLine" id="cb17-9" title="9">  <span class="kw">suppressMessages</span>(<span class="kw">head</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(path)))</a>
-<a class="sourceLine" id="cb17-10" title="10">}</a>
-<a class="sourceLine" id="cb17-11" title="11"></a>
-<a class="sourceLine" id="cb17-12" title="12">path &lt;-<span class="st"> </span><span class="kw">some_data_path</span>()  <span class="co"># Define path</span></a>
-<a class="sourceLine" id="cb17-13" title="13"><span class="kw">read_some_data</span>(path)</a>
-<a class="sourceLine" id="cb17-14" title="14"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
-<a class="sourceLine" id="cb17-15" title="15"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></a>
-<a class="sourceLine" id="cb17-16" title="16"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb17-17" title="17"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></a>
-<a class="sourceLine" id="cb17-18" title="18"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></a>
-<a class="sourceLine" id="cb17-19" title="19"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></a>
-<a class="sourceLine" id="cb17-20" title="20"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></a>
-<a class="sourceLine" id="cb17-21" title="21"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2</span></a>
-<a class="sourceLine" id="cb17-22" title="22"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">some_data_path &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb21-2" title="2">  fs<span class="op">::</span><span class="kw">path</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb21-3" title="3">}</a>
+<a class="sourceLine" id="cb21-4" title="4"></a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="kw">some_data_path</span>()</a>
+<a class="sourceLine" id="cb21-6" title="6"><span class="co">#&gt; some_data.csv</span></a>
+<a class="sourceLine" id="cb21-7" title="7"></a>
+<a class="sourceLine" id="cb21-8" title="8">read_some_data &lt;-<span class="st"> </span><span class="cf">function</span>(path) {</a>
+<a class="sourceLine" id="cb21-9" title="9">  <span class="kw">suppressMessages</span>(<span class="kw">head</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(path)))</a>
+<a class="sourceLine" id="cb21-10" title="10">}</a>
+<a class="sourceLine" id="cb21-11" title="11"></a>
+<a class="sourceLine" id="cb21-12" title="12">path &lt;-<span class="st"> </span><span class="kw">some_data_path</span>()  <span class="co"># Define path</span></a>
+<a class="sourceLine" id="cb21-13" title="13"><span class="kw">read_some_data</span>(path)</a>
+<a class="sourceLine" id="cb21-14" title="14"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
+<a class="sourceLine" id="cb21-15" title="15"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></a>
+<a class="sourceLine" id="cb21-16" title="16"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-17" title="17"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></a>
+<a class="sourceLine" id="cb21-18" title="18"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></a>
+<a class="sourceLine" id="cb21-19" title="19"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></a>
+<a class="sourceLine" id="cb21-20" title="20"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></a>
+<a class="sourceLine" id="cb21-21" title="21"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2</span></a>
+<a class="sourceLine" id="cb21-22" title="22"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">some_data_path &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb18-2" title="2">  path &lt;&lt;-<span class="st"> &quot;some_data.csv&quot;</span></a>
-<a class="sourceLine" id="cb18-3" title="3">}</a>
-<a class="sourceLine" id="cb18-4" title="4"></a>
-<a class="sourceLine" id="cb18-5" title="5">read_some_data &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb18-6" title="6">  <span class="kw">suppressMessages</span>(<span class="kw">head</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(path)))</a>
-<a class="sourceLine" id="cb18-7" title="7">}</a>
-<a class="sourceLine" id="cb18-8" title="8"></a>
-<a class="sourceLine" id="cb18-9" title="9"><span class="kw">some_data_path</span>()  <span class="co"># Define path</span></a>
-<a class="sourceLine" id="cb18-10" title="10"><span class="kw">read_some_data</span>()</a>
-<a class="sourceLine" id="cb18-11" title="11"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
-<a class="sourceLine" id="cb18-12" title="12"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></a>
-<a class="sourceLine" id="cb18-13" title="13"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb18-14" title="14"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></a>
-<a class="sourceLine" id="cb18-15" title="15"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></a>
-<a class="sourceLine" id="cb18-16" title="16"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></a>
-<a class="sourceLine" id="cb18-17" title="17"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></a>
-<a class="sourceLine" id="cb18-18" title="18"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2</span></a>
-<a class="sourceLine" id="cb18-19" title="19"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</span></a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">some_data_path &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb22-2" title="2">  path &lt;&lt;-<span class="st"> &quot;some_data.csv&quot;</span></a>
+<a class="sourceLine" id="cb22-3" title="3">}</a>
+<a class="sourceLine" id="cb22-4" title="4"></a>
+<a class="sourceLine" id="cb22-5" title="5">read_some_data &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb22-6" title="6">  <span class="kw">suppressMessages</span>(<span class="kw">head</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(path)))</a>
+<a class="sourceLine" id="cb22-7" title="7">}</a>
+<a class="sourceLine" id="cb22-8" title="8"></a>
+<a class="sourceLine" id="cb22-9" title="9"><span class="kw">some_data_path</span>()  <span class="co"># Define path</span></a>
+<a class="sourceLine" id="cb22-10" title="10"><span class="kw">read_some_data</span>()</a>
+<a class="sourceLine" id="cb22-11" title="11"><span class="co">#&gt; # A tibble: 6 x 11</span></a>
+<a class="sourceLine" id="cb22-12" title="12"><span class="co">#&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></a>
+<a class="sourceLine" id="cb22-13" title="13"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb22-14" title="14"><span class="co">#&gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4</span></a>
+<a class="sourceLine" id="cb22-15" title="15"><span class="co">#&gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4</span></a>
+<a class="sourceLine" id="cb22-16" title="16"><span class="co">#&gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1</span></a>
+<a class="sourceLine" id="cb22-17" title="17"><span class="co">#&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1</span></a>
+<a class="sourceLine" id="cb22-18" title="18"><span class="co">#&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2</span></a>
+<a class="sourceLine" id="cb22-19" title="19"><span class="co">#&gt; 6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</span></a></code></pre></div>
 <blockquote>
 <p>“[Avoid global variables because they] introduce non-obvious dependencies between functions” – <a href="https://adv-r.hadley.nz/environments.html">Advanced R, Environments</a>).</p>
 </blockquote>
 <p>For valid uses of <code>&lt;&lt;-</code> see (<a href="https://adv-r.hadley.nz/function-factories.html#stateful-funs">Advanced R, Function factories</a>).</p>
 <p>Clean up.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">fs<span class="op">::</span><span class="kw">file_delete</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">fs<span class="op">::</span><span class="kw">file_delete</span>(<span class="st">&quot;some_data.csv&quot;</span>)</a></code></pre></div>
 </div>
 <div id="arguments-that-provide-core-data-are-required" class="section level3">
 <h3><span class="header-section-number">15.5.3</span> Arguments that provide core data are required</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb20-2" title="2">  data</a>
-<a class="sourceLine" id="cb20-3" title="3">}</a>
-<a class="sourceLine" id="cb20-4" title="4"></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="kw">f</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb24-2" title="2">  data</a>
+<a class="sourceLine" id="cb24-3" title="3">}</a>
+<a class="sourceLine" id="cb24-4" title="4"></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="kw">f</span>(mtcars)</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> mtcars) {</a>
-<a class="sourceLine" id="cb21-2" title="2">  data</a>
-<a class="sourceLine" id="cb21-3" title="3">}</a>
-<a class="sourceLine" id="cb21-4" title="4"></a>
-<a class="sourceLine" id="cb21-5" title="5"><span class="kw">f</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> mtcars) {</a>
+<a class="sourceLine" id="cb25-2" title="2">  data</a>
+<a class="sourceLine" id="cb25-3" title="3">}</a>
+<a class="sourceLine" id="cb25-4" title="4"></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="kw">f</span>()</a></code></pre></div>
 <blockquote>
 <p>Arguments that provide core data are required (have no default); they are often called <code>data</code>, <code>x</code>, or <code>y</code>).</p>
 </blockquote>
@@ -546,18 +573,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="descriptor-arguments-are-usually-required" class="section level3">
 <h3><span class="header-section-number">15.5.4</span> Descriptor arguments are usually required</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, start_year, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb22-2" title="2">  end_year &lt;-<span class="st"> </span>start_year <span class="op">+</span><span class="st"> </span>time_span</a>
-<a class="sourceLine" id="cb22-3" title="3">  time_period &lt;-<span class="st"> </span>data<span class="op">$</span>year <span class="op">&gt;=</span><span class="st"> </span>start_year <span class="op">&amp;</span><span class="st"> </span>data<span class="op">$</span>year <span class="op">&lt;=</span><span class="st"> </span>end_year</a>
-<a class="sourceLine" id="cb22-4" title="4">  </a>
-<a class="sourceLine" id="cb22-5" title="5">  data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-6" title="6"><span class="st">    </span><span class="kw">filter</span>(time_period) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-7" title="7"><span class="st">    </span><span class="co"># ...</span></a>
-<a class="sourceLine" id="cb22-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, start_year, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb26-2" title="2">  end_year &lt;-<span class="st"> </span>start_year <span class="op">+</span><span class="st"> </span>time_span</a>
+<a class="sourceLine" id="cb26-3" title="3">  time_period &lt;-<span class="st"> </span>data<span class="op">$</span>year <span class="op">&gt;=</span><span class="st"> </span>start_year <span class="op">&amp;</span><span class="st"> </span>data<span class="op">$</span>year <span class="op">&lt;=</span><span class="st"> </span>end_year</a>
+<a class="sourceLine" id="cb26-4" title="4">  </a>
+<a class="sourceLine" id="cb26-5" title="5">  data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb26-6" title="6"><span class="st">    </span><span class="kw">filter</span>(time_period) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb26-7" title="7"><span class="st">    </span><span class="co"># ...</span></a>
+<a class="sourceLine" id="cb26-8" title="8">}</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">start_year =</span> <span class="dv">2020</span>, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb23-2" title="2">  <span class="co"># ...</span></a>
-<a class="sourceLine" id="cb23-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">forecast &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">start_year =</span> <span class="dv">2020</span>, <span class="dt">time_span =</span> <span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb27-2" title="2">  <span class="co"># ...</span></a>
+<a class="sourceLine" id="cb27-3" title="3">}</a></code></pre></div>
 <blockquote>
 <p>Descriptor arguments describe essential details of the operation, and are usually required.</p>
 </blockquote>
@@ -567,14 +594,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">15.5.5</span> Avoid reading and writing operations</h3>
 <p>Unless it is precisely the purpose of your function, avoid operations that read or write data (in general, avoid side effects).</p>
 <p>Good.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb24-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, 1L)</a>
-<a class="sourceLine" id="cb24-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb28-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, 1L)</a>
+<a class="sourceLine" id="cb28-3" title="3">}</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(path) {</a>
-<a class="sourceLine" id="cb25-2" title="2">  data &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(path)</a>
-<a class="sourceLine" id="cb25-3" title="3">  dplyr<span class="op">::</span><span class="kw">select</span>(data, 1L)</a>
-<a class="sourceLine" id="cb25-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(path) {</a>
+<a class="sourceLine" id="cb29-2" title="2">  data &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(path)</a>
+<a class="sourceLine" id="cb29-3" title="3">  dplyr<span class="op">::</span><span class="kw">select</span>(data, 1L)</a>
+<a class="sourceLine" id="cb29-4" title="4">}</a></code></pre></div>
 <ul>
 <li><a href="https://github.com/2DegreesInvesting/resources/issues/68">What is a pure function</a>.</li>
 <li><a href="https://github.com/2DegreesInvesting/ds-incubator/blob/master/2019-12-03_avoid-hidden-arguments.pdf">Avoid hidden arguments (ds-incubator)</a>.</li>
@@ -585,118 +612,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">15.6</span> Code smells and feels</h2>
 <div id="simplify-if-with-objects-named-meaningfully" class="section level3">
 <h3><span class="header-section-number">15.6.1</span> Simplify <code>if()</code> with objects named meaningfully</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb26-2" title="2">say &lt;-<span class="st"> </span><span class="cf">function</span>(x, msg) <span class="kw">paste</span>(<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>), msg)</a>
-<a class="sourceLine" id="cb26-3" title="3"><span class="kw">say</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;Hey!&quot;</span>)</a>
-<a class="sourceLine" id="cb26-4" title="4"><span class="co">#&gt; [1] &quot;1, 2 Hey!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb30-2" title="2">say &lt;-<span class="st"> </span><span class="cf">function</span>(x, msg) <span class="kw">paste</span>(<span class="kw">paste</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>), msg)</a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="kw">say</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;Hey!&quot;</span>)</a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="co">#&gt; [1] &quot;1, 2 Hey!&quot;</span></a></code></pre></div>
 <p>Good.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">is_even_between_5and10 &lt;-<span class="st"> </span>(x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">between</span>(x, 5L, 10L)</a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="cf">if</span> (<span class="kw">all</span>(is_even_between_5and10)) {</a>
-<a class="sourceLine" id="cb27-3" title="3">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
-<a class="sourceLine" id="cb27-4" title="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb27-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
-<a class="sourceLine" id="cb27-6" title="6">}</a>
-<a class="sourceLine" id="cb27-7" title="7"><span class="co">#&gt; [1] &quot;2, 2 Nope!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">is_even_between_5and10 &lt;-<span class="st"> </span>(x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">between</span>(x, 5L, 10L)</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="cf">if</span> (<span class="kw">all</span>(is_even_between_5and10)) {</a>
+<a class="sourceLine" id="cb31-3" title="3">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
+<a class="sourceLine" id="cb31-4" title="4">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb31-5" title="5">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
+<a class="sourceLine" id="cb31-6" title="6">}</a>
+<a class="sourceLine" id="cb31-7" title="7"><span class="co">#&gt; [1] &quot;6, 1 Nope!&quot;</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
-<a class="sourceLine" id="cb28-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
-<a class="sourceLine" id="cb28-3" title="3">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb28-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
-<a class="sourceLine" id="cb28-5" title="5">}</a>
-<a class="sourceLine" id="cb28-6" title="6"><span class="co">#&gt; [1] &quot;2, 2 Nope!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</a>
+<a class="sourceLine" id="cb32-2" title="2">  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</a>
+<a class="sourceLine" id="cb32-3" title="3">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb32-4" title="4">  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</a>
+<a class="sourceLine" id="cb32-5" title="5">}</a>
+<a class="sourceLine" id="cb32-6" title="6"><span class="co">#&gt; [1] &quot;6, 1 Nope!&quot;</span></a></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">
 <h3><span class="header-section-number">15.6.2</span> Program for columns with <code>clean_names</code></h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb29-2" title="2">  clean &lt;-<span class="st"> </span>r2dii.utils<span class="op">::</span><span class="kw">clean_column_names</span>(data)</a>
-<a class="sourceLine" id="cb29-3" title="3">  </a>
-<a class="sourceLine" id="cb29-4" title="4">  <span class="kw">stopifnot</span>(<span class="kw">hasName</span>(clean, <span class="st">&quot;a_column&quot;</span>))</a>
-<a class="sourceLine" id="cb29-5" title="5">  result &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(clean, .data<span class="op">$</span>a_column)</a>
-<a class="sourceLine" id="cb29-6" title="6">  </a>
-<a class="sourceLine" id="cb29-7" title="7">  r2dii.utils<span class="op">::</span><span class="kw">unclean_column_names</span>(result, data)</a>
-<a class="sourceLine" id="cb29-8" title="8">}</a>
-<a class="sourceLine" id="cb29-9" title="9"></a>
-<a class="sourceLine" id="cb29-10" title="10"><span class="kw">f</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">A.Column =</span> <span class="dv">1</span>, <span class="dt">Another.Column =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb29-11" title="11"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb29-12" title="12"><span class="co">#&gt;   A.Column</span></a>
-<a class="sourceLine" id="cb29-13" title="13"><span class="co">#&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb29-14" title="14"><span class="co">#&gt; 1        1</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb33-2" title="2">  clean &lt;-<span class="st"> </span>r2dii.utils<span class="op">::</span><span class="kw">clean_column_names</span>(data)</a>
+<a class="sourceLine" id="cb33-3" title="3">  </a>
+<a class="sourceLine" id="cb33-4" title="4">  <span class="kw">stopifnot</span>(<span class="kw">hasName</span>(clean, <span class="st">&quot;a_column&quot;</span>))</a>
+<a class="sourceLine" id="cb33-5" title="5">  result &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(clean, .data<span class="op">$</span>a_column)</a>
+<a class="sourceLine" id="cb33-6" title="6">  </a>
+<a class="sourceLine" id="cb33-7" title="7">  r2dii.utils<span class="op">::</span><span class="kw">unclean_column_names</span>(result, data)</a>
+<a class="sourceLine" id="cb33-8" title="8">}</a>
+<a class="sourceLine" id="cb33-9" title="9"></a>
+<a class="sourceLine" id="cb33-10" title="10"><span class="kw">f</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">A.Column =</span> <span class="dv">1</span>, <span class="dt">Another.Column =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb33-11" title="11"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb33-12" title="12"><span class="co">#&gt;   A.Column</span></a>
+<a class="sourceLine" id="cb33-13" title="13"><span class="co">#&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb33-14" title="14"><span class="co">#&gt; 1        1</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb30-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data<span class="op">$</span>A.Column)</a>
-<a class="sourceLine" id="cb30-3" title="3">}</a>
-<a class="sourceLine" id="cb30-4" title="4"></a>
-<a class="sourceLine" id="cb30-5" title="5"><span class="kw">f</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">A.Column =</span> <span class="dv">1</span>, <span class="dt">Another.Column =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb30-6" title="6"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb30-7" title="7"><span class="co">#&gt;   A.Column</span></a>
-<a class="sourceLine" id="cb30-8" title="8"><span class="co">#&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb30-9" title="9"><span class="co">#&gt; 1        1</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb34-2" title="2">  dplyr<span class="op">::</span><span class="kw">select</span>(data, .data<span class="op">$</span>A.Column)</a>
+<a class="sourceLine" id="cb34-3" title="3">}</a>
+<a class="sourceLine" id="cb34-4" title="4"></a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="kw">f</span>(tibble<span class="op">::</span><span class="kw">tibble</span>(<span class="dt">A.Column =</span> <span class="dv">1</span>, <span class="dt">Another.Column =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb34-6" title="6"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="co">#&gt;   A.Column</span></a>
+<a class="sourceLine" id="cb34-8" title="8"><span class="co">#&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="co">#&gt; 1        1</span></a></code></pre></div>
 <p><a href="https://2degreesinvesting.github.io/r2dii.utils/reference/clean_column_names.html"><code>?clean_column_names()</code></a></p>
 </div>
 <div id="avoid-long-running-temporary-objects" class="section level3">
 <h3><span class="header-section-number">15.6.3</span> Avoid long-running temporary objects</h3>
 <p>Avoid temporary variables unless they run for only a few, consecutive lines.</p>
 <p>Good.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb31-2" title="2">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(tmp, disp)</a>
-<a class="sourceLine" id="cb31-3" title="3">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a>
-<a class="sourceLine" id="cb31-4" title="4"></a>
-<a class="sourceLine" id="cb31-5" title="5"><span class="co"># ... more unrelated code</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb35-2" title="2">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(tmp, disp)</a>
+<a class="sourceLine" id="cb35-3" title="3">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a>
+<a class="sourceLine" id="cb35-4" title="4"></a>
+<a class="sourceLine" id="cb35-5" title="5"><span class="co"># ... more unrelated code</span></a></code></pre></div>
 <p>Better.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(disp) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(disp) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb33-2" title="2">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(tmp, disp)</a>
-<a class="sourceLine" id="cb33-3" title="3"></a>
-<a class="sourceLine" id="cb33-4" title="4"><span class="co"># ... more unrelated code (makes your forget what `tmp` holds)</span></a>
-<a class="sourceLine" id="cb33-5" title="5"></a>
-<a class="sourceLine" id="cb33-6" title="6">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(mtcars, cyl <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb37-2" title="2">tmp &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(tmp, disp)</a>
+<a class="sourceLine" id="cb37-3" title="3"></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="co"># ... more unrelated code (makes your forget what `tmp` holds)</span></a>
+<a class="sourceLine" id="cb37-5" title="5"></a>
+<a class="sourceLine" id="cb37-6" title="6">tmp &lt;-<span class="st"> </span><span class="kw">head</span>(tmp)</a></code></pre></div>
 </div>
 <div id="if-possible-extract-functions-to-the-top-level" class="section level3">
 <h3><span class="header-section-number">15.6.4</span> If possible, extract functions to the top level</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb34-2" title="2">  <span class="kw">g</span>(x)</a>
-<a class="sourceLine" id="cb34-3" title="3">}</a>
-<a class="sourceLine" id="cb34-4" title="4"></a>
-<a class="sourceLine" id="cb34-5" title="5">g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb34-6" title="6">  x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb34-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb38-2" title="2">  <span class="kw">g</span>(x)</a>
+<a class="sourceLine" id="cb38-3" title="3">}</a>
+<a class="sourceLine" id="cb38-4" title="4"></a>
+<a class="sourceLine" id="cb38-5" title="5">g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb38-6" title="6">  x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb38-7" title="7">}</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb35-2" title="2">  g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb35-3" title="3">    x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb35-4" title="4">  }</a>
-<a class="sourceLine" id="cb35-5" title="5">  </a>
-<a class="sourceLine" id="cb35-6" title="6">  <span class="kw">g</span>(x)</a>
-<a class="sourceLine" id="cb35-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb39-2" title="2">  g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb39-3" title="3">    x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-4" title="4">  }</a>
+<a class="sourceLine" id="cb39-5" title="5">  </a>
+<a class="sourceLine" id="cb39-6" title="6">  <span class="kw">g</span>(x)</a>
+<a class="sourceLine" id="cb39-7" title="7">}</a></code></pre></div>
 </div>
 <div id="extract-commented-sections-into-functions" class="section level3">
 <h3><span class="header-section-number">15.6.5</span> Extract commented sections into functions</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb36-2" title="2">  y &lt;-<span class="st"> </span><span class="kw">calculate_y</span>(x)</a>
-<a class="sourceLine" id="cb36-3" title="3">  </a>
-<a class="sourceLine" id="cb36-4" title="4">  <span class="co"># ... more code</span></a>
-<a class="sourceLine" id="cb36-5" title="5">}</a>
-<a class="sourceLine" id="cb36-6" title="6"></a>
-<a class="sourceLine" id="cb36-7" title="7">calculate_y &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb36-8" title="8">  x<span class="op">^</span>x <span class="op">*</span><span class="st"> </span>x<span class="op">/</span>2L</a>
-<a class="sourceLine" id="cb36-9" title="9">  <span class="co"># ... more code specifically about calculating y</span></a>
-<a class="sourceLine" id="cb36-10" title="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb40-2" title="2">  y &lt;-<span class="st"> </span><span class="kw">calculate_y</span>(x)</a>
+<a class="sourceLine" id="cb40-3" title="3">  </a>
+<a class="sourceLine" id="cb40-4" title="4">  <span class="co"># ... more code</span></a>
+<a class="sourceLine" id="cb40-5" title="5">}</a>
+<a class="sourceLine" id="cb40-6" title="6"></a>
+<a class="sourceLine" id="cb40-7" title="7">calculate_y &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb40-8" title="8">  x<span class="op">^</span>x <span class="op">*</span><span class="st"> </span>x<span class="op">/</span>2L</a>
+<a class="sourceLine" id="cb40-9" title="9">  <span class="co"># ... more code specifically about calculating y</span></a>
+<a class="sourceLine" id="cb40-10" title="10">}</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb37-2" title="2">  <span class="co"># calculate y</span></a>
-<a class="sourceLine" id="cb37-3" title="3">  y &lt;-<span class="st"> </span>x<span class="op">^</span>x <span class="op">*</span><span class="st"> </span>x<span class="op">/</span>2L</a>
-<a class="sourceLine" id="cb37-4" title="4">  <span class="co"># ... more code specifically about calculating y</span></a>
-<a class="sourceLine" id="cb37-5" title="5">  </a>
-<a class="sourceLine" id="cb37-6" title="6">  <span class="co"># ... more code</span></a>
-<a class="sourceLine" id="cb37-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb41-2" title="2">  <span class="co"># calculate y</span></a>
+<a class="sourceLine" id="cb41-3" title="3">  y &lt;-<span class="st"> </span>x<span class="op">^</span>x <span class="op">*</span><span class="st"> </span>x<span class="op">/</span>2L</a>
+<a class="sourceLine" id="cb41-4" title="4">  <span class="co"># ... more code specifically about calculating y</span></a>
+<a class="sourceLine" id="cb41-5" title="5">  </a>
+<a class="sourceLine" id="cb41-6" title="6">  <span class="co"># ... more code</span></a>
+<a class="sourceLine" id="cb41-7" title="7">}</a></code></pre></div>
 </div>
 </div>
 <div id="error-prone" class="section level2">
@@ -704,41 +731,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="avoid-hidden-arguments-extract-functions-with-all-arguments" class="section level3">
 <h3><span class="header-section-number">15.7.1</span> Avoid hidden arguments: Extract functions with all arguments</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
-<a class="sourceLine" id="cb38-2" title="2">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y, z)</a>
-<a class="sourceLine" id="cb38-3" title="3">}</a>
-<a class="sourceLine" id="cb38-4" title="4"></a>
-<a class="sourceLine" id="cb38-5" title="5">g &lt;-<span class="st"> </span><span class="cf">function</span>(y, z) {</a>
-<a class="sourceLine" id="cb38-6" title="6">  y <span class="op">+</span><span class="st"> </span>z</a>
-<a class="sourceLine" id="cb38-7" title="7">}</a>
-<a class="sourceLine" id="cb38-8" title="8"></a>
-<a class="sourceLine" id="cb38-9" title="9"><span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb38-10" title="10"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
+<a class="sourceLine" id="cb42-2" title="2">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y, z)</a>
+<a class="sourceLine" id="cb42-3" title="3">}</a>
+<a class="sourceLine" id="cb42-4" title="4"></a>
+<a class="sourceLine" id="cb42-5" title="5">g &lt;-<span class="st"> </span><span class="cf">function</span>(y, z) {</a>
+<a class="sourceLine" id="cb42-6" title="6">  y <span class="op">+</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb42-7" title="7">}</a>
+<a class="sourceLine" id="cb42-8" title="8"></a>
+<a class="sourceLine" id="cb42-9" title="9"><span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb42-10" title="10"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Fragile.</span></a>
-<a class="sourceLine" id="cb39-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
-<a class="sourceLine" id="cb39-3" title="3">  g &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</a>
-<a class="sourceLine" id="cb39-4" title="4">    <span class="co"># `z` is outside of the scope of g(). It&#39;s a hidden argument</span></a>
-<a class="sourceLine" id="cb39-5" title="5">    y <span class="op">+</span><span class="st"> </span>z</a>
-<a class="sourceLine" id="cb39-6" title="6">  }</a>
-<a class="sourceLine" id="cb39-7" title="7">  </a>
-<a class="sourceLine" id="cb39-8" title="8">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y)</a>
-<a class="sourceLine" id="cb39-9" title="9">}</a>
-<a class="sourceLine" id="cb39-10" title="10"></a>
-<a class="sourceLine" id="cb39-11" title="11"><span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb39-12" title="12"><span class="co">#&gt; [1] 3</span></a>
-<a class="sourceLine" id="cb39-13" title="13"></a>
-<a class="sourceLine" id="cb39-14" title="14"><span class="co"># f() breaks when you move g() to the top level</span></a>
-<a class="sourceLine" id="cb39-15" title="15">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
-<a class="sourceLine" id="cb39-16" title="16">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y)</a>
-<a class="sourceLine" id="cb39-17" title="17">}</a>
-<a class="sourceLine" id="cb39-18" title="18"></a>
-<a class="sourceLine" id="cb39-19" title="19">g &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</a>
-<a class="sourceLine" id="cb39-20" title="20">  y <span class="op">+</span><span class="st"> </span>z</a>
-<a class="sourceLine" id="cb39-21" title="21">}</a>
-<a class="sourceLine" id="cb39-22" title="22"></a>
-<a class="sourceLine" id="cb39-23" title="23"><span class="kw">try</span>(<span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb39-24" title="24"><span class="co">#&gt; Error in g(y) : object &#39;z&#39; not found</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Fragile.</span></a>
+<a class="sourceLine" id="cb43-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
+<a class="sourceLine" id="cb43-3" title="3">  g &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</a>
+<a class="sourceLine" id="cb43-4" title="4">    <span class="co"># `z` is outside of the scope of g(). It&#39;s a hidden argument</span></a>
+<a class="sourceLine" id="cb43-5" title="5">    y <span class="op">+</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb43-6" title="6">  }</a>
+<a class="sourceLine" id="cb43-7" title="7">  </a>
+<a class="sourceLine" id="cb43-8" title="8">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y)</a>
+<a class="sourceLine" id="cb43-9" title="9">}</a>
+<a class="sourceLine" id="cb43-10" title="10"></a>
+<a class="sourceLine" id="cb43-11" title="11"><span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb43-12" title="12"><span class="co">#&gt; [1] 3</span></a>
+<a class="sourceLine" id="cb43-13" title="13"></a>
+<a class="sourceLine" id="cb43-14" title="14"><span class="co"># f() breaks when you move g() to the top level</span></a>
+<a class="sourceLine" id="cb43-15" title="15">f &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, z) {</a>
+<a class="sourceLine" id="cb43-16" title="16">  x <span class="op">+</span><span class="st"> </span><span class="kw">g</span>(y)</a>
+<a class="sourceLine" id="cb43-17" title="17">}</a>
+<a class="sourceLine" id="cb43-18" title="18"></a>
+<a class="sourceLine" id="cb43-19" title="19">g &lt;-<span class="st"> </span><span class="cf">function</span>(y) {</a>
+<a class="sourceLine" id="cb43-20" title="20">  y <span class="op">+</span><span class="st"> </span>z</a>
+<a class="sourceLine" id="cb43-21" title="21">}</a>
+<a class="sourceLine" id="cb43-22" title="22"></a>
+<a class="sourceLine" id="cb43-23" title="23"><span class="kw">try</span>(<span class="kw">f</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb43-24" title="24"><span class="co">#&gt; Error in g(y) : object &#39;z&#39; not found</span></a></code></pre></div>
 </div>
 <div id="separate-functions-data-and-scripts" class="section level3">
 <h3><span class="header-section-number">15.7.2</span> Separate functions, data, and scripts</h3>
@@ -747,36 +774,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">15.7.3</span> A non-package project</h3>
 <p>It’s easy for an analyst to maintain a project when functions, data, and scripts are separate.</p>
 <p>Good.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># R/all-functions.R</span></a>
-<a class="sourceLine" id="cb40-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
-<a class="sourceLine" id="cb40-3" title="3">  <span class="co"># ... some code</span></a>
-<a class="sourceLine" id="cb40-4" title="4">}</a>
-<a class="sourceLine" id="cb40-5" title="5"></a>
-<a class="sourceLine" id="cb40-6" title="6"><span class="co"># data/all-datasets.R</span></a>
-<a class="sourceLine" id="cb40-7" title="7">some_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;some_data.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb40-8" title="8"></a>
-<a class="sourceLine" id="cb40-9" title="9"><span class="co"># script/this-script.R</span></a>
-<a class="sourceLine" id="cb40-10" title="10"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb40-11" title="11"></a>
-<a class="sourceLine" id="cb40-12" title="12"><span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;all-functions.R&quot;</span>))</a>
-<a class="sourceLine" id="cb40-13" title="13"><span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;all-datasets.R&quot;</span>))</a>
-<a class="sourceLine" id="cb40-14" title="14"></a>
-<a class="sourceLine" id="cb40-15" title="15"></a>
-<a class="sourceLine" id="cb40-16" title="16"><span class="kw">f</span>(<span class="dt">data =</span> some_data)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># R/all-functions.R</span></a>
+<a class="sourceLine" id="cb44-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
+<a class="sourceLine" id="cb44-3" title="3">  <span class="co"># ... some code</span></a>
+<a class="sourceLine" id="cb44-4" title="4">}</a>
+<a class="sourceLine" id="cb44-5" title="5"></a>
+<a class="sourceLine" id="cb44-6" title="6"><span class="co"># data/all-datasets.R</span></a>
+<a class="sourceLine" id="cb44-7" title="7">some_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;some_data.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb44-8" title="8"></a>
+<a class="sourceLine" id="cb44-9" title="9"><span class="co"># script/this-script.R</span></a>
+<a class="sourceLine" id="cb44-10" title="10"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb44-11" title="11"></a>
+<a class="sourceLine" id="cb44-12" title="12"><span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;all-functions.R&quot;</span>))</a>
+<a class="sourceLine" id="cb44-13" title="13"><span class="kw">source</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;all-datasets.R&quot;</span>))</a>
+<a class="sourceLine" id="cb44-14" title="14"></a>
+<a class="sourceLine" id="cb44-15" title="15"></a>
+<a class="sourceLine" id="cb44-16" title="16"><span class="kw">f</span>(<span class="dt">data =</span> some_data)</a></code></pre></div>
 <p>It is error prone to mix functions, data, and scripts. The mess hides inter dependencies that can break your code unexpectedly. Also, this makes it hard for others to reproduce, or understand your code – <a href="https://github.com/2DegreesInvesting/resources/issues/38#issuecomment-576383067">the maintainance programmer can only view your code through a toilet paper tube</a>.</p>
 <p>Bad.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># sripts-functions-and-data.R</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb41-3" title="3"></a>
-<a class="sourceLine" id="cb41-4" title="4">some_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;some_data.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb41-5" title="5"></a>
-<a class="sourceLine" id="cb41-6" title="6">f &lt;-<span class="st"> </span><span class="cf">function</span>(some_data) {</a>
-<a class="sourceLine" id="cb41-7" title="7">  some_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-9" title="9"><span class="st">    </span><span class="co"># ... more code</span></a>
-<a class="sourceLine" id="cb41-10" title="10">}</a>
-<a class="sourceLine" id="cb41-11" title="11"></a>
-<a class="sourceLine" id="cb41-12" title="12"><span class="kw">f</span>(some_data)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># sripts-functions-and-data.R</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb45-3" title="3"></a>
+<a class="sourceLine" id="cb45-4" title="4">some_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;data-raw&quot;</span>, <span class="st">&quot;some_data.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb45-5" title="5"></a>
+<a class="sourceLine" id="cb45-6" title="6">f &lt;-<span class="st"> </span><span class="cf">function</span>(some_data) {</a>
+<a class="sourceLine" id="cb45-7" title="7">  some_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-8" title="8"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">select</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-9" title="9"><span class="st">    </span><span class="co"># ... more code</span></a>
+<a class="sourceLine" id="cb45-10" title="10">}</a>
+<a class="sourceLine" id="cb45-11" title="11"></a>
+<a class="sourceLine" id="cb45-12" title="12"><span class="kw">f</span>(some_data)</a></code></pre></div>
 </div>
 <div id="a-package-project" class="section level3">
 <h3><span class="header-section-number">15.7.4</span> A package project</h3>
@@ -784,38 +811,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="if-uses-a-single-true-or-false" class="section level3">
 <h3><span class="header-section-number">15.7.5</span> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></h3>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb42-2" title="2">y &lt;-<span class="st"> </span>0L</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb46-2" title="2">y &lt;-<span class="st"> </span>0L</a></code></pre></div>
 <p>Good</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Good</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="cf">if</span> (<span class="kw">identical</span>(x, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))) {</a>
-<a class="sourceLine" id="cb43-3" title="3">  <span class="kw">say</span>(<span class="kw">identical</span>(x, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="st">&quot;is what you gave.&quot;</span>)</a>
-<a class="sourceLine" id="cb43-4" title="4">}</a>
-<a class="sourceLine" id="cb43-5" title="5"><span class="co">#&gt; [1] &quot;TRUE is what you gave.&quot;</span></a></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># Bad</span></a>
-<a class="sourceLine" id="cb44-2" title="2"><span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) {</a>
-<a class="sourceLine" id="cb44-3" title="3">  <span class="kw">say</span>(x <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="st">&quot;is what you gave.&quot;</span>)</a>
-<a class="sourceLine" id="cb44-4" title="4">}</a>
-<a class="sourceLine" id="cb44-5" title="5"><span class="co">#&gt; Warning in if (x == c(1, 2)) {: the condition has length &gt; 1 and only the first</span></a>
-<a class="sourceLine" id="cb44-6" title="6"><span class="co">#&gt; element will be used</span></a>
-<a class="sourceLine" id="cb44-7" title="7"><span class="co">#&gt; [1] &quot;TRUE, TRUE is what you gave.&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co"># Good</span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="cf">if</span> (<span class="kw">identical</span>(x, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))) {</a>
+<a class="sourceLine" id="cb47-3" title="3">  <span class="kw">say</span>(<span class="kw">identical</span>(x, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="st">&quot;is what you gave.&quot;</span>)</a>
+<a class="sourceLine" id="cb47-4" title="4">}</a>
+<a class="sourceLine" id="cb47-5" title="5"><span class="co">#&gt; [1] &quot;TRUE is what you gave.&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Bad</span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="cf">if</span> (x <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) {</a>
+<a class="sourceLine" id="cb48-3" title="3">  <span class="kw">say</span>(x <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="st">&quot;is what you gave.&quot;</span>)</a>
+<a class="sourceLine" id="cb48-4" title="4">}</a>
+<a class="sourceLine" id="cb48-5" title="5"><span class="co">#&gt; Warning in if (x == c(1, 2)) {: the condition has length &gt; 1 and only the first</span></a>
+<a class="sourceLine" id="cb48-6" title="6"><span class="co">#&gt; element will be used</span></a>
+<a class="sourceLine" id="cb48-7" title="7"><span class="co">#&gt; [1] &quot;TRUE, TRUE is what you gave.&quot;</span></a></code></pre></div>
 <p>Caveats: <a href="https://github.com/2DegreesInvesting/ds-incubator/issues/13" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/13</a></p>
 </div>
 <div id="is-equal-to-1l-but-not-identical" class="section level3">
 <h3><span class="header-section-number">15.7.6</span> <code>1</code> is equal to <code>1L</code> but not identical</h3>
 <p>Careful!</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span>1L</a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="kw">identical</span>(<span class="dv">1</span>, 1L)</a>
-<a class="sourceLine" id="cb45-4" title="4"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="kw">identical</span>(<span class="dv">1</span>, 1L)</a>
+<a class="sourceLine" id="cb49-4" title="4"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
 <p>Good</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">this_integer &lt;-<span class="st"> </span>1L</a>
-<a class="sourceLine" id="cb46-2" title="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">identical</span>(this_integer, <span class="dv">1</span>)) <span class="st">&quot;Not the same&quot;</span> <span class="cf">else</span> <span class="st">&quot;Wrong result&quot;</span></a>
-<a class="sourceLine" id="cb46-3" title="3"><span class="co">#&gt; [1] &quot;Not the same&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">this_integer &lt;-<span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">identical</span>(this_integer, <span class="dv">1</span>)) <span class="st">&quot;Not the same&quot;</span> <span class="cf">else</span> <span class="st">&quot;Wrong result&quot;</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="co">#&gt; [1] &quot;Not the same&quot;</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">this_integer &lt;-<span class="st"> </span>1L</a>
-<a class="sourceLine" id="cb47-2" title="2"><span class="cf">if</span> (<span class="op">!</span>this_integer <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="st">&quot;Not the same&quot;</span> <span class="cf">else</span> <span class="st">&quot;Wrong result&quot;</span></a>
-<a class="sourceLine" id="cb47-3" title="3"><span class="co">#&gt; [1] &quot;Wrong result&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">this_integer &lt;-<span class="st"> </span>1L</a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="cf">if</span> (<span class="op">!</span>this_integer <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="st">&quot;Not the same&quot;</span> <span class="cf">else</span> <span class="st">&quot;Wrong result&quot;</span></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="co">#&gt; [1] &quot;Wrong result&quot;</span></a></code></pre></div>
 </div>
 </div>
 <div id="style" class="section level2">
@@ -840,11 +867,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Reserve dots exclusively for the S3 object system.</li>
 </ul>
 <p>Good.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">add_row</span>()</a>
-<a class="sourceLine" id="cb48-2" title="2"><span class="kw">permute</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">add_row</span>()</a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="kw">permute</span>()</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">row_adder</span>()</a>
-<a class="sourceLine" id="cb49-2" title="2"><span class="kw">permutation</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">row_adder</span>()</a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="kw">permutation</span>()</a></code></pre></div>
 <ul>
 <li><a href="https://style.tidyverse.org/syntax.html#object-names" class="uri">https://style.tidyverse.org/syntax.html#object-names</a></li>
 <li><a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a></li>
@@ -853,18 +880,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="avoid-t-and-f-as-synonyms-for-true-and-false" class="section level3">
 <h3><span class="header-section-number">15.8.3</span> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></h3>
 <p>Good</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">sum</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">na.rm =</span> T)</a></code></pre></div>
 <p><code>TRUE</code> and <code>FALSE</code> are reserved words; <code>T</code> and <code>F</code> are not.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">T &lt;-<span class="st"> &quot;Whatever&quot;</span></a>
-<a class="sourceLine" id="cb52-2" title="2">T</a>
-<a class="sourceLine" id="cb52-3" title="3"><span class="co">#&gt; [1] &quot;Whatever&quot;</span></a>
-<a class="sourceLine" id="cb52-4" title="4"></a>
-<a class="sourceLine" id="cb52-5" title="5"><span class="co"># Forbidden</span></a>
-<a class="sourceLine" id="cb52-6" title="6"><span class="kw">try</span>(<span class="ot">TRUE</span> &lt;-<span class="st"> &quot;Whatever&quot;</span>)</a>
-<a class="sourceLine" id="cb52-7" title="7"><span class="co">#&gt; Error in TRUE &lt;- &quot;Whatever&quot; : </span></a>
-<a class="sourceLine" id="cb52-8" title="8"><span class="co">#&gt;   invalid (do_set) left-hand side to assignment</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">T &lt;-<span class="st"> &quot;Whatever&quot;</span></a>
+<a class="sourceLine" id="cb56-2" title="2">T</a>
+<a class="sourceLine" id="cb56-3" title="3"><span class="co">#&gt; [1] &quot;Whatever&quot;</span></a>
+<a class="sourceLine" id="cb56-4" title="4"></a>
+<a class="sourceLine" id="cb56-5" title="5"><span class="co"># Forbidden</span></a>
+<a class="sourceLine" id="cb56-6" title="6"><span class="kw">try</span>(<span class="ot">TRUE</span> &lt;-<span class="st"> &quot;Whatever&quot;</span>)</a>
+<a class="sourceLine" id="cb56-7" title="7"><span class="co">#&gt; Error in TRUE &lt;- &quot;Whatever&quot; : </span></a>
+<a class="sourceLine" id="cb56-8" title="8"><span class="co">#&gt;   invalid (do_set) left-hand side to assignment</span></a></code></pre></div>
 <p><a href="https://www.r-bloggers.com/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/" class="uri">https://www.r-bloggers.com/r-tip-avoid-using-t-and-f-as-synonyms-for-true-and-false/</a></p>
 </div>
 <div id="reserve-return-to-return-early" class="section level3">
@@ -877,32 +904,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="return-invisibly-only-when-the-main-purpose-is-a-side-effect" class="section level3">
 <h3><span class="header-section-number">15.8.5</span> Return invisibly only when the main purpose is a side effect</h3>
 <p>Good.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Main purpose is a side effect: To throw an error if the input is bad</span></a>
-<a class="sourceLine" id="cb53-2" title="2">check_f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb53-3" title="3">  <span class="kw">stopifnot</span>(<span class="kw">is.numeric</span>(x))</a>
-<a class="sourceLine" id="cb53-4" title="4">  </a>
-<a class="sourceLine" id="cb53-5" title="5">  <span class="kw">invisible</span>(x)</a>
-<a class="sourceLine" id="cb53-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Main purpose is a side effect: To throw an error if the input is bad</span></a>
+<a class="sourceLine" id="cb57-2" title="2">check_f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb57-3" title="3">  <span class="kw">stopifnot</span>(<span class="kw">is.numeric</span>(x))</a>
+<a class="sourceLine" id="cb57-4" title="4">  </a>
+<a class="sourceLine" id="cb57-5" title="5">  <span class="kw">invisible</span>(x)</a>
+<a class="sourceLine" id="cb57-6" title="6">}</a></code></pre></div>
 <p>Good.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Main purpose is not a side effect. Returning visibly</span></a>
-<a class="sourceLine" id="cb54-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb54-3" title="3">  x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb54-4" title="4">}</a>
-<a class="sourceLine" id="cb54-5" title="5"></a>
-<a class="sourceLine" id="cb54-6" title="6"><span class="kw">f</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb54-7" title="7"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Main purpose is not a side effect. Returning visibly</span></a>
+<a class="sourceLine" id="cb58-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb58-3" title="3">  x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb58-4" title="4">}</a>
+<a class="sourceLine" id="cb58-5" title="5"></a>
+<a class="sourceLine" id="cb58-6" title="6"><span class="kw">f</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb58-7" title="7"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
 <p>Bad.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Main purpose is not a side effect. Returning invisibly</span></a>
-<a class="sourceLine" id="cb55-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb55-3" title="3">  out &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb55-4" title="4">}</a>
-<a class="sourceLine" id="cb55-5" title="5"></a>
-<a class="sourceLine" id="cb55-6" title="6"><span class="co"># Returns invisibly</span></a>
-<a class="sourceLine" id="cb55-7" title="7"><span class="kw">f</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb55-8" title="8"></a>
-<a class="sourceLine" id="cb55-9" title="9">out &lt;-<span class="st"> </span><span class="kw">f</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb55-10" title="10">out</a>
-<a class="sourceLine" id="cb55-11" title="11"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Main purpose is not a side effect. Returning invisibly</span></a>
+<a class="sourceLine" id="cb59-2" title="2">f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb59-3" title="3">  out &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb59-4" title="4">}</a>
+<a class="sourceLine" id="cb59-5" title="5"></a>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co"># Returns invisibly</span></a>
+<a class="sourceLine" id="cb59-7" title="7"><span class="kw">f</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb59-8" title="8"></a>
+<a class="sourceLine" id="cb59-9" title="9">out &lt;-<span class="st"> </span><span class="kw">f</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb59-10" title="10">out</a>
+<a class="sourceLine" id="cb59-11" title="11"><span class="co">#&gt; [1] 2</span></a></code></pre></div>
 
 </div>
 </div>

@@ -131,6 +131,49 @@ library(dplyr)
 
 
 
+### `namespace::function_from_other_package()`
+
+Good.
+
+```R
+f <- function(data) {
+  utils::head(dplyr::select(data, dplyr::last_col()))
+}
+```
+
+Good.
+
+```R
+#' @importFrom magrittr %>%
+#' @importFrom utils head
+#' @importFrom dplyr select last_col
+f <- function(data) {
+  data %>% 
+    select(last_col()) %>% 
+    head()
+}
+```
+
+Bad.
+
+```R
+f <- function(data) {
+  head(select(data, last_col()))
+}
+```
+
+Bad.
+
+```R
+f <- function(data) {
+  data %>% 
+    select(last_col()) %>% 
+    head()
+}
+```
+
+
+
 ### The tidyverse is for EDA, not packages
 
 Good.
@@ -406,7 +449,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "2, 2 Nope!"
+#> [1] "6, 1 Nope!"
 ```
 
 Bad.
@@ -418,7 +461,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "2, 2 Nope!"
+#> [1] "6, 1 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>

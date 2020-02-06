@@ -6,7 +6,7 @@ author:
   - Jackson Hoffart
   - Klaus Hagedorn
   - Clare Murray
-data: "2020-02-04"
+data: "2020-02-06"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
