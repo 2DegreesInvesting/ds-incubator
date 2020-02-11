@@ -83,7 +83,7 @@ fs::path_home_r("path", "to", "project")
 
 ### Violations ...
 
-### What should you do instead?
+### What should you do instead of this?
 
 ```{r}
 path_to_data <- "../datasets/my-data.csv"
@@ -93,9 +93,9 @@ path_to_data <- "../datasets/my-data.csv"
 
 <img src="https://i.imgur.com/V4EkuWY.png" align="center" height = 550 />
 
-### What should you do instead?
+### What should you do instead of this?
 
-```{r}
+```R
 pacman::p_load(random)
 ```
 
