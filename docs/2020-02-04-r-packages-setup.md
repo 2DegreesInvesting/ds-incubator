@@ -1,9 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-
 # 2020-02-04: R packages: Setup 
 
 

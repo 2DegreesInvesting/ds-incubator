@@ -57,9 +57,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -68,14 +68,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -84,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -228,14 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#self-contained-projects-can-be-moved-around-on-your-computer-or-onto-other-computers-and-will-still-just-work."><i class="fa fa-check"></i><b>12.2.1</b> Self-contained projects can be moved around on your computer or onto other computers and will still “just work”.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-do-they-look-like"><i class="fa fa-check"></i><b>12.2.2</b> What do they look like?</a></li>
 <li class="chapter" data-level="12.2.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#violations"><i class="fa fa-check"></i><b>12.2.3</b> Violations …</a></li>
-<li class="chapter" data-level="12.2.4" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead"><i class="fa fa-check"></i><b>12.2.4</b> What should you do instead?</a></li>
-<li class="chapter" data-level="12.2.5" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-1"><i class="fa fa-check"></i><b>12.2.5</b> What should you do instead?</a></li>
-<li class="chapter" data-level="12.2.6" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-2"><i class="fa fa-check"></i><b>12.2.6</b> What should you do instead?</a></li>
+<li class="chapter" data-level="12.2.4" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-of-this"><i class="fa fa-check"></i><b>12.2.4</b> What should you do instead of this?</a></li>
+<li class="chapter" data-level="12.2.5" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead"><i class="fa fa-check"></i><b>12.2.5</b> What should you do instead?</a></li>
+<li class="chapter" data-level="12.2.6" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-of-this-1"><i class="fa fa-check"></i><b>12.2.6</b> What should you do instead of this?</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#setwd"><i class="fa fa-check"></i><b>12.3</b> setwd( )</a><ul>
 <li class="chapter" data-level="12.3.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-wrong"><i class="fa fa-check"></i><b>12.3.1</b> What’s wrong?</a></li>
 <li class="chapter" data-level="12.3.2" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-wrong-1"><i class="fa fa-check"></i><b>12.3.2</b> What’s wrong?</a></li>
-<li class="chapter" data-level="12.3.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-3"><i class="fa fa-check"></i><b>12.3.3</b> What should you do instead?</a></li>
+<li class="chapter" data-level="12.3.3" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#what-should-you-do-instead-1"><i class="fa fa-check"></i><b>12.3.3</b> What should you do instead?</a></li>
 </ul></li>
 <li class="chapter" data-level="12.4" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#rmlist-ls"><i class="fa fa-check"></i><b>12.4</b> rm(list = ls( ))</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="project-oriented-workflow.html"><a href="project-oriented-workflow.html#whats-wrong-2"><i class="fa fa-check"></i><b>12.4.1</b> What’s wrong?</a></li>
@@ -259,45 +261,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2" data-path="r-packages-setup.html"><a href="r-packages-setup.html#the-demo-package"><i class="fa fa-check"></i><b>15.2</b> The demo package</a></li>
 <li class="chapter" data-level="15.3" data-path="r-packages-setup.html"><a href="r-packages-setup.html#packaging-gotchas"><i class="fa fa-check"></i><b>15.3</b> <span>Packaging gotchas</span></a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="r-packages-data.html"><a href="r-packages-data.html"><i class="fa fa-check"></i><b>16</b> 2020-02-11: R packages: Data</a></li>
 <li class="chapter" data-level="" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><i class="fa fa-check"></i>Gotchas when moving code from a script to an R package</a><ul>
-<li class="chapter" data-level="15.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>15.4</b> Packaging</a><ul>
-<li class="chapter" data-level="15.4.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-r-rstudio-git-github"><i class="fa fa-check"></i><b>15.4.1</b> Setup: R, RStudio, Git, GitHub</a></li>
-<li class="chapter" data-level="15.4.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-devtools-and-testthat"><i class="fa fa-check"></i><b>15.4.2</b> Setup: devtools and testthat</a></li>
-<li class="chapter" data-level="15.4.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>15.4.3</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
-<li class="chapter" data-level="15.4.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#consider-using-internal-data"><i class="fa fa-check"></i><b>15.4.4</b> Consider using internal data</a></li>
-<li class="chapter" data-level="15.4.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>15.4.5</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
-<li class="chapter" data-level="15.4.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#namespacefunction_from_other_package"><i class="fa fa-check"></i><b>15.4.6</b> <code>namespace::function_from_other_package()</code></a></li>
-<li class="chapter" data-level="15.4.7" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>15.4.7</b> The tidyverse is for EDA, not packages</a></li>
-<li class="chapter" data-level="15.4.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>15.4.8</b> Use the <code>.data</code> pronoun</a></li>
+<li class="chapter" data-level="16.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>16.1</b> Packaging</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-r-rstudio-git-github"><i class="fa fa-check"></i><b>16.1.1</b> Setup: R, RStudio, Git, GitHub</a></li>
+<li class="chapter" data-level="16.1.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#setup-devtools-and-testthat"><i class="fa fa-check"></i><b>16.1.2</b> Setup: devtools and testthat</a></li>
+<li class="chapter" data-level="16.1.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_data_raw-then-use_data"><i class="fa fa-check"></i><b>16.1.3</b> <code>use_data_raw()</code>, then <code>use_data()</code></a></li>
+<li class="chapter" data-level="16.1.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#consider-using-internal-data"><i class="fa fa-check"></i><b>16.1.4</b> Consider using internal data</a></li>
+<li class="chapter" data-level="16.1.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use_packagedplyr-not-librarydplyr"><i class="fa fa-check"></i><b>16.1.5</b> <code>use_package("dplyr")</code> not <code>library(dplyr)</code></a></li>
+<li class="chapter" data-level="16.1.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#namespacefunction_from_other_package"><i class="fa fa-check"></i><b>16.1.6</b> <code>namespace::function_from_other_package()</code></a></li>
+<li class="chapter" data-level="16.1.7" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#the-tidyverse-is-for-eda-not-packages"><i class="fa fa-check"></i><b>16.1.7</b> The tidyverse is for EDA, not packages</a></li>
+<li class="chapter" data-level="16.1.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#use-the-.data-pronoun"><i class="fa fa-check"></i><b>16.1.8</b> Use the <code>.data</code> pronoun</a></li>
 </ul></li>
-<li class="chapter" data-level="15.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#function-interface"><i class="fa fa-check"></i><b>15.5</b> Function interface</a><ul>
-<li class="chapter" data-level="15.5.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-relying-on-the-global-environment"><i class="fa fa-check"></i><b>15.5.1</b> Avoid relying on the global environment</a></li>
-<li class="chapter" data-level="15.5.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-modifying-the-global-environment-e.g.-with--"><i class="fa fa-check"></i><b>15.5.2</b> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></a></li>
-<li class="chapter" data-level="15.5.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#arguments-that-provide-core-data-are-required"><i class="fa fa-check"></i><b>15.5.3</b> Arguments that provide core data are required</a></li>
-<li class="chapter" data-level="15.5.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#descriptor-arguments-are-usually-required"><i class="fa fa-check"></i><b>15.5.4</b> Descriptor arguments are usually required</a></li>
-<li class="chapter" data-level="15.5.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-reading-and-writing-operations"><i class="fa fa-check"></i><b>15.5.5</b> Avoid reading and writing operations</a></li>
+<li class="chapter" data-level="16.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#function-interface"><i class="fa fa-check"></i><b>16.2</b> Function interface</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-relying-on-the-global-environment"><i class="fa fa-check"></i><b>16.2.1</b> Avoid relying on the global environment</a></li>
+<li class="chapter" data-level="16.2.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-modifying-the-global-environment-e.g.-with--"><i class="fa fa-check"></i><b>16.2.2</b> Avoid modifying the global environment, e.g. with <code>&lt;&lt;-</code></a></li>
+<li class="chapter" data-level="16.2.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#arguments-that-provide-core-data-are-required"><i class="fa fa-check"></i><b>16.2.3</b> Arguments that provide core data are required</a></li>
+<li class="chapter" data-level="16.2.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#descriptor-arguments-are-usually-required"><i class="fa fa-check"></i><b>16.2.4</b> Descriptor arguments are usually required</a></li>
+<li class="chapter" data-level="16.2.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-reading-and-writing-operations"><i class="fa fa-check"></i><b>16.2.5</b> Avoid reading and writing operations</a></li>
 </ul></li>
-<li class="chapter" data-level="15.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#code-smells-and-feels"><i class="fa fa-check"></i><b>15.6</b> Code smells and feels</a><ul>
-<li class="chapter" data-level="15.6.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#simplify-if-with-objects-named-meaningfully"><i class="fa fa-check"></i><b>15.6.1</b> Simplify <code>if()</code> with objects named meaningfully</a></li>
-<li class="chapter" data-level="15.6.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#program-for-columns-with-clean_names"><i class="fa fa-check"></i><b>15.6.2</b> Program for columns with <code>clean_names</code></a></li>
-<li class="chapter" data-level="15.6.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-long-running-temporary-objects"><i class="fa fa-check"></i><b>15.6.3</b> Avoid long-running temporary objects</a></li>
-<li class="chapter" data-level="15.6.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-possible-extract-functions-to-the-top-level"><i class="fa fa-check"></i><b>15.6.4</b> If possible, extract functions to the top level</a></li>
-<li class="chapter" data-level="15.6.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#extract-commented-sections-into-functions"><i class="fa fa-check"></i><b>15.6.5</b> Extract commented sections into functions</a></li>
+<li class="chapter" data-level="16.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#code-smells-and-feels"><i class="fa fa-check"></i><b>16.3</b> Code smells and feels</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#simplify-if-with-objects-named-meaningfully"><i class="fa fa-check"></i><b>16.3.1</b> Simplify <code>if()</code> with objects named meaningfully</a></li>
+<li class="chapter" data-level="16.3.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#program-for-columns-with-clean_names"><i class="fa fa-check"></i><b>16.3.2</b> Program for columns with <code>clean_names</code></a></li>
+<li class="chapter" data-level="16.3.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-long-running-temporary-objects"><i class="fa fa-check"></i><b>16.3.3</b> Avoid long-running temporary objects</a></li>
+<li class="chapter" data-level="16.3.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-possible-extract-functions-to-the-top-level"><i class="fa fa-check"></i><b>16.3.4</b> If possible, extract functions to the top level</a></li>
+<li class="chapter" data-level="16.3.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#extract-commented-sections-into-functions"><i class="fa fa-check"></i><b>16.3.5</b> Extract commented sections into functions</a></li>
 </ul></li>
-<li class="chapter" data-level="15.7" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#error-prone"><i class="fa fa-check"></i><b>15.7</b> Error prone</a><ul>
-<li class="chapter" data-level="15.7.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-hidden-arguments-extract-functions-with-all-arguments"><i class="fa fa-check"></i><b>15.7.1</b> Avoid hidden arguments: Extract functions with all arguments</a></li>
-<li class="chapter" data-level="15.7.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#separate-functions-data-and-scripts"><i class="fa fa-check"></i><b>15.7.2</b> Separate functions, data, and scripts</a></li>
-<li class="chapter" data-level="15.7.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-non-package-project"><i class="fa fa-check"></i><b>15.7.3</b> A non-package project</a></li>
-<li class="chapter" data-level="15.7.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-package-project"><i class="fa fa-check"></i><b>15.7.4</b> A package project</a></li>
-<li class="chapter" data-level="15.7.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-uses-a-single-true-or-false"><i class="fa fa-check"></i><b>15.7.5</b> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></a></li>
-<li class="chapter" data-level="15.7.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#is-equal-to-1l-but-not-identical"><i class="fa fa-check"></i><b>15.7.6</b> <code>1</code> is equal to <code>1L</code> but not identical</a></li>
+<li class="chapter" data-level="16.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#error-prone"><i class="fa fa-check"></i><b>16.4</b> Error prone</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-hidden-arguments-extract-functions-with-all-arguments"><i class="fa fa-check"></i><b>16.4.1</b> Avoid hidden arguments: Extract functions with all arguments</a></li>
+<li class="chapter" data-level="16.4.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#separate-functions-data-and-scripts"><i class="fa fa-check"></i><b>16.4.2</b> Separate functions, data, and scripts</a></li>
+<li class="chapter" data-level="16.4.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-non-package-project"><i class="fa fa-check"></i><b>16.4.3</b> A non-package project</a></li>
+<li class="chapter" data-level="16.4.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#a-package-project"><i class="fa fa-check"></i><b>16.4.4</b> A package project</a></li>
+<li class="chapter" data-level="16.4.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#if-uses-a-single-true-or-false"><i class="fa fa-check"></i><b>16.4.5</b> <code>if()</code> uses a single <code>TRUE</code> or <code>FALSE</code></a></li>
+<li class="chapter" data-level="16.4.6" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#is-equal-to-1l-but-not-identical"><i class="fa fa-check"></i><b>16.4.6</b> <code>1</code> is equal to <code>1L</code> but not identical</a></li>
 </ul></li>
-<li class="chapter" data-level="15.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#style"><i class="fa fa-check"></i><b>15.8</b> Style</a><ul>
-<li class="chapter" data-level="15.8.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>15.8.1</b> Limit your code to 80 characters per line</a></li>
-<li class="chapter" data-level="15.8.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>15.8.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
-<li class="chapter" data-level="15.8.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>15.8.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
-<li class="chapter" data-level="15.8.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>15.8.4</b> Reserve <code>return()</code> to return early</a></li>
-<li class="chapter" data-level="15.8.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>15.8.5</b> Return invisibly only when the main purpose is a side effect</a></li>
+<li class="chapter" data-level="16.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#style"><i class="fa fa-check"></i><b>16.5</b> Style</a><ul>
+<li class="chapter" data-level="16.5.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>16.5.1</b> Limit your code to 80 characters per line</a></li>
+<li class="chapter" data-level="16.5.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>16.5.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
+<li class="chapter" data-level="16.5.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>16.5.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
+<li class="chapter" data-level="16.5.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>16.5.4</b> Reserve <code>return()</code> to return early</a></li>
+<li class="chapter" data-level="16.5.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>16.5.5</b> Return invisibly only when the main purpose is a side effect</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -347,17 +350,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example-remove-workflow" class="section level3">
 <h3><span class="header-section-number">12.1.3</span> Example: Remove workflow</h3>
 <p>The name of the home directory is workflow, not product.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">home &lt;-<span class="st"> &quot;C:/Users/Mauro/Documents/&quot;</span>  <span class="co"># Workflow</span></a>
-<a class="sourceLine" id="cb25-2" title="2">proj_path &lt;-<span class="st"> &quot;path/to/project&quot;</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="kw">paste0</span>(home, proj_path)</a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="co">#&gt; [1] &quot;C:/Users/Mauro/Documents/path/to/project&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="project-oriented-workflow.html#cb25-1"></a>home &lt;-<span class="st"> &quot;C:/Users/Mauro/Documents/&quot;</span>  <span class="co"># Workflow</span></span>
+<span id="cb25-2"><a href="project-oriented-workflow.html#cb25-2"></a>proj_path &lt;-<span class="st"> &quot;path/to/project&quot;</span></span>
+<span id="cb25-3"><a href="project-oriented-workflow.html#cb25-3"></a><span class="kw">paste0</span>(home, proj_path)</span>
+<span id="cb25-4"><a href="project-oriented-workflow.html#cb25-4"></a><span class="co">#&gt; [1] &quot;C:/Users/Mauro/Documents/path/to/project&quot;</span></span></code></pre></div>
 <p>Better</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">proj_path &lt;-<span class="st"> &quot;path/to/project&quot;</span></a>
-<a class="sourceLine" id="cb26-2" title="2">fs<span class="op">::</span><span class="kw">path_home_r</span>(proj_path)</a>
-<a class="sourceLine" id="cb26-3" title="3"><span class="co">#&gt; C:/Users/Mauro/Documents/path/to/project</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="project-oriented-workflow.html#cb26-1"></a>proj_path &lt;-<span class="st"> &quot;path/to/project&quot;</span></span>
+<span id="cb26-2"><a href="project-oriented-workflow.html#cb26-2"></a>fs<span class="op">::</span><span class="kw">path_home_r</span>(proj_path)</span>
+<span id="cb26-3"><a href="project-oriented-workflow.html#cb26-3"></a><span class="co">#&gt; /home/mauro/path/to/project</span></span></code></pre></div>
 <p>Best</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">fs<span class="op">::</span><span class="kw">path_home_r</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;to&quot;</span>, <span class="st">&quot;project&quot;</span>)</a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="co">#&gt; C:/Users/Mauro/Documents/path/to/project</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="project-oriented-workflow.html#cb27-1"></a>fs<span class="op">::</span><span class="kw">path_home_r</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;to&quot;</span>, <span class="st">&quot;project&quot;</span>)</span>
+<span id="cb27-2"><a href="project-oriented-workflow.html#cb27-2"></a><span class="co">#&gt; /home/mauro/path/to/project</span></span></code></pre></div>
 </div>
 </div>
 <div id="self-contained-projects" class="section level2">
@@ -381,28 +384,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="violations" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> Violations …</h3>
 </div>
-<div id="what-should-you-do-instead" class="section level3">
-<h3><span class="header-section-number">12.2.4</span> What should you do instead?</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">path_to_data &lt;-<span class="st"> &quot;../datasets/my-data.csv&quot;</span></a></code></pre></div>
+<div id="what-should-you-do-instead-of-this" class="section level3">
+<h3><span class="header-section-number">12.2.4</span> What should you do instead of this?</h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="project-oriented-workflow.html#cb28-1"></a>path_to_data &lt;-<span class="st"> &quot;../datasets/my-data.csv&quot;</span></span></code></pre></div>
 </div>
-<div id="what-should-you-do-instead-1" class="section level3">
+<div id="what-should-you-do-instead" class="section level3">
 <h3><span class="header-section-number">12.2.5</span> What should you do instead?</h3>
 <p><img src="https://i.imgur.com/V4EkuWY.png" align="center" height = 550 /></p>
 </div>
-<div id="what-should-you-do-instead-2" class="section level3">
-<h3><span class="header-section-number">12.2.6</span> What should you do instead?</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">pacman<span class="op">::</span><span class="kw">p_load</span>(random)</a></code></pre></div>
+<div id="what-should-you-do-instead-of-this-1" class="section level3">
+<h3><span class="header-section-number">12.2.6</span> What should you do instead of this?</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="project-oriented-workflow.html#cb29-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(random)</span></code></pre></div>
 </div>
 </div>
 <div id="setwd" class="section level2">
 <h2><span class="header-section-number">12.3</span> setwd( )</h2>
 <div id="whats-wrong" class="section level3">
 <h3><span class="header-section-number">12.3.1</span> What’s wrong?</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="kw">setwd</span>(<span class="st">&quot;/Users/jenny/cuddly_broccoli/verbose_funicular/foofy/data&quot;</span>)</a>
-<a class="sourceLine" id="cb30-3" title="3">df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;raw_foofy_data.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb30-4" title="4">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb30-5" title="5"><span class="kw">ggsave</span>(<span class="st">&quot;../figs/foofy_scatterplot.png&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="project-oriented-workflow.html#cb30-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb30-2"><a href="project-oriented-workflow.html#cb30-2"></a><span class="kw">setwd</span>(<span class="st">&quot;/Users/jenny/cuddly_broccoli/verbose_funicular/foofy/data&quot;</span>)</span>
+<span id="cb30-3"><a href="project-oriented-workflow.html#cb30-3"></a>df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;raw_foofy_data.csv&quot;</span>)</span>
+<span id="cb30-4"><a href="project-oriented-workflow.html#cb30-4"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb30-5"><a href="project-oriented-workflow.html#cb30-5"></a><span class="kw">ggsave</span>(<span class="st">&quot;../figs/foofy_scatterplot.png&quot;</span>)</span></code></pre></div>
 </div>
 <div id="whats-wrong-1" class="section level3">
 <h3><span class="header-section-number">12.3.2</span> What’s wrong?</h3>
@@ -417,18 +420,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="what-should-you-do-instead-3" class="section level3">
+<div id="what-should-you-do-instead-1" class="section level3">
 <h3><span class="header-section-number">12.3.3</span> What should you do instead?</h3>
 <ul>
 <li><p>Use RStudio projects, and/or</p></li>
 <li><p>Use the here package (works well with .Rmd files)</p></li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb31-2" title="2"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb31-3" title="3"></a>
-<a class="sourceLine" id="cb31-4" title="4">df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;raw_foofy_data.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb31-5" title="5">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb31-6" title="6"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figs&quot;</span>, <span class="st">&quot;foofy_scatterplot.png&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="project-oriented-workflow.html#cb31-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb31-2"><a href="project-oriented-workflow.html#cb31-2"></a><span class="kw">library</span>(here)</span>
+<span id="cb31-3"><a href="project-oriented-workflow.html#cb31-3"></a></span>
+<span id="cb31-4"><a href="project-oriented-workflow.html#cb31-4"></a>df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;raw_foofy_data.csv&quot;</span>))</span>
+<span id="cb31-5"><a href="project-oriented-workflow.html#cb31-5"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb31-6"><a href="project-oriented-workflow.html#cb31-6"></a><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figs&quot;</span>, <span class="st">&quot;foofy_scatterplot.png&quot;</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="rmlist-ls" class="section level2">

@@ -58,7 +58,7 @@ Better
 ```r
 proj_path <- "path/to/project"
 fs::path_home_r(proj_path)
-#> C:/Users/Mauro/Documents/path/to/project
+#> /home/mauro/path/to/project
 ```
 
 Best
@@ -66,7 +66,7 @@ Best
 
 ```r
 fs::path_home_r("path", "to", "project")
-#> C:/Users/Mauro/Documents/path/to/project
+#> /home/mauro/path/to/project
 ```
 
 ## Self-contained projects
@@ -89,7 +89,7 @@ fs::path_home_r("path", "to", "project")
 
 ### Violations ...
 
-### What should you do instead?
+### What should you do instead of this?
 
 
 ```r
@@ -100,10 +100,9 @@ path_to_data <- "../datasets/my-data.csv"
 
 <img src="https://i.imgur.com/V4EkuWY.png" align="center" height = 550 />
 
-### What should you do instead?
+### What should you do instead of this?
 
-
-```r
+```R
 pacman::p_load(random)
 ```
 
