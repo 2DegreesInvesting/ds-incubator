@@ -28,7 +28,7 @@
 <meta name="author" content="Clare Murray" />
 
 
-<meta name="date" content="2019-10-22" />
+<meta name="date" content="2019-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -313,10 +313,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="17.13" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#style"><i class="fa fa-check"></i><b>17.13</b> Style</a><ul>
 <li class="chapter" data-level="17.13.1" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#limit-your-code-to-80-characters-per-line"><i class="fa fa-check"></i><b>17.13.1</b> Limit your code to 80 characters per line</a></li>
-<li><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_.-avoid-t-and-f-as-synonyms-for-true-and-false-reserve-return-to-return-early-return-invisibly-only-when-the-main-purpose-is-a-side-effect"><span class="toc-section-number">17.13.2</span> Names should use only lowercase letters, numbers, and "_".
-### Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code>
-### Reserve <code>return()</code> to return early
-### Return invisibly only when the main purpose is a side effect</a></li>
+<li class="chapter" data-level="17.13.2" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#names-should-use-only-lowercase-letters-numbers-and-_."><i class="fa fa-check"></i><b>17.13.2</b> Names should use only lowercase letters, numbers, and "_".</a></li>
+<li class="chapter" data-level="17.13.3" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#avoid-t-and-f-as-synonyms-for-true-and-false"><i class="fa fa-check"></i><b>17.13.3</b> Avoid <code>T</code> and <code>F</code> as synonyms for <code>TRUE</code> and <code>FALSE</code></a></li>
+<li class="chapter" data-level="17.13.4" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#reserve-return-to-return-early"><i class="fa fa-check"></i><b>17.13.4</b> Reserve <code>return()</code> to return early</a></li>
+<li class="chapter" data-level="17.13.5" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#return-invisibly-only-when-the-main-purpose-is-a-side-effect"><i class="fa fa-check"></i><b>17.13.5</b> Return invisibly only when the main purpose is a side effect</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -360,9 +360,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="set-up" class="section level2">
 <h2><span class="header-section-number">17.3</span> Set up</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="testing.html#cb1-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="testing.html#cb38-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
 <p>Among other things, <code>usethis::use_testthat()</code> attaches testthat in tests/testthat.R</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="testing.html#cb2-1"></a><span class="kw">library</span>(testthat)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="testing.html#cb39-1"></a><span class="kw">library</span>(testthat)</span></code></pre></div>
 </div>
 <div id="workflow" class="section level2">
 <h2><span class="header-section-number">17.4</span> Workflow</h2>
@@ -375,14 +375,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tests-structure" class="section level2">
 <h2><span class="header-section-number">17.5</span> Tests structure</h2>
 <p>If R/max_minus_min.R contains:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="testing.html#cb3-1"></a>max_minus_min &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb3-2"><a href="testing.html#cb3-2"></a>  <span class="kw">max</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(x)</span>
-<span id="cb3-3"><a href="testing.html#cb3-3"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="testing.html#cb40-1"></a>max_minus_min &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb40-2"><a href="testing.html#cb40-2"></a>  <span class="kw">max</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(x)</span>
+<span id="cb40-3"><a href="testing.html#cb40-3"></a>}</span></code></pre></div>
 <p>Then tests/testthat/test-max_minus_min.R may contains:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="testing.html#cb4-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with simple good input returns expected output&quot;</span>, {</span>
-<span id="cb4-2"><a href="testing.html#cb4-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
-<span id="cb4-3"><a href="testing.html#cb4-3"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
-<span id="cb4-4"><a href="testing.html#cb4-4"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="testing.html#cb41-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with simple good input returns expected output&quot;</span>, {</span>
+<span id="cb41-2"><a href="testing.html#cb41-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb41-3"><a href="testing.html#cb41-3"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb41-4"><a href="testing.html#cb41-4"></a>})</span></code></pre></div>
 </div>
 <div id="what-to-test" class="section level2">
 <h2><span class="header-section-number">17.6</span> What to test?</h2>
@@ -392,10 +392,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Test what should work.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="testing.html#cb5-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with simple good input returns expected output&quot;</span>, {</span>
-<span id="cb5-2"><a href="testing.html#cb5-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
-<span id="cb5-3"><a href="testing.html#cb5-3"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
-<span id="cb5-4"><a href="testing.html#cb5-4"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="testing.html#cb42-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with simple good input returns expected output&quot;</span>, {</span>
+<span id="cb42-2"><a href="testing.html#cb42-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb42-3"><a href="testing.html#cb42-3"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb42-4"><a href="testing.html#cb42-4"></a>})</span></code></pre></div>
 </div>
 <div id="what-to-test-1" class="section level2">
 <h2><span class="header-section-number">17.7</span> What to test?</h2>
@@ -405,22 +405,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Test what should fail.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="testing.html#cb6-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with bad input throws an error&quot;</span>, {</span>
-<span id="cb6-2"><a href="testing.html#cb6-2"></a>  <span class="kw">expect_error</span>(<span class="kw">max_minus_min</span>(letters), <span class="st">&quot;non-numeric argument&quot;</span>)</span>
-<span id="cb6-3"><a href="testing.html#cb6-3"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="testing.html#cb43-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with bad input throws an error&quot;</span>, {</span>
+<span id="cb43-2"><a href="testing.html#cb43-2"></a>  <span class="kw">expect_error</span>(<span class="kw">max_minus_min</span>(letters), <span class="st">&quot;non-numeric argument&quot;</span>)</span>
+<span id="cb43-3"><a href="testing.html#cb43-3"></a>})</span></code></pre></div>
 <ul>
 <li>Edge cases.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="testing.html#cb7-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with edge cases behaves as expected&quot;</span>, {</span>
-<span id="cb7-2"><a href="testing.html#cb7-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="ot">NA_integer_</span>), <span class="ot">NA_integer_</span>)</span>
-<span id="cb7-3"><a href="testing.html#cb7-3"></a>  </span>
-<span id="cb7-4"><a href="testing.html#cb7-4"></a>  <span class="co"># Oh no! I need to modify my code until this test passes</span></span>
-<span id="cb7-5"><a href="testing.html#cb7-5"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA</span>)), <span class="dv">1</span>)</span>
-<span id="cb7-6"><a href="testing.html#cb7-6"></a>})</span>
-<span id="cb7-7"><a href="testing.html#cb7-7"></a><span class="co">#&gt; Error: Test failed: &#39;max_minus_min with edge cases behaves as expected&#39;</span></span>
-<span id="cb7-8"><a href="testing.html#cb7-8"></a><span class="co">#&gt; * &lt;text&gt;:5: max_minus_min(c(1, 2, NA)) not equal to 1.</span></span>
-<span id="cb7-9"><a href="testing.html#cb7-9"></a><span class="co">#&gt; 1/1 mismatches</span></span>
-<span id="cb7-10"><a href="testing.html#cb7-10"></a><span class="co">#&gt; [1] NA - 1 == NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="testing.html#cb44-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with edge cases behaves as expected&quot;</span>, {</span>
+<span id="cb44-2"><a href="testing.html#cb44-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="ot">NA_integer_</span>), <span class="ot">NA_integer_</span>)</span>
+<span id="cb44-3"><a href="testing.html#cb44-3"></a>  </span>
+<span id="cb44-4"><a href="testing.html#cb44-4"></a>  <span class="co"># Oh no! I need to modify my code until this test passes</span></span>
+<span id="cb44-5"><a href="testing.html#cb44-5"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA</span>)), <span class="dv">1</span>)</span>
+<span id="cb44-6"><a href="testing.html#cb44-6"></a>})</span>
+<span id="cb44-7"><a href="testing.html#cb44-7"></a><span class="co">#&gt; Error: Test failed: &#39;max_minus_min with edge cases behaves as expected&#39;</span></span>
+<span id="cb44-8"><a href="testing.html#cb44-8"></a><span class="co">#&gt; * &lt;text&gt;:5: max_minus_min(c(1, 2, NA)) not equal to 1.</span></span>
+<span id="cb44-9"><a href="testing.html#cb44-9"></a><span class="co">#&gt; 1/1 mismatches</span></span>
+<span id="cb44-10"><a href="testing.html#cb44-10"></a><span class="co">#&gt; [1] NA - 1 == NA</span></span></code></pre></div>
 </div>
 <div id="questions" class="section level2">
 <h2><span class="header-section-number">17.8</span> Questions</h2>
