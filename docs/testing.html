@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 2019-11-05: usethis::pr_sync( ) | ds-incubator</title>
+  <title>Chapter 17 2020-02-18: Testing | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 2019-11-05: usethis::pr_sync( ) | ds-incubator" />
+  <meta property="og:title" content="Chapter 17 2020-02-18: Testing | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 2019-11-05: usethis::pr_sync( ) | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 17 2020-02-18: Testing | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="pull-request-helpers.html"/>
-<link rel="next" href="interdependent-pull-requests.html"/>
+<link rel="prev" href="r-packages-data.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -337,85 +337,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="usethispr_sync" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> 2019-11-05: <code>usethis::pr_sync( )</code></h1>
-<p><strong>Before merging your pull request, the source repository adds a conflicting commit. Now what?</strong></p>
-<p>“<em>pr_sync( ) is a shortcut for pr_pull( ), pr_pull_upstream( ), and pr_push( )</em>” (<a href="https://usethis.r-lib.org/reference/pr_init.html">usethis</a>)</p>
-<p><em><a href="https://twitter.com/mauro_lepore" class="uri">https://twitter.com/mauro_lepore</a></em></p>
-<p>License: <a href="https://creativecommons.org/choose/zero/?lang=es">CCO</a></p>
-<div id="create_from_github" class="section level2">
-<h2><span class="header-section-number">4.1</span> <code>create_from_github()</code></h2>
-<p><img src="https://i.imgur.com/1kHjVzm.png" width=760 /></p>
-<pre><code># Fork on GitHub, then run from a terminal:
-git clone git@github.com:maurolepore/abc.git
-cd abc
-
-# Contrib@LAPTOP ~/abc (master)
-git remote add upstream git@github.com:an-org/abc.git
-git pull upstream master
-git branch --set-upstream-to=upstream/master</code></pre>
+<div id="testing" class="section level1">
+<h1><span class="header-section-number">Chapter 17</span> 2020-02-18: Testing</h1>
+<p>From <a href="https://r-pkgs.org/tests.html" class="uri">https://r-pkgs.org/tests.html</a></p>
+<div id="why-testing" class="section level2">
+<h2><span class="header-section-number">17.1</span> Why testing?</h2>
+<ul>
+<li>Discuss</li>
+</ul>
 </div>
-<div id="git_sitrep" class="section level2">
-<h2><span class="header-section-number">4.2</span> <code>git_sitrep()</code></h2>
-<p><img src="https://i.imgur.com/0K4llKf.png" width=700 /></p>
-<pre><code>git remote -v</code></pre>
+<div id="set-up" class="section level2">
+<h2><span class="header-section-number">17.2</span> Set up</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="testing.html#cb38-1"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
+<p>Among other things, <code>usethis::use_testthat()</code> attaches testthat in tests/testthat.R</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="testing.html#cb39-1"></a><span class="kw">library</span>(testthat)</span></code></pre></div>
 </div>
-<div id="pr_initpr" class="section level2">
-<h2><span class="header-section-number">4.3</span> <code>pr_init("pr")</code></h2>
-<p><img src="https://i.imgur.com/Eq7Ab1V.png" width=760></p>
-<pre><code># Contrib@LAPTOP ~/abc (master)
-git pull upstream master
-git branch pr
-git checkout pr</code></pre>
+<div id="workflow" class="section level2">
+<h2><span class="header-section-number">17.3</span> Workflow</h2>
+<ul>
+<li>Modify your code or tests.</li>
+<li>Test your package with Ctrl/Cmd + Shift + T or devtools::test().</li>
+<li>Repeat until all tests pass.</li>
+</ul>
 </div>
-<div id="pr_push" class="section level2">
-<h2><span class="header-section-number">4.4</span> <code>pr_push()</code></h2>
-<p><img src="https://i.imgur.com/rBaykKn.png" width = 750 /></p>
-<pre><code># Contrib@LAPTOP ~/abc (pr)
-git push origin
-git branch --set-upstream-to=origin/pr</code></pre>
-<p><strong><a href="https://github.com/maurolepore/abc/compare/pr" class="uri">https://github.com/maurolepore/abc/compare/pr</a></strong></p>
-<p><img src="https://i.imgur.com/3HKmRef.png" width = 750 /></p>
-<p><strong>But before <code>[pr]</code> is merged, the maintainer adds a conflicting change to the source repository</strong></p>
-<p><img src="https://i.imgur.com/ORnChBR.png" width = 750 /></p>
+<div id="tests-structure" class="section level2">
+<h2><span class="header-section-number">17.4</span> Tests structure</h2>
+<p>If R/max_minus_min.R contains:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="testing.html#cb40-1"></a>max_minus_min &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb40-2"><a href="testing.html#cb40-2"></a>  <span class="kw">max</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(x)</span>
+<span id="cb40-3"><a href="testing.html#cb40-3"></a>}</span></code></pre></div>
+<p>Then tests/testthat/test-max_minus_min.R may contains:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="testing.html#cb41-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with simple good input returns expected output&quot;</span>, {</span>
+<span id="cb41-2"><a href="testing.html#cb41-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb41-3"><a href="testing.html#cb41-3"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb41-4"><a href="testing.html#cb41-4"></a>})</span></code></pre></div>
 </div>
-<div id="pr_sync" class="section level2">
-<h2><span class="header-section-number">4.5</span> <code>pr_sync()</code></h2>
-<p><img src="https://i.imgur.com/oQeMUT0.png" width = 550 /></p>
-<pre><code># Contrib@LAPTOP ~/abc (pr)
-# Using default remote &quot;origin&quot; and branch &quot;pr&quot;
-# `git pull` is shorthand for `git fetch &amp;&amp; git merge FETCH_HEAD`
-git pull
-git pull upstream master
-git push</code></pre>
+<div id="what-to-test" class="section level2">
+<h2><span class="header-section-number">17.5</span> What to test</h2>
+<blockquote>
+<p>Whenever you are tempted to type something into a print statement or a debugger expression, write it as a test instead. – Martin Fowler</p>
+</blockquote>
+<blockquote>
+<p>A QA engineer walks into a bar. Oders a beer. Orders 0 beers. Orders 9999999 beers. Orders a lizard. Orders -1 beers. Orders a afdelijknesv. – Bill Sempf (<span class="citation">(<span class="citeproc-not-found" data-reference-id="sempf"><strong>???</strong></span>)</span>) on Twitter</p>
+</blockquote>
+<ul>
+<li>Test what should work.</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="testing.html#cb42-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with simple good input returns expected output&quot;</span>, {</span>
+<span id="cb42-2"><a href="testing.html#cb42-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb42-3"><a href="testing.html#cb42-3"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb42-4"><a href="testing.html#cb42-4"></a>})</span></code></pre></div>
+<ul>
+<li>Test what should fail.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="testing.html#cb43-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with bad input throws an error&quot;</span>, {</span>
+<span id="cb43-2"><a href="testing.html#cb43-2"></a>  <span class="kw">expect_error</span>(<span class="kw">max_minus_min</span>(letters), <span class="st">&quot;non-numeric argument&quot;</span>)</span>
+<span id="cb43-3"><a href="testing.html#cb43-3"></a>})</span></code></pre></div>
+<ul>
+<li>Edge cases.</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="testing.html#cb44-1"></a><span class="kw">test_that</span>(<span class="st">&quot;max_minus_min with edge cases behaves as expected&quot;</span>, {</span>
+<span id="cb44-2"><a href="testing.html#cb44-2"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="ot">NA_integer_</span>), <span class="ot">NA_integer_</span>)</span>
+<span id="cb44-3"><a href="testing.html#cb44-3"></a>  </span>
+<span id="cb44-4"><a href="testing.html#cb44-4"></a>  <span class="co"># Oh no! I need to modify my code until this test passes</span></span>
+<span id="cb44-5"><a href="testing.html#cb44-5"></a>  <span class="kw">expect_equal</span>(<span class="kw">max_minus_min</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA</span>)), <span class="dv">1</span>)</span>
+<span id="cb44-6"><a href="testing.html#cb44-6"></a>})</span>
+<span id="cb44-7"><a href="testing.html#cb44-7"></a><span class="co">#&gt; Error: Test failed: &#39;max_minus_min with edge cases behaves as expected&#39;</span></span>
+<span id="cb44-8"><a href="testing.html#cb44-8"></a><span class="co">#&gt; * &lt;text&gt;:5: max_minus_min(c(1, 2, NA)) not equal to 1.</span></span>
+<span id="cb44-9"><a href="testing.html#cb44-9"></a><span class="co">#&gt; 1/1 mismatches</span></span>
+<span id="cb44-10"><a href="testing.html#cb44-10"></a><span class="co">#&gt; [1] NA - 1 == NA</span></span></code></pre></div>
 </div>
-<div id="solve-merge-conflicts" class="section level2">
-<h2><span class="header-section-number">4.6</span> Solve merge conflicts</h2>
-<p><img src="https://i.imgur.com/IfYF0zn.png" width = 750 /></p>
-</div>
-<div id="pr_push-1" class="section level2">
-<h2><span class="header-section-number">4.7</span> <code>pr_push()</code></h2>
-<p><img src="https://i.imgur.com/wdW5odN.png" width = 700 /></p>
-<pre><code># Contrib@LAPTOP ~/abc (pr)
-# Retry sync
-git pull
-git pull upstream master
-git push</code></pre>
-</div>
-<div id="pr-now-has-no-conflicts-with-upstreammaster" class="section level2">
-<h2><span class="header-section-number">4.8</span> <code>[pr]</code> now has no conflicts with <code>[upstream/master]</code></h2>
-<p><img src="https://i.imgur.com/TxoA4MS.png" width = 750 /></p>
-</div>
-<div id="pr_finish" class="section level2">
-<h2><span class="header-section-number">4.9</span> <code>pr_finish()</code></h2>
-<p><img src="https://i.imgur.com/LRCYjmD.png" width = 750 /></p>
-<pre><code># Contrib@LAPTOP ~/abc (pr)
-git checkout master
-
-# Contrib@LAPTOP ~/abc (master)
-git pull upstream master
-git push -d origin pr
-git branch -d pr</code></pre>
+<div id="questions" class="section level2">
+<h2><span class="header-section-number">17.6</span> Questions</h2>
+<ol style="list-style-type: decimal">
+<li>Do I need a package to test?</li>
+<li>What are common expectations?</li>
+<li>How can I test that the data my code needs hasn’t change?</li>
+<li>How can I test messages, warnings, errors?</li>
+<li>How often should I test?</li>
+</ol>
 
 </div>
 </div>
@@ -434,8 +434,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="pull-request-helpers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="interdependent-pull-requests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-packages-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -466,7 +466,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-11-05_pr-sync.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-02-18_r-packages-testing.Rmd",
 "text": "Edit"
 },
 "history": {
