@@ -3,6 +3,15 @@
 From <https://r-pkgs.org/tests.html>
 
 
+## Objectives
+
+* Understand why testing is important.
+* Learn how to setup testing infrastructure.
+* Understand how tests are structured.
+* Learn how to run all tests.
+* Understand what to test.
+
+
 
 ## Why testing?
 
@@ -94,8 +103,7 @@ test_that("max_minus_min with edge cases behaves as expected", {
 ## Questions
 
 1. Do I need a package to test?
-1. How can I find all possible expectations?
-1. What are common expectations?
+1. What are all/common testthat expectations?
 1. How can I test that the data my code needs hasn't change?
-1. How can I test messages, warnings, errors?
 1. How often should I test?
+1. What should I not test?
