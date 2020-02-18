@@ -53,12 +53,9 @@ test_that("max_minus_min with simple good input returns expected output", {
 
 
 
-## What to test
+## What to test?
 
 > Whenever you are tempted to type something into a print statement or a debugger expression, write it as a test instead. -- Martin Fowler
-
-> A QA engineer walks into a bar. Oders a beer. Orders 0 beers. Orders 9999999 beers. Orders a lizard. Orders -1 beers. Orders a afdelijknesv. -- Bill Sempf (@sempf) on Twitter
-
 
 * Test what should work.
 
@@ -68,6 +65,10 @@ test_that("max_minus_min with simple good input returns expected output", {
   expect_equal(max_minus_min(2:1), 1)
 })
 ```
+
+## What to test?
+
+> A QA engineer walks into a bar. Oders a beer. Orders 0 beers. Orders 9999999 beers. Orders a lizard. Orders -1 beers. Orders a afdelijknesv. -- Bill Sempf (@sempf) on Twitter
 
 * Test what should fail.
 
@@ -93,7 +94,8 @@ test_that("max_minus_min with edge cases behaves as expected", {
 ## Questions
 
 1. Do I need a package to test?
-2. What are common expectations?
-3. How can I test that the data my code needs hasn't change?
-4. How can I test messages, warnings, errors?
-5. How often should I test?
+1. How can I find all possible expectations?
+1. What are common expectations?
+1. How can I test that the data my code needs hasn't change?
+1. How can I test messages, warnings, errors?
+1. How often should I test?
