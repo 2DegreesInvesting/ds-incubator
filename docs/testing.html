@@ -432,6 +432,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>What should I not test?</li>
 </ol>
 
+<ul>
+<li><p><code>document()</code> a function</p>
+<ul>
+<li>tip: use roxygen2 skeleton</li>
+<li>examples section</li>
+</ul></li>
+<li><p><code>use_readme_rmd()</code>:</p>
+<ul>
+<li>Packages need to be listed in DESCRIPTION</li>
+<li>Your package needs to be installed (<code>devtools::install()</code>).</li>
+<li>needs to be paired with README.md (what GH renders)</li>
+<li>tip: tidyverse is for EDA not packages (TODO add link xxx)</li>
+</ul></li>
+<li><p>GitHub pages.</p></li>
+<li><p>Downside of plain documents that aren’t checked</p></li>
+<li><p><code>use_pkgdown()</code> + <code>pkgdown::build_site()</code>.</p></li>
+<li><p><code>use_article()</code> <code>use_vignette()</code> difference between vignette and article</p>
+<ul>
+<li>tip: prefer article and build a pkgdown website</li>
+</ul></li>
+</ul>
+
 </div>
 </div>
 <div id="disqus_thread"></div>

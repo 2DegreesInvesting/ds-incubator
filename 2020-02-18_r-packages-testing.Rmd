@@ -1,4 +1,4 @@
-# 2020-02-18: Testing
+# 2020-02-18: R packages: Testing 
 
 From <https://r-pkgs.org/tests.html>
 

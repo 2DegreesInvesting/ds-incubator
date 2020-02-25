@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 2019-12-03: Avoid hidden arguments | ds-incubator</title>
+  <title>Chapter 18 2020-02-18: R packages: Documenting | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 2019-12-03: Avoid hidden arguments | ds-incubator" />
+  <meta property="og:title" content="Chapter 18 2020-02-18: R packages: Documenting | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 2019-12-03: Avoid hidden arguments | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 18 2020-02-18: R packages: Documenting | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="access-permissions-for-a-github-organization.html"/>
-<link rel="next" href="reprex.html"/>
+<link rel="prev" href="r-packages-testing.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -347,143 +347,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="avoid-hidden-arguments" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> 2019-12-03: Avoid hidden arguments</h1>
-<p>– <a href="https://principles.tidyverse.org/args-hidden.html">Tidyverse design guide</a></p>
-<p><a href="https://twitter.com/mauro_lepore" class="uri">https://twitter.com/mauro_lepore</a></p>
-<p>License: <a href="https://creativecommons.org/choose/zero/?lang=es">CCO</a></p>
-<div id="hidden-arguments-make-code-harder-to-reason-about-because-to-correctly-predict-the-output-you-also-need-to-know-some-other-state" class="section level2">
-<h2><span class="header-section-number">8.1</span> Hidden arguments make code harder to reason about, because to correctly predict the output you also need to know some other state</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="avoid-hidden-arguments.html#cb12-1"></a>y &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb12-2"><a href="avoid-hidden-arguments.html#cb12-2"></a>add &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb12-3"><a href="avoid-hidden-arguments.html#cb12-3"></a>  x <span class="op">+</span><span class="st"> </span>y</span>
-<span id="cb12-4"><a href="avoid-hidden-arguments.html#cb12-4"></a>}</span>
-<span id="cb12-5"><a href="avoid-hidden-arguments.html#cb12-5"></a><span class="kw">add</span>(<span class="dv">1</span>)</span>
-<span id="cb12-6"><a href="avoid-hidden-arguments.html#cb12-6"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb12-7"><a href="avoid-hidden-arguments.html#cb12-7"></a></span>
-<span id="cb12-8"><a href="avoid-hidden-arguments.html#cb12-8"></a>y &lt;-<span class="st"> </span><span class="dv">10</span> <span class="co">## It is hard to keep track of this</span></span>
-<span id="cb12-9"><a href="avoid-hidden-arguments.html#cb12-9"></a></span>
-<span id="cb12-10"><a href="avoid-hidden-arguments.html#cb12-10"></a><span class="kw">add</span>(<span class="dv">1</span>)  </span>
-<span id="cb12-11"><a href="avoid-hidden-arguments.html#cb12-11"></a><span class="co">#&gt; [1] 11</span></span></code></pre></div>
-</div>
-<div id="functions-are-easier-to-understand-if-the-results-depend-only-on-the-values-of-the-inputs" class="section level2">
-<h2><span class="header-section-number">8.2</span> Functions are easier to understand if the results depend only on the values of the inputs</h2>
-</div>
-<div id="how-can-i-remediate-the-problem" class="section level2">
-<h2><span class="header-section-number">8.3</span> How can I remediate the problem?</h2>
-<p>If you have an existing function with a hidden input:</p>
-<ol style="list-style-type: decimal">
-<li>Make sure the input is an explicit option.</li>
-<li>Make sure it’s printed.</li>
-</ol>
-</div>
-<div id="for-example-take-prepare_data" class="section level2">
-<h2><span class="header-section-number">8.4</span> For example, take <code>prepare_data()</code></h2>
-<p>The output depends on <code>data</code>, but it is hidden.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="avoid-hidden-arguments.html#cb13-1"></a>prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb13-2"><a href="avoid-hidden-arguments.html#cb13-2"></a>  data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(path)</span>
-<span id="cb13-3"><a href="avoid-hidden-arguments.html#cb13-3"></a>  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</span>
-<span id="cb13-4"><a href="avoid-hidden-arguments.html#cb13-4"></a>}</span>
-<span id="cb13-5"><a href="avoid-hidden-arguments.html#cb13-5"></a></span>
-<span id="cb13-6"><a href="avoid-hidden-arguments.html#cb13-6"></a>path &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
-<span id="cb13-7"><a href="avoid-hidden-arguments.html#cb13-7"></a>readr<span class="op">::</span><span class="kw">write_csv</span>(mtcars, path)</span>
-<span id="cb13-8"><a href="avoid-hidden-arguments.html#cb13-8"></a></span>
-<span id="cb13-9"><a href="avoid-hidden-arguments.html#cb13-9"></a><span class="kw">prepare_data</span>()</span>
-<span id="cb13-10"><a href="avoid-hidden-arguments.html#cb13-10"></a><span class="co">#&gt;   mpg cyl</span></span>
-<span id="cb13-11"><a href="avoid-hidden-arguments.html#cb13-11"></a><span class="co">#&gt; 1  21   6</span></span>
-<span id="cb13-12"><a href="avoid-hidden-arguments.html#cb13-12"></a><span class="co">#&gt; 2  21   6</span></span></code></pre></div>
-</div>
-<div id="prepare_data-gains-the-explicit-argument-data" class="section level2">
-<h2><span class="header-section-number">8.5</span> 1. <code>prepare_data()</code> gains the explicit argument <code>data</code></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="avoid-hidden-arguments.html#cb14-1"></a>prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> <span class="kw">read.csv</span>(path)) {</span>
-<span id="cb14-2"><a href="avoid-hidden-arguments.html#cb14-2"></a>  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</span>
-<span id="cb14-3"><a href="avoid-hidden-arguments.html#cb14-3"></a>}</span>
-<span id="cb14-4"><a href="avoid-hidden-arguments.html#cb14-4"></a></span>
-<span id="cb14-5"><a href="avoid-hidden-arguments.html#cb14-5"></a><span class="kw">prepare_data</span>()</span>
-<span id="cb14-6"><a href="avoid-hidden-arguments.html#cb14-6"></a><span class="co">#&gt;   mpg cyl</span></span>
-<span id="cb14-7"><a href="avoid-hidden-arguments.html#cb14-7"></a><span class="co">#&gt; 1  21   6</span></span>
-<span id="cb14-8"><a href="avoid-hidden-arguments.html#cb14-8"></a><span class="co">#&gt; 2  21   6</span></span></code></pre></div>
-</div>
-<div id="prepare_data-now-prints-data" class="section level2">
-<h2><span class="header-section-number">8.6</span> 2. <code>prepare_data()</code> now prints <code>data</code></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="avoid-hidden-arguments.html#cb15-1"></a>prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">data =</span> <span class="kw">read.csv</span>(path)) {</span>
-<span id="cb15-2"><a href="avoid-hidden-arguments.html#cb15-2"></a>  <span class="cf">if</span> (<span class="kw">missing</span>(data)) {</span>
-<span id="cb15-3"><a href="avoid-hidden-arguments.html#cb15-3"></a>    <span class="kw">message</span>(</span>
-<span id="cb15-4"><a href="avoid-hidden-arguments.html#cb15-4"></a>      <span class="st">&quot;Using `data` with names: &quot;</span>, <span class="kw">paste</span>(<span class="kw">names</span>(data), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</span>
-<span id="cb15-5"><a href="avoid-hidden-arguments.html#cb15-5"></a>    )</span>
-<span id="cb15-6"><a href="avoid-hidden-arguments.html#cb15-6"></a>  }</span>
-<span id="cb15-7"><a href="avoid-hidden-arguments.html#cb15-7"></a>  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</span>
-<span id="cb15-8"><a href="avoid-hidden-arguments.html#cb15-8"></a>}</span>
-<span id="cb15-9"><a href="avoid-hidden-arguments.html#cb15-9"></a></span>
-<span id="cb15-10"><a href="avoid-hidden-arguments.html#cb15-10"></a><span class="kw">prepare_data</span>()</span>
-<span id="cb15-11"><a href="avoid-hidden-arguments.html#cb15-11"></a><span class="co">#&gt; Using `data` with names: mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span>
-<span id="cb15-12"><a href="avoid-hidden-arguments.html#cb15-12"></a><span class="co">#&gt;   mpg cyl</span></span>
-<span id="cb15-13"><a href="avoid-hidden-arguments.html#cb15-13"></a><span class="co">#&gt; 1  21   6</span></span>
-<span id="cb15-14"><a href="avoid-hidden-arguments.html#cb15-14"></a><span class="co">#&gt; 2  21   6</span></span>
-<span id="cb15-15"><a href="avoid-hidden-arguments.html#cb15-15"></a></span>
-<span id="cb15-16"><a href="avoid-hidden-arguments.html#cb15-16"></a><span class="kw">prepare_data</span>(<span class="kw">read.csv</span>(path))</span>
-<span id="cb15-17"><a href="avoid-hidden-arguments.html#cb15-17"></a><span class="co">#&gt;   mpg cyl</span></span>
-<span id="cb15-18"><a href="avoid-hidden-arguments.html#cb15-18"></a><span class="co">#&gt; 1  21   6</span></span>
-<span id="cb15-19"><a href="avoid-hidden-arguments.html#cb15-19"></a><span class="co">#&gt; 2  21   6</span></span></code></pre></div>
-</div>
-<div id="but-data-should-be-supplied" class="section level2">
-<h2><span class="header-section-number">8.7</span> But <code>data</code> should be supplied</h2>
-<blockquote>
-<p>Data arguments provide the core data. They are required, and are usually vectors and often determine the type and size of the output. Data arguments are often called <code>data</code>, <code>x</code>, or <code>y</code> – <a href="https://principles.tidyverse.org/args-data-details.html">tidyverse design guide</a>.</p>
-</blockquote>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="avoid-hidden-arguments.html#cb16-1"></a>prepare_data &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</span>
-<span id="cb16-2"><a href="avoid-hidden-arguments.html#cb16-2"></a>  data[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</span>
-<span id="cb16-3"><a href="avoid-hidden-arguments.html#cb16-3"></a>}</span>
-<span id="cb16-4"><a href="avoid-hidden-arguments.html#cb16-4"></a></span>
-<span id="cb16-5"><a href="avoid-hidden-arguments.html#cb16-5"></a><span class="kw">try</span>(<span class="kw">prepare_data</span>())</span>
-<span id="cb16-6"><a href="avoid-hidden-arguments.html#cb16-6"></a><span class="co">#&gt; Error in prepare_data() : argument &quot;data&quot; is missing, with no default</span></span>
-<span id="cb16-7"><a href="avoid-hidden-arguments.html#cb16-7"></a></span>
-<span id="cb16-8"><a href="avoid-hidden-arguments.html#cb16-8"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(path)</span>
-<span id="cb16-9"><a href="avoid-hidden-arguments.html#cb16-9"></a><span class="kw">prepare_data</span>(data)</span>
-<span id="cb16-10"><a href="avoid-hidden-arguments.html#cb16-10"></a><span class="co">#&gt;   mpg cyl</span></span>
-<span id="cb16-11"><a href="avoid-hidden-arguments.html#cb16-11"></a><span class="co">#&gt; 1  21   6</span></span>
-<span id="cb16-12"><a href="avoid-hidden-arguments.html#cb16-12"></a><span class="co">#&gt; 2  21   6</span></span></code></pre></div>
+<div id="r-packages-documenting" class="section level1">
+<h1><span class="header-section-number">Chapter 18</span> 2020-02-18: R packages: Documenting</h1>
+<p><a href="https://github.com/2DegreesInvesting/ds-incubator/issues/26" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/26</a></p>
+<div id="objectives-1" class="section level2">
+<h2><span class="header-section-number">18.1</span> Objectives</h2>
 <ul>
-<li></li>
+<li>Why documenting your package is important for users and developers.</li>
+<li>How to generate a roxygen skeleton to document a function.</li>
+<li>Why the examples section is important?</li>
+<li>Why README is important?</li>
+<li>What are common README gotchas
+<ul>
+<li>Why README can’t find functions in your package?</li>
+<li><a href="https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/">Why README should not use tidyverse</a></li>
+</ul></li>
+<li>How to navigate a package website.</li>
 </ul>
-<p><strong>Some functions do need to depend on external state …</strong></p>
 </div>
-<div id="a-function-has-hidden-arguments-when-it-returns-different-results-with-the-same-inputs-in-a-surprising-way" class="section level2">
-<h2><span class="header-section-number">8.8</span> A function has hidden arguments when it returns different results with the same inputs in a surprising way</h2>
+<div id="why-is-documenting-important" class="section level2">
+<h2><span class="header-section-number">18.2</span> Why is documenting important?</h2>
+<ul>
+<li>How it helps users?</li>
+<li>How it helps developers?</li>
+<li>Why using a consistent format might be useful for users/developers?</li>
+</ul>
 </div>
-<div id="surprising" class="section level2">
-<h2><span class="header-section-number">8.9</span> Surprising</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="avoid-hidden-arguments.html#cb17-1"></a><span class="kw">getOption</span>(<span class="st">&quot;stringsAsFactors&quot;</span>)</span>
-<span id="cb17-2"><a href="avoid-hidden-arguments.html#cb17-2"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb17-3"><a href="avoid-hidden-arguments.html#cb17-3"></a><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="st">&quot;a&quot;</span>)<span class="op">$</span>x</span>
-<span id="cb17-4"><a href="avoid-hidden-arguments.html#cb17-4"></a><span class="co">#&gt; [1] a</span></span>
-<span id="cb17-5"><a href="avoid-hidden-arguments.html#cb17-5"></a><span class="co">#&gt; Levels: a</span></span>
-<span id="cb17-6"><a href="avoid-hidden-arguments.html#cb17-6"></a></span>
-<span id="cb17-7"><a href="avoid-hidden-arguments.html#cb17-7"></a>old_options &lt;-<span class="st"> </span><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb17-8"><a href="avoid-hidden-arguments.html#cb17-8"></a><span class="kw">on.exit</span>(old_options)</span>
-<span id="cb17-9"><a href="avoid-hidden-arguments.html#cb17-9"></a></span>
-<span id="cb17-10"><a href="avoid-hidden-arguments.html#cb17-10"></a><span class="kw">getOption</span>(<span class="st">&quot;stringsAsFactors&quot;</span>)</span>
-<span id="cb17-11"><a href="avoid-hidden-arguments.html#cb17-11"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb17-12"><a href="avoid-hidden-arguments.html#cb17-12"></a><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="st">&quot;a&quot;</span>)<span class="op">$</span>x</span>
-<span id="cb17-13"><a href="avoid-hidden-arguments.html#cb17-13"></a><span class="co">#&gt; [1] &quot;a&quot;</span></span></code></pre></div>
-<p>Global options should not affect computation.</p>
+<div id="code-insert-roxygen-skeleton" class="section level2">
+<h2><span class="header-section-number">18.3</span> Code &gt; Insert Roxygen Skeleton</h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-packages-documenting.html#cb45-1"></a><span class="co">#&#39; Title</span></span>
+<span id="cb45-2"><a href="r-packages-documenting.html#cb45-2"></a><span class="co">#&#39;</span></span>
+<span id="cb45-3"><a href="r-packages-documenting.html#cb45-3"></a><span class="co">#&#39; @param x </span></span>
+<span id="cb45-4"><a href="r-packages-documenting.html#cb45-4"></a><span class="co">#&#39;</span></span>
+<span id="cb45-5"><a href="r-packages-documenting.html#cb45-5"></a><span class="co">#&#39; @return</span></span>
+<span id="cb45-6"><a href="r-packages-documenting.html#cb45-6"></a><span class="co">#&#39; @export</span></span>
+<span id="cb45-7"><a href="r-packages-documenting.html#cb45-7"></a><span class="co">#&#39;</span></span>
+<span id="cb45-8"><a href="r-packages-documenting.html#cb45-8"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb45-9"><a href="r-packages-documenting.html#cb45-9"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb45-10"><a href="r-packages-documenting.html#cb45-10"></a>  x</span>
+<span id="cb45-11"><a href="r-packages-documenting.html#cb45-11"></a>} </span></code></pre></div>
 </div>
-<div id="not-surprising" class="section level2">
-<h2><span class="header-section-number">8.10</span> Not surprising</h2>
-<p><code>read_csv(path)</code> depends not only on <code>path</code> but also on the contents of the file, but that is not surprising.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="avoid-hidden-arguments.html#cb18-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb18-2"><a href="avoid-hidden-arguments.html#cb18-2"></a>path &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
-<span id="cb18-3"><a href="avoid-hidden-arguments.html#cb18-3"></a></span>
-<span id="cb18-4"><a href="avoid-hidden-arguments.html#cb18-4"></a><span class="kw">write_csv</span>(mtcars, path)</span>
-<span id="cb18-5"><a href="avoid-hidden-arguments.html#cb18-5"></a></span>
-<span id="cb18-6"><a href="avoid-hidden-arguments.html#cb18-6"></a><span class="kw">names</span>(<span class="kw">read_csv</span>(path))</span>
-<span id="cb18-7"><a href="avoid-hidden-arguments.html#cb18-7"></a><span class="co">#&gt;  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;</span></span>
-<span id="cb18-8"><a href="avoid-hidden-arguments.html#cb18-8"></a><span class="co">#&gt; [11] &quot;carb&quot;</span></span>
-<span id="cb18-9"><a href="avoid-hidden-arguments.html#cb18-9"></a></span>
-<span id="cb18-10"><a href="avoid-hidden-arguments.html#cb18-10"></a><span class="kw">write_csv</span>(iris, path)</span>
-<span id="cb18-11"><a href="avoid-hidden-arguments.html#cb18-11"></a></span>
-<span id="cb18-12"><a href="avoid-hidden-arguments.html#cb18-12"></a><span class="kw">names</span>(<span class="kw">read_csv</span>(path))</span>
-<span id="cb18-13"><a href="avoid-hidden-arguments.html#cb18-13"></a><span class="co">#&gt; [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</span></span></code></pre></div>
+<div id="how-useful-are-examples" class="section level2">
+<h2><span class="header-section-number">18.4</span> How useful are examples?</h2>
+<ul>
+<li>Help users understand how to use a function.</li>
+<li>Help developers understand what a function should do.</li>
+<li>Can be reused in tests/ and README</li>
+</ul>
+</div>
+<div id="readme-usethisuse_readme_rmd" class="section level2">
+<h2><span class="header-section-number">18.5</span> README: <code>usethis::use_readme_rmd()</code></h2>
+<p>Gotchas:</p>
+<ul>
+<li>Used packages (<code>library()</code>) need to be listed in DESCRIPTION.</li>
+<li>Your package needs to be installed (<code>devtools::install()</code>).</li>
+<li>Needs to be in sync with README.md (i.e. must knit).</li>
+<li>tip: <a href="https://www.tidyverse.org/blog/2018/06/tidyverse-not-for-packages/">tidyverse is for EDA not packages</a></li>
+</ul>
+<p>(This rigor feels annoying but helps find problems with the package structure.)</p>
+</div>
+<div id="websites" class="section level2">
+<h2><span class="header-section-number">18.6</span> Websites</h2>
+<ul>
+<li><code>usethis::use_pkgdown()</code> + <code>pkgdown::build_site()</code>.</li>
+<li>GitHub &gt; Settings &gt; GitHub Pages: Choose “master branch docs/ folder”</li>
+</ul>
 
 </div>
 </div>
@@ -502,8 +430,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="access-permissions-for-a-github-organization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reprex.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-packages-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -534,7 +462,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-12-03_avoid-hidden-arguments.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-02-25_r-packages-docs.Rmd",
 "text": "Edit"
 },
 "history": {

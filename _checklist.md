@@ -1,0 +1,15 @@
+- [x] -2h: Open issue
+- [x] -2h: Draft
+- [x] -1h: Announce
+- [ ] -30': remind meeting on #coding
+- [ ] -15': set alarm for 9:15
+- [ ] -15': set alarm for 9:25
+- [ ] -10': set zoom
+- [ ] -10': set up backup appear.in, google, or similar (see taylor)
+- [ ] 00': admit people
+- [ ] 02': Announcements
+- [ ] 05': Record
+- [ ] 15': Questions
+- [ ] 25': End
+- [ ] 30': Upload video
+- [ ] 40': Link to issue
