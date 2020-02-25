@@ -39,6 +39,12 @@ f <- function(x) {
 } 
 ```
 
+--
+
+NOTE:
+
+\@cjyetman recommended to always document explicitly the expected type of each argument to a function. \@2diiKlaus endorsed the comment and asks to do it in all packages we build. \@maurolepore would like to develop a template. Follow [this discussion](https://github.com/2DegreesInvesting/ds-incubator/issues/26#issuecomment-590947607).
+
 
 
 ## How useful are examples?
@@ -66,3 +72,6 @@ Gotchas:
 
 * `usethis::use_pkgdown()` + `pkgdown::build_site()`.
 * GitHub > Settings > GitHub Pages: Choose "master branch docs/ folder"
+
+
+
