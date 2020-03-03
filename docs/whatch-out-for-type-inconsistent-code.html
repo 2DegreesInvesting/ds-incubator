@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 2020-01-14: Project-oriented workflow | ds-incubator</title>
+  <title>Chapter 19 Whatch out for type-inconsistent code | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 2020-01-14: Project-oriented workflow | ds-incubator" />
+  <meta property="og:title" content="Chapter 19 Whatch out for type-inconsistent code | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 2020-01-14: Project-oriented workflow | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 19 Whatch out for type-inconsistent code | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="retrospective.html"/>
-<link rel="next" href="debugging-with-rstudio.html"/>
+<link rel="prev" href="r-packages-documenting.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -344,154 +344,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="project-oriented-workflow" class="section level1">
-<h1><span class="header-section-number">Chapter 12</span> 2020-01-14: Project-oriented workflow</h1>
-<p><a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">Project-oriented workflow</a></p>
-<p><img src="https://i.imgur.com/jKWxztR.png" align="center" width = 750 /></p>
-<p>–Jenny Bryan</p>
-<div id="workflow-versus-product" class="section level2">
-<h2><span class="header-section-number">12.1</span> Workflow versus product</h2>
-<div id="definitions" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> Definitions</h3>
-<ul>
-<li><p>Workflow: personal taste and habits.</p></li>
-<li><p>Product: essence of your project.</p></li>
-</ul>
-<p><strong>Don’t hardwire your workflow into your product.</strong></p>
-</div>
-<div id="which-is-workflow-or-product" class="section level3">
-<h3><span class="header-section-number">12.1.2</span> Which is workflow or product?</h3>
-<ol style="list-style-type: decimal">
-<li><p>The editor you use to write your R code.</p></li>
-<li><p>The raw data.</p></li>
-<li><p>The name of your home directory.</p></li>
-<li><p>The R code someone needs to run on your raw data to get your results, including the explicit library() calls to load necessary packages.</p></li>
-</ol>
-</div>
-<div id="example-remove-workflow" class="section level3">
-<h3><span class="header-section-number">12.1.3</span> Example: Remove workflow</h3>
-<p>The name of the home directory is workflow, not product.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="project-oriented-workflow.html#cb25-1"></a>home &lt;-<span class="st"> &quot;C:/Users/Mauro/Documents/&quot;</span>  <span class="co"># Workflow</span></span>
-<span id="cb25-2"><a href="project-oriented-workflow.html#cb25-2"></a>proj_path &lt;-<span class="st"> &quot;path/to/project&quot;</span></span>
-<span id="cb25-3"><a href="project-oriented-workflow.html#cb25-3"></a><span class="kw">paste0</span>(home, proj_path)</span>
-<span id="cb25-4"><a href="project-oriented-workflow.html#cb25-4"></a><span class="co">#&gt; [1] &quot;C:/Users/Mauro/Documents/path/to/project&quot;</span></span></code></pre></div>
-<p>Better</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="project-oriented-workflow.html#cb26-1"></a>proj_path &lt;-<span class="st"> &quot;path/to/project&quot;</span></span>
-<span id="cb26-2"><a href="project-oriented-workflow.html#cb26-2"></a>fs<span class="op">::</span><span class="kw">path_home_r</span>(proj_path)</span>
-<span id="cb26-3"><a href="project-oriented-workflow.html#cb26-3"></a><span class="co">#&gt; /home/mauro/path/to/project</span></span></code></pre></div>
-<p>Best</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="project-oriented-workflow.html#cb27-1"></a>fs<span class="op">::</span><span class="kw">path_home_r</span>(<span class="st">&quot;path&quot;</span>, <span class="st">&quot;to&quot;</span>, <span class="st">&quot;project&quot;</span>)</span>
-<span id="cb27-2"><a href="project-oriented-workflow.html#cb27-2"></a><span class="co">#&gt; /home/mauro/path/to/project</span></span></code></pre></div>
-</div>
-</div>
-<div id="self-contained-projects" class="section level2">
-<h2><span class="header-section-number">12.2</span> Self-contained projects</h2>
-<div id="self-contained-projects-can-be-moved-around-on-your-computer-or-onto-other-computers-and-will-still-just-work." class="section level3">
-<h3><span class="header-section-number">12.2.1</span> Self-contained projects can be moved around on your computer or onto other computers and will still “just work”.</h3>
-<blockquote>
-<p>It’s like agreeing that we will all drive on the left or the right. A hallmark of civilization is following conventions that constrain your behavior a little, in the name of public safety.</p>
-</blockquote>
-<p>–Jenny Bryan</p>
-</div>
-<div id="what-do-they-look-like" class="section level3">
-<h3><span class="header-section-number">12.2.2</span> What do they look like?</h3>
-<ol style="list-style-type: decimal">
-<li><p>The Project folder contains all relevant files.</p></li>
-<li><p>Any .R can run from a fresh R process with wd set to root.</p></li>
-<li><p>Any .R creates all it needs, in its own workspace or folder</p></li>
-<li><p>Any .R touches nothing it didn’t create (e.g. doesn’t install).</p></li>
-</ol>
-</div>
-<div id="violations" class="section level3">
-<h3><span class="header-section-number">12.2.3</span> Violations …</h3>
-</div>
-<div id="what-should-you-do-instead-of-this" class="section level3">
-<h3><span class="header-section-number">12.2.4</span> What should you do instead of this?</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="project-oriented-workflow.html#cb28-1"></a>path_to_data &lt;-<span class="st"> &quot;../datasets/my-data.csv&quot;</span></span></code></pre></div>
-</div>
-<div id="what-should-you-do-instead" class="section level3">
-<h3><span class="header-section-number">12.2.5</span> What should you do instead?</h3>
-<p><img src="https://i.imgur.com/V4EkuWY.png" align="center" height = 550 /></p>
-</div>
-<div id="what-should-you-do-instead-of-this-1" class="section level3">
-<h3><span class="header-section-number">12.2.6</span> What should you do instead of this?</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="project-oriented-workflow.html#cb29-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(random)</span></code></pre></div>
-</div>
-</div>
-<div id="setwd" class="section level2">
-<h2><span class="header-section-number">12.3</span> setwd( )</h2>
-<div id="whats-wrong" class="section level3">
-<h3><span class="header-section-number">12.3.1</span> What’s wrong?</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="project-oriented-workflow.html#cb30-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb30-2"><a href="project-oriented-workflow.html#cb30-2"></a><span class="kw">setwd</span>(<span class="st">&quot;/Users/jenny/cuddly_broccoli/verbose_funicular/foofy/data&quot;</span>)</span>
-<span id="cb30-3"><a href="project-oriented-workflow.html#cb30-3"></a>df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;raw_foofy_data.csv&quot;</span>)</span>
-<span id="cb30-4"><a href="project-oriented-workflow.html#cb30-4"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
-<span id="cb30-5"><a href="project-oriented-workflow.html#cb30-5"></a><span class="kw">ggsave</span>(<span class="st">&quot;../figs/foofy_scatterplot.png&quot;</span>)</span></code></pre></div>
-</div>
-<div id="whats-wrong-1" class="section level3">
-<h3><span class="header-section-number">12.3.2</span> What’s wrong?</h3>
-<ul>
-<li>Paths work for nobody besides the author.</li>
-<li>Project not self-contained and portable.</li>
-<li>To run, it first needs to be hand edited.</li>
-<li>Suggests that the useR does all of their work in one R process:
-<ul>
-<li>Unpleasant to work on more than one project at a time</li>
-<li>Easy for work done on one project to accidentally leak into another (e.g., objects, loaded packages, session options).</li>
-</ul></li>
-</ul>
-</div>
-<div id="what-should-you-do-instead-1" class="section level3">
-<h3><span class="header-section-number">12.3.3</span> What should you do instead?</h3>
-<ul>
-<li><p>Use RStudio projects, and/or</p></li>
-<li><p>Use the here package (works well with .Rmd files)</p></li>
-</ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="project-oriented-workflow.html#cb31-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb31-2"><a href="project-oriented-workflow.html#cb31-2"></a><span class="kw">library</span>(here)</span>
-<span id="cb31-3"><a href="project-oriented-workflow.html#cb31-3"></a></span>
-<span id="cb31-4"><a href="project-oriented-workflow.html#cb31-4"></a>df &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;raw_foofy_data.csv&quot;</span>))</span>
-<span id="cb31-5"><a href="project-oriented-workflow.html#cb31-5"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
-<span id="cb31-6"><a href="project-oriented-workflow.html#cb31-6"></a><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figs&quot;</span>, <span class="st">&quot;foofy_scatterplot.png&quot;</span>))</span></code></pre></div>
-</div>
-</div>
-<div id="rmlist-ls" class="section level2">
-<h2><span class="header-section-number">12.4</span> rm(list = ls( ))</h2>
-<div id="whats-wrong-2" class="section level3">
-<h3><span class="header-section-number">12.4.1</span> What’s wrong?</h3>
-<ul>
-<li><p>Suggests the useR works in one long-running (not fresh) R process.</p></li>
-<li><p>Does NOT, in fact, create a fresh R process – it only deletes objects from the global workspace but leaves stuff that make your script vulnerable to hidden dependencies (e.g. packages, options, working directory).</p></li>
-<li><p>Is hostile to anyone that you ask to help you with your R problems.</p></li>
-</ul>
-</div>
-<div id="whats-better" class="section level3">
-<h3><span class="header-section-number">12.4.2</span> What’s better?</h3>
-<ul>
-<li><p>Start from blank slate.</p></li>
-<li><p>Restart R very often.</p></li>
-<li><p>Re-run your under-development script from the top. For long running processes:</p>
-<ul>
-<li>Isolate slow bit in its own script; write it with <code>saveRDS()</code> and read it with <code>readRDS()</code>, or</li>
-<li>Use <a href="https://docs.ropensci.org/drake/">drake</a>.</li>
-</ul></li>
-</ul>
-</div>
-<div id="discuss-must-have-or-nice-to-have" class="section level3">
-<h3><span class="header-section-number">12.4.3</span> Discuss: Must have or nice to have?</h3>
-<blockquote>
-<p>The importance of these practices has a lot to do with whether your code will be run by other people, on other machines, and in the future. If your current practices serve your purposes, then go forth and be happy</p>
-</blockquote>
-<p>– Jenny Bryan</p>
-</div>
-<div id="learn-more" class="section level3">
-<h3><span class="header-section-number">12.4.4</span> Learn more</h3>
-<ul>
-<li><a href="https://rstats.wtf/">What They Forgot to Teach You About R (Jenny Bryan &amp; Jim Hester)</a>.</li>
-</ul>
+<div id="whatch-out-for-type-inconsistent-code" class="section level1">
+<h1><span class="header-section-number">Chapter 19</span> Whatch out for type-inconsistent code</h1>
+<p><a href="https://github.com/cjyetman">CJ</a></p>
+<p><a href="https://github.com/2DegreesInvesting/ds-incubator/issues/28" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/28</a></p>
 
-</div>
-</div>
 </div>
 <div id="disqus_thread"></div>
 <script>
@@ -508,8 +365,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="retrospective.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="debugging-with-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-packages-documenting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -540,7 +397,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-01-14_project-oriented-workflow.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-03-03_type-inconsistent-code.Rmd",
 "text": "Edit"
 },
 "history": {
