@@ -647,14 +647,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb72-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-4"></a>} <span class="cf">else</span> {</span>
 <span id="cb72-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-5"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb72-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-6"></a>}</span>
-<span id="cb72-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-7"></a><span class="co">#&gt; [1] &quot;7, 4 Nope!&quot;</span></span></code></pre></div>
+<span id="cb72-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-7"></a><span class="co">#&gt; [1] &quot;1, 4 Nope!&quot;</span></span></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-1"></a><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</span>
 <span id="cb73-2"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-2"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</span>
 <span id="cb73-3"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-3"></a>} <span class="cf">else</span> {</span>
 <span id="cb73-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-4"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb73-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-5"></a>}</span>
-<span id="cb73-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-6"></a><span class="co">#&gt; [1] &quot;7, 4 Nope!&quot;</span></span></code></pre></div>
+<span id="cb73-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-6"></a><span class="co">#&gt; [1] &quot;1, 4 Nope!&quot;</span></span></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">

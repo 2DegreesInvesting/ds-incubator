@@ -1,0 +1,78 @@
+# renv
+
+```R
+renv::init()
+
+Welcome to renv! It looks like this is your first time using renv.
+This is a one-time message, briefly describing some of renv's functionality.
+
+This package maintains a local cache of data on the filesystem at:
+
+  - '~/.local/share/renv'
+
+This path can be customized -- see the documentation in `?paths`.
+
+renv will also write to files within the active project folder, including:
+
+  - A folder 'renv' in the project directory, and
+  - A lockfile called 'renv.lock' in the project directory.
+
+In particular, projects using renv will normally use a private, per-project
+R library, in which new packages will be installed. This project library is
+isolated from other R libraries on your system.
+
+In addition, renv will attempt to update files within your project, including:
+
+  - .gitignore
+  - .Rbuildignore
+  - .Rprofile
+
+Please read the introduction vignette with `vignette("renv")` for more information.
+You can also browse the package documentation online at http://rstudio.github.io/renv.
+
+By providing consent, you will allow renv to write and update these files.
+
+Do you want to proceed? [y/N]: y
+
+
+
+* '~/.local/share/renv' has been created.
+* Initializing project ...
+* Discovering package dependencies ... Done!
+* Copying packages into the cache ... Done!
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- Rcpp        [* -> 1.0.3]
+- base64enc   [* -> 0.1-3]
+- digest      [* -> 0.6.25]
+- evaluate    [* -> 0.14]
+- glue        [* -> 1.3.1]
+- highr       [* -> 0.8]
+- htmltools   [* -> 0.4.0]
+- jsonlite    [* -> 1.6.1]
+- knitr       [* -> 1.28]
+- magrittr    [* -> 1.5]
+- markdown    [* -> 1.1]
+- mime        [* -> 0.9]
+- renv        [* -> 0.9.3]
+- rlang       [* -> 0.4.5]
+- rmarkdown   [* -> 2.1]
+- stringi     [* -> 1.4.6]
+- stringr     [* -> 1.4.0]
+- tinytex     [* -> 0.20]
+- xfun        [* -> 0.12]
+- yaml        [* -> 2.2.1]
+
+* Lockfile written to '~/git/todo/renv.lock'.
+
+Restarting R session...
+
+* Project '~/git/todo' loaded. [renv 0.9.3]
+```
+
+If I now use a package new to this project, this happens:
+
+* RStudio tells me the package isn't installed, and prompt me to install it -- even if the package is installed in the system).
+
+* renv records the new package

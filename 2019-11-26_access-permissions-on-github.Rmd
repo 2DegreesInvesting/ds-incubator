@@ -1,14 +1,3 @@
----
-title: access-permissions-on-github
-author: Mauro Lepore
-date: '2019-11-26'
-slug: access-permissions-on-github
-categories: []
-tags:
-  - github
-description: ''
----
-
 # 2019-11-26: Access permissions for a GitHub organization
 
 https://github.com/2DegreesInvesting/ds-incubator/issues/14
