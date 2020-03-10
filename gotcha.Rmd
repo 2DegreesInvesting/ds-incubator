@@ -222,7 +222,8 @@ f <- function(data) {
 }
 ```
 
-<https://rlang.r-lib.org/reference/tidyeval-data.html>
+* <https://rlang.r-lib.org/reference/tidyeval-data.html>
+* <https://dplyr.tidyverse.org/dev/articles/programming.html#how-tos>
 
 
 

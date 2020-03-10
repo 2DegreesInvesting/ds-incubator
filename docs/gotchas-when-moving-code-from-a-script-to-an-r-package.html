@@ -495,7 +495,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb58-1"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</span>
 <span id="cb58-2"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb58-2"></a>  dplyr<span class="op">::</span><span class="kw">select</span>(data, cyl)</span>
 <span id="cb58-3"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb58-3"></a>}</span></code></pre></div>
-<p><a href="https://rlang.r-lib.org/reference/tidyeval-data.html" class="uri">https://rlang.r-lib.org/reference/tidyeval-data.html</a></p>
+<ul>
+<li><a href="https://rlang.r-lib.org/reference/tidyeval-data.html" class="uri">https://rlang.r-lib.org/reference/tidyeval-data.html</a></li>
+<li><a href="https://dplyr.tidyverse.org/dev/articles/programming.html#how-tos" class="uri">https://dplyr.tidyverse.org/dev/articles/programming.html#how-tos</a></li>
+</ul>
 </div>
 </div>
 <div id="function-interface" class="section level2">
@@ -658,14 +661,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb72-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-4"></a>} <span class="cf">else</span> {</span>
 <span id="cb72-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-5"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb72-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-6"></a>}</span>
-<span id="cb72-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-7"></a><span class="co">#&gt; [1] &quot;2, 3 Nope!&quot;</span></span></code></pre></div>
+<span id="cb72-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb72-7"></a><span class="co">#&gt; [1] &quot;10, 7 Nope!&quot;</span></span></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-1"></a><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</span>
 <span id="cb73-2"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-2"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</span>
 <span id="cb73-3"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-3"></a>} <span class="cf">else</span> {</span>
 <span id="cb73-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-4"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb73-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-5"></a>}</span>
-<span id="cb73-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-6"></a><span class="co">#&gt; [1] &quot;2, 3 Nope!&quot;</span></span></code></pre></div>
+<span id="cb73-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-6"></a><span class="co">#&gt; [1] &quot;10, 7 Nope!&quot;</span></span></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">

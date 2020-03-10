@@ -222,7 +222,8 @@ f <- function(data) {
 }
 ```
 
-<https://rlang.r-lib.org/reference/tidyeval-data.html>
+* <https://rlang.r-lib.org/reference/tidyeval-data.html>
+* <https://dplyr.tidyverse.org/dev/articles/programming.html#how-tos>
 
 
 
@@ -449,7 +450,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "2, 3 Nope!"
+#> [1] "2, 5 Nope!"
 ```
 
 Bad.
@@ -461,7 +462,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "2, 3 Nope!"
+#> [1] "2, 5 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
