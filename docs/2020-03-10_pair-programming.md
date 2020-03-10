@@ -1,13 +1,13 @@
 # 2020-03-10: Pair programming
 
-
-
 ## Overview
 
 * > benefits are not immediately obvious
 * > not as simple as "two people working at a single computer"
 * > feels uncomfortable
 * > vital for collaborative teamwork and high quality software
+
+-- https://martinfowler.com/articles/on-pair-programming.html
 
 
 
