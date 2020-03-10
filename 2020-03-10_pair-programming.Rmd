@@ -77,8 +77,8 @@ Particularly useful for knowledge transfer
 It takes:
 
 * Concentration and focus (suitable style), 
-* task organization (issues), 
-* time management (pomodoro), 
+* task organization (find problem, solution, and plan), 
+* time management (e.g. pomodoro), 
 * communication, 
 * giving and receiving feedback, 
 * empathy, 
