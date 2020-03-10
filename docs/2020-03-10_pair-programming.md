@@ -1,5 +1,11 @@
 # 2020-03-10: Pair programming
 
+## Driver - navigator
+
+<img src="https://martinfowler.com/articles/on-pair-programming/driver_navigator.png" align="center" width = 750 />
+
+
+
 ## Overview
 
 * > benefits are not immediately obvious
@@ -11,11 +17,7 @@
 
 
 
-## Driver - navigator
-
-<img src="https://martinfowler.com/articles/on-pair-programming/driver_navigator.png" align="center" width = 750 />
-
-## Ping pong
+## Ping pong style
 
 <img src="https://martinfowler.com/articles/on-pair-programming/ping_pong.png" align="center" width = 750 />
 
@@ -31,14 +33,7 @@ Particularly useful for knowledge transfer
 
 ## Discuss: Benefits (5')
 
-* Knowledge Sharing
-* Reflection
-* Keeping focus
-* Code review on-the-go
-* Two modes of thinking combined
-* Collective Code Ownership
-* Keeps the team's WIP low
-* Fast onboarding of new team members
+<img src="https://martinfowler.com/articles/on-pair-programming/benefits_overview.jpg" align="center" width = 750 />
 
 
 
