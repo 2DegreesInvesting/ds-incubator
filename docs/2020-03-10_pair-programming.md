@@ -1,8 +1,6 @@
 # 2020-03-10: Pair programming
 
-```{r setup, include=FALSE}
-bockeler <- function() "B\u00F6ckeler"
-```
+
 
 ## Overview
 
