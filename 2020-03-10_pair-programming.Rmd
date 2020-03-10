@@ -1,0 +1,55 @@
+# 2020-03-10: Pair programming
+
+```{r setup, include=FALSE}
+bockeler <- function() "B\u00F6ckeler"
+```
+
+
+## 4-eye principle 
+
+_Anything must be approved by at lease 2 people_
+
+* Code review
+* Pair programming
+
+[On pair programming (Birgitta `r bockeler()` and Nina Siessegger)](https://martinfowler.com/articles/on-pair-programming.html)
+
+How to pair
+Styles
+Driver and Navigator
+Ping Pong
+Strong-Style Pairing
+Pair Development
+Time management
+Pair Rotations
+Plan the Day
+Physical Setup
+Remote Pairing
+Have a Donut Together
+Things to Avoid
+There is not "THE" right way
+Benefits
+Knowledge Sharing
+Reflection
+Keeping focus
+Code review on-the-go
+Two modes of thinking combined
+Collective Code Ownership
+Keeps the team's WIP low
+Fast onboarding of new team members
+Challenges
+Pairing can be exhausting
+Intense collaboration can be hard
+Interruptions by meetings
+Different skill levels
+Power Dynamics
+Pairing with lots of Unknowns
+No time for yourself
+Rotations lead to context switching
+Pairing requires vulnerability
+Convincing managers and co-workers
+To pair or not to pair
+Boring Tasks
+"Could I Really Do This By Myself?"
+Code Review vs. Pairing
+But really, why bother?
