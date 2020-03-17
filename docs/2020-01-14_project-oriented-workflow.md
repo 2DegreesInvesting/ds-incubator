@@ -58,7 +58,7 @@ Better
 ```r
 proj_path <- "path/to/project"
 fs::path_home_r(proj_path)
-#> /home/mauro/path/to/project
+#> C:/Users/Mauro/Documents/path/to/project
 ```
 
 Best
@@ -66,7 +66,7 @@ Best
 
 ```r
 fs::path_home_r("path", "to", "project")
-#> /home/mauro/path/to/project
+#> C:/Users/Mauro/Documents/path/to/project
 ```
 
 ## Self-contained projects
