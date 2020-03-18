@@ -1,7 +1,7 @@
 ---
 name: Idea for ds-incubator meetup
 about: Consistent way for people to propose topics for ds-incubator meetups
-title: put here the draft title of your ds-incubator meetup
+title: Proposed title
 labels: proposed-meetup
 assignees: ''
 
