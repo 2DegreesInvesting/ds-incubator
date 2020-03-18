@@ -1,8 +1,8 @@
 ---
-name: Idea for ds-incubator meetup
-about: Consistent way for people to propose topics for ds-incubator meetups
+name: ds-incubator meetup
+about: A template to develop content for a ds-incubator meetup
 title: Proposed title
-labels: proposed-meetup
+labels: meetup
 assignees: ''
 
 ---
