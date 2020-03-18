@@ -1,8 +1,8 @@
 ---
-name: Idea for an rOpenSci Community Call
-about: Consistent way for people to propose topics for Community Calls
-title: put your draft Community Call title here
-labels: 0/idea
+name: Idea for ds-incubator meetup
+about: Consistent way for people to propose topics for ds-incubator meetups
+title: put here the draft title of your ds-incubator meetup
+labels: proposed-meetup
 assignees: ''
 
 ---
