@@ -58,7 +58,8 @@ Prior commitments might have interrupted team work.
 * (8 above) Meet everyone at scheduled times during the sprint to check progress, and also at the end of the event to wrap up.
 
 * (9 above) Ask break-out groups (maybe pairs) to talk to each other and schedule blocks of uninterrupted time to work together.
-(10 above) Start with a time slot for break-out groups to plan their work (scoping, approach, etc.).
+
+* (10 above) Start with a time slot for break-out groups to plan their work (scoping, approach, etc.).
 
 Also:
 
