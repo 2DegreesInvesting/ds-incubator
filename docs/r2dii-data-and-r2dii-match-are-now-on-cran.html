@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 2019-12-10 reprex | ds-incubator</title>
+  <title>Chapter 23 2020-03-32: r2dii.data and r2dii.match are now on CRAN | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 2019-12-10 reprex | ds-incubator" />
+  <meta property="og:title" content="Chapter 23 2020-03-32: r2dii.data and r2dii.match are now on CRAN | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 2019-12-10 reprex | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 23 2020-03-32: r2dii.data and r2dii.match are now on CRAN | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="avoid-hidden-arguments.html"/>
-<link rel="next" href="reusing-tidyverse-code.html"/>
+<link rel="prev" href="refactoring-prepare-for-dplyr-1-0-0.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -370,45 +370,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reprex" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> 2019-12-10 reprex</h1>
+<div id="r2dii.data-and-r2dii.match-are-now-on-cran" class="section level1">
+<h1><span class="header-section-number">Chapter 23</span> 2020-03-32: r2dii.data and r2dii.match are now on CRAN</h1>
+<p>This meetup is to bring attention the the newly-CRAN published packages <code>r2dii.data</code> and <code>r2dii.match</code>, the first two packages published as part of the <code>r2dii</code> suite.</p>
+<div id="how-to-find-out-what-we-have" class="section level2">
+<h2><span class="header-section-number">23.1</span> How to find out what we have?</h2>
 <ul>
-<li><a href="https://reprex.tidyverse.org/index.html#usage">reprex usage</a></li>
-<li><a href="https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html">Reprex do’s and don’ts</a></li>
-<li><a href="https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html#this-seems-like-a-lot-of-work">This seems like a lot of work!</a></li>
-<li><a href="https://reprex.tidyverse.org/articles/articles/datapasta-reprex.html">Using datapasta with reprex</a></li>
+<li>Where to keep an eye on all <code>r2dii</code> packages updates: <a href="https://2degreesinvesting.github.io/r2dii/index.html">r2dii</a></li>
+<li>In particular, new package releases and patch notes + author acknowledgements will be found on the <code>NEWS</code> tab</li>
+<li>Currently published packages on CRAN: <a href="https://CRAN.R-project.org/package=r2dii.data">r2dii.data</a> and <a href="https://CRAN.R-project.org/package=r2dii.match">r2dii.match</a></li>
+<li>Package websites: <a href="https://2degreesinvesting.github.io/r2dii.data/">r2dii.data</a> and <a href="https://2degreesinvesting.github.io/r2dii.match/">r2dii.match</a></li>
 </ul>
-<div id="the-working-directory" class="section level2">
-<h2><span class="header-section-number">9.1</span> The working directory</h2>
-<p>By default, reprex works on a temporary directory.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="reprex.html#cb19-1"></a>reprex<span class="op">::</span><span class="kw">reprex</span>(<span class="kw">getwd</span>())</span></code></pre></div>
-<p>yields</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="reprex.html#cb20-1"></a><span class="kw">getwd</span>()</span>
-<span id="cb20-2"><a href="reprex.html#cb20-2"></a><span class="co">#&gt; [1] &quot;C:/Users/Mauro/AppData/Local/Temp/RtmpcDRddU/reprex108c190d657&quot;</span></span></code></pre></div>
-<p>Use <code>outfile = NA</code> to work on your project’s working directory.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="reprex.html#cb21-1"></a>reprex<span class="op">::</span><span class="kw">reprex</span>(<span class="kw">getwd</span>(), <span class="dt">outfile =</span> <span class="ot">NA</span>)</span></code></pre></div>
-<p>yields</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="reprex.html#cb22-1"></a><span class="kw">getwd</span>()</span>
-<span id="cb22-2"><a href="reprex.html#cb22-2"></a><span class="co">#&gt; [1] &quot;C:/Users/Mauro/git/ds-incubator&quot;</span></span></code></pre></div>
-<p>(See the full description of <code>outfile</code> at <code>?reprex::reprex()</code>.)</p>
-<p>And</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="reprex.html#cb23-1"></a>reprex<span class="op">::</span><span class="kw">reprex</span>(readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;your-file.csv&quot;</span>), <span class="dt">outfile =</span> <span class="ot">NA</span>)</span></code></pre></div>
-<p>yields</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="reprex.html#cb24-1"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;your-file.csv&quot;</span>)</span>
-<span id="cb24-2"><a href="reprex.html#cb24-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
-<span id="cb24-3"><a href="reprex.html#cb24-3"></a><span class="co">#&gt; cols(</span></span>
-<span id="cb24-4"><a href="reprex.html#cb24-4"></a><span class="co">#&gt;   Time = col_double(),</span></span>
-<span id="cb24-5"><a href="reprex.html#cb24-5"></a><span class="co">#&gt;   demand = col_double()</span></span>
-<span id="cb24-6"><a href="reprex.html#cb24-6"></a><span class="co">#&gt; )</span></span>
-<span id="cb24-7"><a href="reprex.html#cb24-7"></a><span class="co">#&gt; # A tibble: 6 x 2</span></span>
-<span id="cb24-8"><a href="reprex.html#cb24-8"></a><span class="co">#&gt;    Time demand</span></span>
-<span id="cb24-9"><a href="reprex.html#cb24-9"></a><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb24-10"><a href="reprex.html#cb24-10"></a><span class="co">#&gt; 1     1    8.3</span></span>
-<span id="cb24-11"><a href="reprex.html#cb24-11"></a><span class="co">#&gt; 2     2   10.3</span></span>
-<span id="cb24-12"><a href="reprex.html#cb24-12"></a><span class="co">#&gt; 3     3   19  </span></span>
-<span id="cb24-13"><a href="reprex.html#cb24-13"></a><span class="co">#&gt; 4     4   16  </span></span>
-<span id="cb24-14"><a href="reprex.html#cb24-14"></a><span class="co">#&gt; 5     5   15.6</span></span>
-<span id="cb24-15"><a href="reprex.html#cb24-15"></a><span class="co">#&gt; 6     7   19.8</span></span></code></pre></div>
+</div>
+<div id="how-to-install-and-use" class="section level2">
+<h2><span class="header-section-number">23.2</span> How to install and use?</h2>
+<p>Packages can now be installed as usual in R:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r2dii-data-and-r2dii-match-are-now-on-cran.html#cb42-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;r2dii.data&quot;</span>)</span>
+<span id="cb42-2"><a href="r2dii-data-and-r2dii-match-are-now-on-cran.html#cb42-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;r2dii.match&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Brief DEMO</li>
+</ul>
+</div>
+<div id="discuss-what-does-it-take-to-publish-a-package-on-cran" class="section level2">
+<h2><span class="header-section-number">23.3</span> Discuss: What does it take to publish a package on CRAN?</h2>
+</div>
+<div id="resources-2" class="section level2">
+<h2><span class="header-section-number">23.4</span> Resources</h2>
+<p>Demo materials:</p>
+<ul>
+<li><a href="https://github.com/2DegreesInvesting/ds-incubator/blob/master/2020-03-31_r2dii-cran-demo/r2dii.data_demo.R">2020-03-31_r2dii-cran-demo/r2dii.data_demo.R</a></li>
+<li><a href="https://github.com/2DegreesInvesting/ds-incubator/blob/master/2020-03-31_r2dii-cran-demo/r2dii.data_demo.R">2020-03-31_r2dii-cran-demo/r2dii.match_demo.R</a></li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a href="https://youtu.be/ovbwghDjxV8">Recording</a></li>
+<li><a href="https://2degreesinvesting.github.io/r2dii.data/" class="uri">https://2degreesinvesting.github.io/r2dii.data/</a></li>
+<li><a href="https://2degreesinvesting.github.io/r2dii.match/" class="uri">https://2degreesinvesting.github.io/r2dii.match/</a></li>
+</ul>
 
 </div>
 </div>
@@ -427,8 +425,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="avoid-hidden-arguments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reusing-tidyverse-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="refactoring-prepare-for-dplyr-1-0-0.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -459,7 +457,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-12-10_reprex.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-03-31_r2dii-cran-demo.Rmd",
 "text": "Edit"
 },
 "history": {
