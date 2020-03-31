@@ -1,4 +1,4 @@
-# 2020-03-32: r2dii.data and r2dii.match are now on CRAN
+# 2020-03-31: r2dii.data and r2dii.match are now on CRAN
 
 This meetup is to bring attention the the newly-CRAN published packages `r2dii.data` and `r2dii.match`, the first two packages published as part of the `r2dii` suite. 
 
