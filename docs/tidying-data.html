@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 2019-11-26: Access permissions for a GitHub organization | ds-incubator</title>
+  <title>Chapter 24 2020-04-08: Tidying data | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 2019-11-26: Access permissions for a GitHub organization | ds-incubator" />
+  <meta property="og:title" content="Chapter 24 2020-04-08: Tidying data | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 2019-11-26: Access permissions for a GitHub organization | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 24 2020-04-08: Tidying data | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="installing-packages-in-r.html"/>
-<link rel="next" href="avoid-hidden-arguments.html"/>
+<link rel="prev" href="r2dii-data-and-r2dii-match-are-now-on-cran.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -371,132 +371,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="access-permissions-for-a-github-organization" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> 2019-11-26: Access permissions for a GitHub organization</h1>
-<p><a href="https://github.com/2DegreesInvesting/ds-incubator/issues/14" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/14</a></p>
-<p><a href="https://twitter.com/mauro_lepore" class="uri">https://twitter.com/mauro_lepore</a></p>
-<div id="situation-1" class="section level2">
-<h2><span class="header-section-number">7.1</span> Situation</h2>
-<p>You want to propose changes to a source repo on a GitHub organization.</p>
-<ul>
-<li><p>Set the usual plumbing (<code>create_from_github()</code>).</p></li>
-<li><p>Initiate and work on your pull request (PR) (<code>pr_init()</code>).</p></li>
-<li><p>Synchronize, push, and submit your PR (<code>pr_sync()</code>, <code>pr_push()</code>).</p></li>
-</ul>
-</div>
-<div id="set-the-usual-plumbing" class="section level2">
-<h2><span class="header-section-number">7.2</span> Set the usual plumbing</h2>
-<ul>
-<li><p>Fork source repo to your user account.</p></li>
-<li><p>Create a local clone of your fork.</p></li>
-<li><p>Connect your local clone with your fork (add remote origin).</p></li>
-<li><p>Connect your local clone with the source repo (add remote upstream).</p></li>
-</ul>
-</div>
-<div id="initiate-and-work-on-your-pr" class="section level2">
-<h2><span class="header-section-number">7.3</span> Initiate and work on your PR</h2>
-<ul>
-<li><p>Create a local branch to host PR.</p></li>
-<li><p>Change the local clone.</p></li>
-<li><p>Commit informing what changed and why.</p></li>
-</ul>
-</div>
-<div id="synchronize-push-and-submit-your-pr" class="section level2">
-<h2><span class="header-section-number">7.4</span> Synchronize, push, and submit your PR</h2>
-<ul>
-<li><p>Synchronize the source repository to get the latest changes.</p></li>
-<li><p>Push your PR to your fork.</p></li>
-<li><p>Submit your PR from your fork to the source repo.</p></li>
-</ul>
-</div>
-<div id="but-something-goes-wrong" class="section level2">
-<h2><span class="header-section-number">7.5</span> But something goes wrong</h2>
-<p>The set up involves too many steps.</p>
-<p>Unless you do it systematically (e.g. with usethis) sooner or later you will forget some step.</p>
-<p>For example, these are my most common mistakes:</p>
-<ul>
-<li><p>I copy the wrong URL so remote origin points to the source repo instead of my fork.</p></li>
-<li><p>I forget to create a new branch and add commits to my local <code>master</code> branch.</p></li>
-</ul>
-</div>
-<div id="what-happens-when-you-push" class="section level2">
-<h2><span class="header-section-number">7.6</span> What happens when you push?</h2>
-<ol style="list-style-type: decimal">
-<li><p>Your commit(s) are now in the PR branch of your fork.</p></li>
-<li><p>Your commit(s) are now in the master branch of your fork.</p></li>
-<li><p>Your commit(s) are now in the PR branch of the source repo.</p></li>
-<li><p>Your commit(s) are now in the master branch of the source repo.</p></li>
-<li><p>You fail to push and get an error.</p></li>
-<li><p>It depends on your role and permission level:</p>
-<ul>
-<li>Roles: Owner, …, member, collaborator.</li>
-<li>Permission levels: Admin, …, push (write), read.</li>
-</ul></li>
-</ol>
-</div>
-<div id="owner-billing-manager-member" class="section level2">
-<h2><span class="header-section-number">7.7</span> <a href="https://help.github.com/en/github/getting-started-with-github/access-permissions-on-github">Owner, billing manager &amp; member</a></h2>
-<p><strong>Organization members can have owner, billing manager, or member roles.</strong></p>
-<p><strong>Owners</strong> have complete administrative access to your organization, while <strong>billing managers</strong> can manage billing settings. <strong>Member</strong> is the default role for everyone else.</p>
-</div>
-<div id="members-teams-outside-collaborators" class="section level2">
-<h2><span class="header-section-number">7.8</span> Members, teams &amp; outside collaborators</h2>
-<ul>
-<li>You can set the default of what <strong>members</strong> can do for all repos.</li>
-<li>You can manage access permissions for multiple members at a time with <strong>teams</strong>.</li>
-<li>You can invite <strong>outside collaborators</strong> to give them access to <strong>specific repositories</strong>.</li>
-</ul>
-</div>
-<div id="permission-levels-for-repositories" class="section level2">
-<h2><span class="header-section-number">7.9</span> Permission levels for repositories</h2>
-<ul>
-<li><p><strong>Read</strong>: Recommended for non-code contributors who want to view or discuss your project.</p></li>
-<li><p><strong>Triage</strong>: Recommended for contributors who need to proactively manage issues and PRs without write access.</p></li>
-<li><p><strong>Write</strong>: Recommended for contributors who actively push to your project.</p></li>
-<li><p><strong>Maintain</strong>: Recommended for project managers who need to manage the repository without access to sensitive or destructive actions.</p></li>
-</ul>
-<p>…</p>
-</div>
-<div id="permission-levels-for-repositories-continued" class="section level2">
-<h2><span class="header-section-number">7.10</span> Permission levels for repositories (continued)</h2>
-<p>…</p>
-<ul>
-<li><strong>Admin</strong>: Recommended for people who need full access to the project, <strong>including sensitive and destructive actions</strong> like managing security or deleting a repository.</li>
-</ul>
-<p><strong>Organization owners have admin permissions for every repository owned by the organization</strong> (<a href="https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#repository-access-for-each-permission-level">table</a>).</p>
-</div>
-<div id="example" class="section level2">
-<h2><span class="header-section-number">7.11</span> Example</h2>
-<div id="org-settings-people" class="section level3">
-<h3><span class="header-section-number">7.11.1</span> Org settings: People</h3>
-<p><img src="https://i.imgur.com/gmUDwRF.png" width = 700 /></p>
-</div>
-<div id="an-owners-privileges" class="section level3">
-<h3><span class="header-section-number">7.11.2</span> An owner’s privileges</h3>
-<p><img src="https://i.imgur.com/Y3R0Hhs.png" width = 750 /></p>
-</div>
-<div id="org-settings-member-privileges" class="section level3">
-<h3><span class="header-section-number">7.11.3</span> Org settings: Member privileges</h3>
-<p><img src="https://i.imgur.com/qiyUNBO.png" width = 750 /></p>
-</div>
-<div id="repo-settings-collaborators-teams" class="section level3">
-<h3><span class="header-section-number">7.11.4</span> Repo settings: Collaborators &amp; teams</h3>
-<p><img src="https://i.imgur.com/46vPoGT.png" width = 750 /></p>
-</div>
-<div id="repo-settings-branches" class="section level3">
-<h3><span class="header-section-number">7.11.5</span> Repo settings: Branches</h3>
-<p><img src="https://i.imgur.com/raoaf6i.png" width = 750 /></p>
-</div>
-</div>
-<div id="conclusion" class="section level2">
-<h2><span class="header-section-number">7.12</span> Conclusion</h2>
-<p><strong>“You do not rise to the level of your goals. You fall to the level of your systems” – <a href="https://jamesclear.com/atomic-habits">James Clear, Atomic Habits</a></strong></p>
-<ul>
-<li><strong>People should have just the access they need.</strong></li>
-<li><strong><a href="https://www.amazon.com/Pragmatic-Programmer-journey-mastery-Anniversary/dp/0135957052/ref=asc_df_0135957052/?tag=hyprod-20&amp;linkCode=df0&amp;hvadid=385599638286&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=10153582926800634949&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9027584&amp;hvtargid=pla-826212996228&amp;psc=1&amp;tag=&amp;ref=&amp;adgrpid=79288120515&amp;hvpone=&amp;hvptwo=&amp;hvadid=385599638286&amp;hvpos=1o1&amp;hvnetw=g&amp;hvrand=10153582926800634949&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=9027584&amp;hvtargid=pla-826212996228">Be pragmatic</a>.</strong></li>
-</ul>
+<div id="tidying-data" class="section level1">
+<h1><span class="header-section-number">Chapter 24</span> 2020-04-08: Tidying data</h1>
+<p><em>Comparing gather to pivot_longer and spread to pivot_wider</em> (<a href="https://github.com/2DegreesInvesting/ds-incubator/issues/33">GitHub issue</a>)</p>
+<p><a href="https://github.com/cjyetman">@cjyetman</a> run a live example, answered questions, and lead the discussion (<a href="https://youtu.be/VA3qaeTKTYk">recording</a>; <a href="https://github.com/2DegreesInvesting/ds-incubator/issues/33#issuecomment-610424167">code</a>).</p>
+<p>You may like this content if you use <a href="https://www.tidyverse.org/packages/">tidyverse packages</a> to analyze tidy data (as defined <a href="https://vita.had.co.nz/papers/tidy-data.pdf">here</a> and <a href="https://r4ds.had.co.nz/tidy-data.html">here</a>). This includes 2DII folks and beyond.</p>
+<blockquote>
+<p>Tidy datasets are easy to manipulate, model and visualise, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table. This framework makes it easy to tidy messy datasets because only a small set of tools are needed to deal with a wide range of un-tidy datasets. This structure also makes it easier to develop tidy tools for data analysis, tools that both input and output tidy datasets. The advantages of a consistent data structure and matching tools are demonstrated with a case study free from mundane data manipulation chores.
+– <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a></p>
+</blockquote>
 
-</div>
 </div>
 <div id="disqus_thread"></div>
 <script>
@@ -513,8 +397,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="installing-packages-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="avoid-hidden-arguments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r2dii-data-and-r2dii-match-are-now-on-cran.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -545,7 +429,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-11-26_access-permissions-on-github.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-04-08_tidying-data.Rmd",
 "text": "Edit"
 },
 "history": {
