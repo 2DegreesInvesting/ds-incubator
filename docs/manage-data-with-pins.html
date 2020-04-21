@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 2019-10-22: Encodings | ds-incubator</title>
+  <title>Chapter 25 2020-04-21: Manage data with pins | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 2019-10-22: Encodings | ds-incubator" />
+  <meta property="og:title" content="Chapter 25 2020-04-21: Manage data with pins | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 2019-10-22: Encodings | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 25 2020-04-21: Manage data with pins | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="setup-github-r-rstudio-git.html"/>
-<link rel="next" href="pull-request-helpers.html"/>
+<link rel="prev" href="tidying-data.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -379,11 +379,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="encodings" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> 2019-10-22: Encodings</h1>
-<p><a href="https://github.com/orgs/2DegreesInvesting/people/cjyetman">CJ Yetman</a></p>
-<p><a href="https://github.com/2DegreesInvesting/ds-incubator/issues/7" class="uri">https://github.com/2DegreesInvesting/ds-incubator/issues/7</a></p>
+<div id="manage-data-with-pins" class="section level1">
+<h1><span class="header-section-number">Chapter 25</span> 2020-04-21: Manage data with pins</h1>
+<div id="who-is-the-audience" class="section level2">
+<h2><span class="header-section-number">25.1</span> Who is the audience?</h2>
+<p>Analysts, data managers, software developers at 2DII and beyond.</p>
+</div>
+<div id="why-is-this-important" class="section level2">
+<h2><span class="header-section-number">25.2</span> Why is this important?</h2>
+<p>Following a discussion on managing and using data (#35) we concluded we can improve.</p>
+<p>Before we invest in any one approach we may want to explore a number of potentially good alternatives. A system would be a good candidate if it has this properties:</p>
+<ul>
+<li><input type="checkbox" disabled="" />
+1. Allows us to control permissions to read and write data</li>
+<li><input type="checkbox" disabled="" />
+2. Supports version control with Git and GitHub – tools we already know.</li>
+<li><input type="checkbox" disabled="" />
+3. Hosts data online yet allows using a data from a cache stored locally.</li>
+<li><input type="checkbox" disabled="" />
+4. Can handle datasets of the maximum size we need.</li>
+<li><input type="checkbox" disabled="" />
+5. Plays well with R, and maybe Python.</li>
+<li><input type="checkbox" disabled="" />
+6. Is low cost or better free.</li>
+<li><input type="checkbox" disabled="" />
+7. Implements tools that are as familiar as possible, e.g. git and GitHub as opposed</li>
+</ul>
+</div>
+<div id="what-should-be-covered" class="section level2">
+<h2><span class="header-section-number">25.3</span> What should be covered?</h2>
+<ol style="list-style-type: decimal">
+<li>Show how the <a href="http://pins.rstudio.com/">pins package</a> meets these requirements.</li>
+<li>Discuss what requirements I forgot to list.</li>
+<li>Questions and answers.</li>
+</ol>
+</div>
+<div id="suggested-speakers-or-contributors" class="section level2">
+<h2><span class="header-section-number">25.4</span> Suggested speakers or contributors</h2>
+<p>I plan to run a demo, then expect questions, and comments from everyone else.</p>
+</div>
+<div id="resources-3" class="section level2">
+<h2><span class="header-section-number">25.5</span> Resources</h2>
+<ul>
+<li><a href="http://pins.rstudio.com/">pins package</a></li>
+<li><a href="https://youtu.be/kS_0s0eS1Xw">Recording - just demo (10’)</a></li>
+<li><a href="https://youtu.be/-HtB6duQnD8">Recording - demo + discussion (30’)</a></li>
+</ul>
+</div>
+<div id="qa-and-discussion" class="section level2">
+<h2><span class="header-section-number">25.6</span> Q&amp;A and discussion</h2>
+<p>Questions:</p>
+<ul>
+<li>Where does the cache live?</li>
+<li>Does it work with private repos?</li>
+<li>What happens if I don’t have internet?</li>
+<li>How about <code>memoise::memoise()</code>?</li>
+<li>What is the maximum size of files we have? (thanks <span class="citation">(<span class="citeproc-not-found" data-reference-id="cjyetman"><strong>???</strong></span>)</span>)</li>
+<li>Azure has no upper limit on file size (thanks <span class="citation">(<span class="citeproc-not-found" data-reference-id="AlexAxthelm"><strong>???</strong></span>)</span>)</li>
+<li>File format plays an important role (thanks <span class="citation">(<span class="citeproc-not-found" data-reference-id="pranavpandya84"><strong>???</strong></span>)</span>)</li>
+</ul>
+<p>Suggestions:</p>
+<p>Table different alternatives to better see pros and cons (thanks <span class="citation">(<span class="citeproc-not-found" data-reference-id="2diiKlaus"><strong>???</strong></span>)</span>)</p>
 
+</div>
 </div>
 <div id="disqus_thread"></div>
 <script>
@@ -400,8 +458,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="setup-github-r-rstudio-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="pull-request-helpers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidying-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -432,7 +490,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-10-22-encodings.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-04-21_manage-data-with-pins.Rmd",
 "text": "Edit"
 },
 "history": {
