@@ -1,6 +1,6 @@
 # 2020-04-27: Query the database directly with dbplyr
 
-<https://github.com/2DegreesInvesting/ds-incubator/issues/FIXME>
+<https://github.com/2DegreesInvesting/ds-incubator/issues/39>
 
 ## The data science workflow
 
@@ -22,7 +22,7 @@
 
 <img src=http://i.imgur.com/RNNfK7w.png width=700 />
 
-## Better use cache and version control
+## Better use a cache, Git and GitHub
 
 <img src=http://i.imgur.com/sQ3vmeF.png width=700 />
 
