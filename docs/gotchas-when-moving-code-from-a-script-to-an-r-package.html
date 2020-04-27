@@ -324,8 +324,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="26.3" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#data-is-at-the-core"><i class="fa fa-check"></i><b>26.3</b> Data is at the core</a></li>
 <li class="chapter" data-level="26.4" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#data-is-now-our-focus"><i class="fa fa-check"></i><b>26.4</b> Data is now our focus</a></li>
 <li class="chapter" data-level="26.5" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#dropbox-limits-how-we-work-with-data"><i class="fa fa-check"></i><b>26.5</b> Dropbox limits how we work with data</a></li>
-<li class="chapter" data-level="26.6" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#better-alternatives-use-a-cache-and-support-version-control"><i class="fa fa-check"></i><b>26.6</b> Better alternatives use a cache and support version-control</a></li>
-<li class="chapter" data-level="26.7" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#today-cj-will-show-how-to-get-data-from-the-database"><i class="fa fa-check"></i><b>26.7</b> Today CJ will show how to get data from the database</a></li>
+<li class="chapter" data-level="26.6" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#better-use-cache-and-version-control"><i class="fa fa-check"></i><b>26.6</b> Better use cache and version control</a></li>
+<li class="chapter" data-level="26.7" data-path="query-the-database-directly-with-dbplyr.html"><a href="query-the-database-directly-with-dbplyr.html#today-get-data-from-the-database"><i class="fa fa-check"></i><b>26.7</b> Today: Get data from the database</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><i class="fa fa-check"></i>Gotchas when moving code from a script to an R package</a><ul>
 <li class="chapter" data-level="26.8" data-path="gotchas-when-moving-code-from-a-script-to-an-r-package.html"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#packaging"><i class="fa fa-check"></i><b>26.8</b> Packaging</a><ul>
@@ -694,14 +694,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb73-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-4"></a>} <span class="cf">else</span> {</span>
 <span id="cb73-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-5"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb73-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-6"></a>}</span>
-<span id="cb73-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-7"></a><span class="co">#&gt; [1] &quot;5, 7 Nope!&quot;</span></span></code></pre></div>
+<span id="cb73-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-7"></a><span class="co">#&gt; [1] &quot;1, 8 Nope!&quot;</span></span></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-1"></a><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</span>
 <span id="cb74-2"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-2"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</span>
 <span id="cb74-3"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-3"></a>} <span class="cf">else</span> {</span>
 <span id="cb74-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-4"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb74-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-5"></a>}</span>
-<span id="cb74-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-6"></a><span class="co">#&gt; [1] &quot;5, 7 Nope!&quot;</span></span></code></pre></div>
+<span id="cb74-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-6"></a><span class="co">#&gt; [1] &quot;1, 8 Nope!&quot;</span></span></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">
