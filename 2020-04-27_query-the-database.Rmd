@@ -2,35 +2,30 @@
 
 <https://github.com/2DegreesInvesting/ds-incubator/issues/FIXME>
 
-### The data science workflow
+## The data science workflow
 
 <img src=http://i.imgur.com/nSPY0er.png width=700 />
 
-### My cheap version
+## My cheap version
 
 <img src=http://i.imgur.com/GWwMcZV.png width=700 />
 
-### Data is at the core
+## Data is at the core
 
 <img src=http://i.imgur.com/BqxeXTx.png width=700 />
 
-### Data is now our focus
+## Data is now our focus
 
 <img src=http://i.imgur.com/thstxHD.png width=700 />
 
-### Dropbox limits how we work with data
+## Dropbox limits how we work with data
 
 <img src=http://i.imgur.com/RNNfK7w.png width=700 />
 
-### Better alternatives use a cache and support version-control
+## Better alternatives use a cache and support version-control
 
-<img src=http://i.imgur.com/Heqyloj.png width=700 />
+<img src=http://i.imgur.com/sQ3vmeF.png width=700 />
 
-### Today CJ will show how to get data from the database
+## Today CJ will show how to get data from the database
 
 <img src=http://i.imgur.com/YuBcBIP.png width=700 />
-
-### Today CJ will show how to get data from the database
-
-<img src=http://i.imgur.com/O9SFwHH.png width=700 />
-
