@@ -450,7 +450,7 @@ if (all(is_even_between_5and10)) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "3, 9 Nope!"
+#> [1] "5, 7 Nope!"
 ```
 
 Bad.
@@ -462,7 +462,7 @@ if (all((x %% 2 == 0) & (x >= 5L) & (x <= 10L))) {
 } else {
   say(x, "Nope!")
 }
-#> [1] "3, 9 Nope!"
+#> [1] "5, 7 Nope!"
 ```
 
 <https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36>
@@ -485,6 +485,26 @@ f <- function(data) {
 }
 
 f(tibble::tibble(A.Column = 1, Another.Column = 1))
+#> Warning in stringr::str_replace_all(str = string, pattern = replace): partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace(str = transliterated_names, pattern = "\\A[\
+#> \h\\s\\p{Punctuation}\\p{Symbol}\\p{Separator}\\p{Other}]*(.*)$", : partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace_all(str = string, pattern = replace): partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace(str = transliterated_names, pattern = "\\A[\
+#> \h\\s\\p{Punctuation}\\p{Symbol}\\p{Separator}\\p{Other}]*(.*)$", : partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace_all(str = string, pattern = replace): partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace(str = transliterated_names, pattern = "\\A[\
+#> \h\\s\\p{Punctuation}\\p{Symbol}\\p{Separator}\\p{Other}]*(.*)$", : partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace_all(str = string, pattern = replace): partial
+#> argument match of 'str' to 'string'
+#> Warning in stringr::str_replace(str = transliterated_names, pattern = "\\A[\
+#> \h\\s\\p{Punctuation}\\p{Symbol}\\p{Separator}\\p{Other}]*(.*)$", : partial
+#> argument match of 'str' to 'string'
 #> # A tibble: 1 x 1
 #>   A.Column
 #>      <dbl>

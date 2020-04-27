@@ -136,10 +136,9 @@ prepare_data(data)
 
 ```r
 getOption("stringsAsFactors")
-#> [1] TRUE
+#> [1] FALSE
 data.frame(x = "a")$x
-#> [1] a
-#> Levels: a
+#> [1] "a"
 
 old_options <- options(stringsAsFactors = FALSE)
 on.exit(old_options)

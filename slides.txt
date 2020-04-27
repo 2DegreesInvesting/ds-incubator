@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r echo = FALSE}
+```{r echo = FALSE, eval=FALSE}
 countdown::countdown(
   minutes = 10L,
   seconds = 00L,

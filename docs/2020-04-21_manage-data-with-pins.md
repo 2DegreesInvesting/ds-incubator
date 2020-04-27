@@ -1,5 +1,7 @@
 # 2020-04-21: Manage data with pins
 
+<https://github.com/2DegreesInvesting/ds-incubator/issues/38>
+
 ## Who is the audience?
 
 Analysts, data managers, software developers at 2DII and beyond.
@@ -10,13 +12,13 @@ Following a discussion on managing and using data (#35) we concluded we can impr
 
 Before we invest in any one approach we may want to explore a number of potentially good alternatives. A system would be a good candidate if it has this properties:
 
-- [ ] 1. Allows us to control permissions to read and write data
-- [ ] 2. Supports version control with Git and GitHub -- tools we already know.
-- [ ] 3. Hosts data online yet allows using a data from a cache stored locally.
-- [ ] 4. Can handle datasets of the maximum size we need.
-- [ ] 5. Plays well with R, and maybe Python.
-- [ ] 6. Is low cost or better free.
-- [ ] 7. Implements tools that are as familiar as possible, e.g. git and GitHub as opposed
+1. Allows us to control permissions to read and write data
+2. Supports version control with Git and GitHub -- tools we already know.
+3. Hosts data online yet allows using a data from a cache stored locally.
+4. Can handle datasets of the maximum size we need.
+5. Plays well with R, and maybe Python.
+6. Is low cost or better free.
+7. Implements tools that are as familiar as possible, e.g. git and GitHub as opposed
 
 
 ## What should be covered?

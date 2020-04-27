@@ -22,10 +22,10 @@
 
 <img src=http://i.imgur.com/RNNfK7w.png width=700 />
 
-## Better alternatives use a cache and support version-control
+## Better use cache and version control
 
 <img src=http://i.imgur.com/sQ3vmeF.png width=700 />
 
-## Today CJ will show how to get data from the database
+## Today: Get data from the database
 
 <img src=http://i.imgur.com/YuBcBIP.png width=700 />
