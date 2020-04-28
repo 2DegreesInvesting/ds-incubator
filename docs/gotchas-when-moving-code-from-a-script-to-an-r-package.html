@@ -322,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="26.1" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#the-data-science-workflow"><i class="fa fa-check"></i><b>26.1</b> The data science workflow</a></li>
 <li class="chapter" data-level="26.2" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#the-inputoutput-of-data-is-implicit"><i class="fa fa-check"></i><b>26.2</b> The input/output of data is implicit</a></li>
 <li class="chapter" data-level="26.3" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#data-represented-explicitly"><i class="fa fa-check"></i><b>26.3</b> Data represented explicitly</a></li>
-<li class="chapter" data-level="26.4" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#good-systems-support-local-remote-access"><i class="fa fa-check"></i><b>26.4</b> Good systems support local &amp; remote access</a></li>
+<li class="chapter" data-level="26.4" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#best-is-to-allow-local-and-remote-access"><i class="fa fa-check"></i><b>26.4</b> Best is to allow local and remote access</a></li>
 <li class="chapter" data-level="26.5" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#dropbox"><i class="fa fa-check"></i><b>26.5</b> Dropbox</a></li>
 <li class="chapter" data-level="26.6" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#pins"><i class="fa fa-check"></i><b>26.6</b> pins</a></li>
 <li class="chapter" data-level="26.7" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#today-get-data-from-the-database"><i class="fa fa-check"></i><b>26.7</b> Today: Get data from the database</a></li>
@@ -694,14 +694,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb73-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-4"></a>} <span class="cf">else</span> {</span>
 <span id="cb73-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-5"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb73-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-6"></a>}</span>
-<span id="cb73-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-7"></a><span class="co">#&gt; [1] &quot;5, 4 Nope!&quot;</span></span></code></pre></div>
+<span id="cb73-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb73-7"></a><span class="co">#&gt; [1] &quot;4, 9 Nope!&quot;</span></span></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-1"></a><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</span>
 <span id="cb74-2"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-2"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</span>
 <span id="cb74-3"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-3"></a>} <span class="cf">else</span> {</span>
 <span id="cb74-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-4"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb74-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-5"></a>}</span>
-<span id="cb74-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-6"></a><span class="co">#&gt; [1] &quot;5, 4 Nope!&quot;</span></span></code></pre></div>
+<span id="cb74-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb74-6"></a><span class="co">#&gt; [1] &quot;4, 9 Nope!&quot;</span></span></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">

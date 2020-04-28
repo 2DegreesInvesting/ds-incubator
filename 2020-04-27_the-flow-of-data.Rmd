@@ -4,6 +4,8 @@
 
 <img src=http://i.imgur.com/GWwMcZV.png width=700 />
 
+[R for data science](ttps://r4ds.had.co.nz/introduction.html)
+
 ## The input/output of data is implicit
 
 <img src=http://i.imgur.com/ImXn1pt.png width=700 />
@@ -14,7 +16,7 @@
 
 <img src=http://i.imgur.com/zIFUT5D.png width=700 />
 
-## Good systems support local & remote access
+## Best is to allow local and remote access
 
 <img src=http://i.imgur.com/hmqTbNB.png width=700 />
 
