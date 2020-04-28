@@ -1,22 +1,14 @@
-# 2020-04-27: Query the database directly with dbplyr
-
-<https://github.com/2DegreesInvesting/ds-incubator/issues/39>
+# The flow of data
 
 ## The data science workflow
 
-<img src=http://i.imgur.com/nSPY0er.png width=700 />
-
-## My cheap version
-
 <img src=http://i.imgur.com/GWwMcZV.png width=700 />
+
+Source: [R for data science](ttps://r4ds.had.co.nz/introduction.html)
 
 ## Data is at the core
 
 <img src=http://i.imgur.com/BqxeXTx.png width=700 />
-
-## Data is now our focus
-
-<img src=http://i.imgur.com/thstxHD.png width=700 />
 
 ## Dropbox limits how we work with data
 
