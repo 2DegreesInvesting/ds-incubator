@@ -1,10 +1,8 @@
 # Get data directly from the database 
 
-<https://github.com/2DegreesInvesting/ds-incubator/issues/40>
+The relevant issue is [this](https://github.com/2DegreesInvesting/ds-incubator/issues/40), and the code that CJ showed today is below. 
 
-## Code shown live
-
-### File "test\_db\_portcheck.R"
+## File "test\_db\_portcheck.R"
 
 ```r
 library(dplyr)
@@ -190,7 +188,7 @@ isins %>% left_join(fin_data_db %>% select(isin, company_name), copy = TRUE) %>%
 dbDisconnect(datastore)
 ```
 
-### File "simulate\_portcheck\_code.R"
+## File "simulate\_portcheck\_code.R"
 
 ```r
 library(readr)
