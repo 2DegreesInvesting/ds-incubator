@@ -1,16 +1,16 @@
 # The flow of data
 
+<https://github.com/2DegreesInvesting/ds-incubator/issues/40>
+
 ## The data science workflow
 
 <img src=http://i.imgur.com/GWwMcZV.png width=700 />
 
-[R for data science](ttps://r4ds.had.co.nz/introduction.html)
+[R for data science](https://r4ds.had.co.nz/introduction.html)
 
 ## The input/output of data is implicit
 
 <img src=http://i.imgur.com/ImXn1pt.png width=700 />
-
-[R for data science](ttps://r4ds.had.co.nz/introduction.html)
 
 ## Data represented explicitly
 
