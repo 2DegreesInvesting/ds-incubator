@@ -318,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="25.5" data-path="manage-data-with-pins.html"><a href="manage-data-with-pins.html#resources-3"><i class="fa fa-check"></i><b>25.5</b> Resources</a></li>
 <li class="chapter" data-level="25.6" data-path="manage-data-with-pins.html"><a href="manage-data-with-pins.html#qa-and-discussion"><i class="fa fa-check"></i><b>25.6</b> Q&amp;A and discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html"><i class="fa fa-check"></i><b>26</b> The flow of data</a><ul>
+<li class="chapter" data-level="26" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html"><i class="fa fa-check"></i><b>26</b> 2020-04-27: The flow of data</a><ul>
 <li class="chapter" data-level="26.1" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#the-data-science-workflow"><i class="fa fa-check"></i><b>26.1</b> The data science workflow</a></li>
 <li class="chapter" data-level="26.2" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#the-inputoutput-of-data-is-implicit"><i class="fa fa-check"></i><b>26.2</b> The input/output of data is implicit</a></li>
 <li class="chapter" data-level="26.3" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#data-represented-explicitly"><i class="fa fa-check"></i><b>26.3</b> Data represented explicitly</a></li>
@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="26.6" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#pins"><i class="fa fa-check"></i><b>26.6</b> pins</a></li>
 <li class="chapter" data-level="26.7" data-path="the-flow-of-data.html"><a href="the-flow-of-data.html#today-get-data-from-the-database"><i class="fa fa-check"></i><b>26.7</b> Today: Get data from the database</a></li>
 </ul></li>
-<li class="chapter" data-level="27" data-path="get-data-directly-from-the-database.html"><a href="get-data-directly-from-the-database.html"><i class="fa fa-check"></i><b>27</b> Get data directly from the database</a><ul>
+<li class="chapter" data-level="27" data-path="get-data-directly-from-the-database.html"><a href="get-data-directly-from-the-database.html"><i class="fa fa-check"></i><b>27</b> 2020-04-27: Get data directly from the database</a><ul>
 <li class="chapter" data-level="27.1" data-path="get-data-directly-from-the-database.html"><a href="get-data-directly-from-the-database.html#file-test_db_portcheck.r"><i class="fa fa-check"></i><b>27.1</b> File “test_db_portcheck.R”</a></li>
 <li class="chapter" data-level="27.2" data-path="get-data-directly-from-the-database.html"><a href="get-data-directly-from-the-database.html#file-simulate_portcheck_code.r"><i class="fa fa-check"></i><b>27.2</b> File “simulate_portcheck_code.R”</a></li>
 </ul></li>
@@ -701,14 +701,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb75-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb75-4"></a>} <span class="cf">else</span> {</span>
 <span id="cb75-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb75-5"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb75-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb75-6"></a>}</span>
-<span id="cb75-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb75-7"></a><span class="co">#&gt; [1] &quot;10, 1 Nope!&quot;</span></span></code></pre></div>
+<span id="cb75-7"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb75-7"></a><span class="co">#&gt; [1] &quot;1, 5 Nope!&quot;</span></span></code></pre></div>
 <p>Bad.</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-1"></a><span class="cf">if</span> (<span class="kw">all</span>((x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&gt;=</span><span class="st"> </span>5L) <span class="op">&amp;</span><span class="st"> </span>(x <span class="op">&lt;=</span><span class="st"> </span>10L))) {</span>
 <span id="cb76-2"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-2"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Yeah!&quot;</span>)</span>
 <span id="cb76-3"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-3"></a>} <span class="cf">else</span> {</span>
 <span id="cb76-4"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-4"></a>  <span class="kw">say</span>(x, <span class="st">&quot;Nope!&quot;</span>)</span>
 <span id="cb76-5"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-5"></a>}</span>
-<span id="cb76-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-6"></a><span class="co">#&gt; [1] &quot;10, 1 Nope!&quot;</span></span></code></pre></div>
+<span id="cb76-6"><a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html#cb76-6"></a><span class="co">#&gt; [1] &quot;1, 5 Nope!&quot;</span></span></code></pre></div>
 <p><a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p>
 </div>
 <div id="program-for-columns-with-clean_names" class="section level3">

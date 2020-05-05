@@ -1,4 +1,4 @@
-# Get data directly from the database 
+# 2020-04-27: Get data directly from the database 
 
 The relevant issue is [this](https://github.com/2DegreesInvesting/ds-incubator/issues/40), and the code that CJ showed today is below. 
 
