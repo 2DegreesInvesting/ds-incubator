@@ -2,7 +2,7 @@
 
 Much of 2DII's value stems from our ability to produce quality, reproducible reports. Sometimes, this involves us tweaking portions of the analysis, and manually re-running (hoping that we haven't broken anything downstream). Drake is a tool that aims to automate and facilitate this process.
 
-At this meetup we watched a 6' video introducing the drake package, and discussed how 2DII might benefit from drake. @jdhoffa lead the meeting. @AlexAxthelm, co-author of drake, answered questions. Everyone showed interest by asking lots of questions.
+At this meetup we watched a 6' video introducing the drake package, and discussed how 2DII might benefit from drake. Jackson (\@jdhoffa) lead the meeting and rose lots of interest. Many folks asked questions and Alex (\@AlexAxthelm) answered them (Alex co-authors drake). 
 
 ## Resources
 
