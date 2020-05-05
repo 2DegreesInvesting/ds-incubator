@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 2019-10-15: Setup GitHub, R, RStudio, Git | ds-incubator</title>
+  <title>Chapter 28 2020-05-05: Introduction to drake | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 2019-10-15: Setup GitHub, R, RStudio, Git | ds-incubator" />
+  <meta property="og:title" content="Chapter 28 2020-05-05: Introduction to drake | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 2019-10-15: Setup GitHub, R, RStudio, Git | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 28 2020-05-05: Introduction to drake | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="encodings.html"/>
+<link rel="prev" href="get-data-directly-from-the-database.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -395,102 +395,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup-github-r-rstudio-git" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> 2019-10-15: Setup GitHub, R, RStudio, Git</h1>
-<p>Based on <a href="https://happygitwithr.com/">Happy Git and GitHub for the useR, by Jenny Bryan, the STAT 545 TAs, and Jim Hester</a>.</p>
-<div id="register-a-free-github-account" class="section level2">
-<h2><span class="header-section-number">1.1</span> Register a free GitHub account</h2>
+<div id="introduction-to-drake" class="section level1">
+<h1><span class="header-section-number">Chapter 28</span> 2020-05-05: Introduction to drake</h1>
+<p>Much of 2DII’s value stems from our ability to produce quality, reproducible reports. Sometimes, this involves us tweaking portions of the analysis, and manually re-running (hoping that we haven’t broken anything downstream). Drake is a tool that aims to automate and facilitate this process.</p>
+<p>At this meetup we watched a 6’ video introducing the drake package, and discussed how 2DII might benefit from drake. <span class="citation">(<span class="citeproc-not-found" data-reference-id="jdhoffa"><strong>???</strong></span>)</span> lead the meeting. <span class="citation">(<span class="citeproc-not-found" data-reference-id="AlexAxthelm"><strong>???</strong></span>)</span>, co-author of drake, answered questions. Everyone showed interest by asking lots of questions.</p>
+<div id="resources-4" class="section level2">
+<h2><span class="header-section-number">28.1</span> Resources</h2>
 <ul>
-<li><p>Your username should be timeless, so you accumulate credit (exclude your employer; add your work email to your personal account).</p></li>
-<li><p>Your GitHub username, and definiterly your profile, should have your name.</p></li>
+<li><a href="https://youtu.be/_Cl4odbiG78">Recording</a></li>
+<li><a href="https://books.ropensci.org/drake/index.html">The drake R Package User Manual</a>.</li>
+<li><a href="https://milesmcbain.xyz/the-drake-post/">Benefits of a function-based diet (The {drake} post)</a>.</li>
 </ul>
-<p><img src="https://i.imgur.com/thyv7ax.png" /></p>
-<p>This makes it easy for people to search your name and find your username. People need your username to <code>@mention</code> you on GitHub (e.g. to thank you or discuss issues).</p>
-<p><img src="https://i.imgur.com/BMcaky9.png" /></p>
-</div>
-<div id="install-or-update-r-and-rstudio-and-install-git" class="section level2">
-<h2><span class="header-section-number">1.2</span> Install or update R and RStudio AND Install Git</h2>
-<p>How to (a) <a href="https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio">think</a>
-(b) <a href="https://community.rstudio.com/t/should-i-update-all-my-r-packages-frequently-yes-no-why/5856/4?u=mauro_lepore">about</a> (c) <a href="https://cran.r-project.org/web/packages/installr/index.html">upgrading software</a>.</p>
-<p><img src="https://i.imgur.com/X30oCE1.png" /></p>
-<blockquote>
-<p><strong>If it hurts so it more often</strong>. If you have this kind of exponential relationship, then if you do it more frequently, you can drastically reduce the pain.</p>
-<p>– Martin Fowler in <a href="https://martinfowler.com/bliki/FrequencyReducesDifficulty.html">FrequencyReducesDifficulty</a></p>
-</blockquote>
-</div>
-<div id="introduce-yourself-to-git-todo" class="section level2">
-<h2><span class="header-section-number">1.3</span> Introduce yourself to Git (TODO)</h2>
-<pre><code># My ~/.gitconfig at the start
-git config --global --list
-
-#Email associated with GitHub
-git config --global user.email &quot;maurolepore@gmail.com&quot;
-git config --global user.name &quot;Mauro Lepore&quot;
-
-# Other very useful configurations
-git config --global push.default &quot;current&quot;
-git config --global core.editor &quot;notepad&quot;
-git config --global credential.helper &quot;manager&quot;
-
-# My ~/.gitconfig at the end
-git config --global --list</code></pre>
-</div>
-<div id="prove-local-git-can-talk-to-github-skip" class="section level2">
-<h2><span class="header-section-number">1.4</span> Prove local Git can talk to GitHub (SKIP)</h2>
-<p>Login to <a href="http://github.com/" class="uri">http://github.com/</a></p>
-<p>On GitHub:</p>
-<ul>
-<li>Create a repo</li>
-<li>Add description.</li>
-<li>Add README.md</li>
-<li>Copy https clone link</li>
-</ul>
-<p>On Git Bash:</p>
-<pre><code># Clone new repo and move to it
-git clone &lt;URL&gt;
-cd &lt;new repo&gt;
-
-# Edit README
-## Before
-cat README.md
-echo &quot;A line from local computer&quot; &gt;&gt; README.md
-## After
-cat README.md
-
-# Commit and push
-git add .
-git commit -m &quot;Edit README from local computer&quot;
-git push</code></pre>
-<ul>
-<li>Check if credentials are managed correctly: Repeat edit, commit and push (you should no longer be challenged for a username and password).</li>
-</ul>
-</div>
-<div id="cache-your-username-and-password-or-set-up-ssh-keys-done" class="section level2">
-<h2><span class="header-section-number">1.5</span> Cache your username and password or set up SSH keys (DONE)</h2>
-<p>We should be done. We already added this:</p>
-<pre><code>git config —global credential.helper manager </code></pre>
-<p>If we need to remove your git credentials on Windows, they are here:</p>
-<p><em>Control Panel &gt; user accounts &gt; credential manager &gt; Windows credentials &gt; Generic credentials</em></p>
-<p>SSH: Skip.</p>
-</div>
-<div id="prove-rstudio-can-find-local-git-todo" class="section level2">
-<h2><span class="header-section-number">1.6</span> Prove RStudio can find local Git (TODO)</h2>
-<p>Login to <a href="http://github.com/" class="uri">http://github.com/</a></p>
-<p>On GitHub:</p>
-<ul>
-<li>Create a repo</li>
-<li>Add description.</li>
-<li>Add README.md</li>
-<li>Copy https clone link</li>
-</ul>
-<p>On RStudio:</p>
-<p>File &gt; New Project … &gt; Version Control &gt; Git</p>
-<p>Edit README, commit and push.</p>
-<p>Do it twice to confirm that the credential manager works as expected.</p>
-</div>
-<div id="contemplate-if-youd-like-to-install-an-optional-git-client" class="section level2">
-<h2><span class="header-section-number">1.7</span> Contemplate if you’d like to install an optional Git client</h2>
-<p>I recommend GitKraken: <a href="https://www.gitkraken.com/download" class="uri">https://www.gitkraken.com/download</a></p>
 
 </div>
 </div>
@@ -509,8 +424,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="encodings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="get-data-directly-from-the-database.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -541,7 +456,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2019-10-15_setup.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-05-05_intro-to-drake.Rmd",
 "text": "Edit"
 },
 "history": {
