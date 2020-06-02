@@ -33,26 +33,25 @@ assignees: ''
 ### 2h before
 
 - [ ] Open meetup issue, paste this template and edit as necessary
-- [ ] Link resources
-- [ ] Develop content for the ds-incubator website
 - [ ] Announce on #coding
 - [ ] Add meetup date, title and link to the invitation on 2dii's calendar
-- [ ] Set alarm for +15' into the meeting
-- [ ] Set alarm for +25' into the meeting
 
 ### 10' before
 
-- [ ] Remind meeting and share link on #coding
-- [ ] Login at <https://zoom.us/> and start recurring ds-incubator meeting`***`
-    * `***` Backup (Google) https://meet.google.com/azf-xifn-scd
-- [ ] Under _Participants > More_ uncheck "Put participants in waiting room ..."
+- [ ] Login at <https://zoom.us/> and start the recurring ds-incubator meeting
+- [ ] Copy invitation from zoom's meeting
+- [ ] Announce on #coding:
+
+    You can now join the ds-incubator.
+    The meeting room is open at:
+    <LINK WITH PASSWORD>
+
 
 ### Start
 
 - [ ] 00': Welcome
 - [ ] 02': Announcements
 - [ ] 05': Record
-- [ ] 15': Q&A + discuss "must-have" or "nice-to-have"
 - [ ] 25': End
 - [ ] 30': Upload video
 - [ ] 35': Link video under resources
