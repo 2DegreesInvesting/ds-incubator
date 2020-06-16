@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 22 2020-03-24: Refactoring: Prepare for dplyr 1.0.0 | ds-incubator</title>
+  <title>Chapter 31 2020-05-27: Last post here | ds-incubator</title>
   <meta name="description" content="Share best practices in coding." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 22 2020-03-24: Refactoring: Prepare for dplyr 1.0.0 | ds-incubator" />
+  <meta property="og:title" content="Chapter 31 2020-05-27: Last post here | ds-incubator" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="2DegreesInvesting/ds-incubator" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 22 2020-03-24: Refactoring: Prepare for dplyr 1.0.0 | ds-incubator" />
+  <meta name="twitter:title" content="Chapter 31 2020-05-27: Last post here | ds-incubator" />
   
   <meta name="twitter:description" content="Share best practices in coding." />
   
@@ -35,8 +35,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="coding-sprint-retrospective.html"/>
-<link rel="next" href="r2dii-data-and-r2dii-match-are-now-on-cran.html"/>
+<link rel="prev" href="wrapping-up-our-discussion-on-how-to-manage-and-use-data.html"/>
+<link rel="next" href="gotchas-when-moving-code-from-a-script-to-an-r-package.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -416,54 +416,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="refactoring-prepare-for-dplyr-1.0.0" class="section level1">
-<h1><span class="header-section-number">Chapter 22</span> 2020-03-24: Refactoring: Prepare for dplyr 1.0.0</h1>
-<p>This meetup is for you if you use dplyr or want an overview of refactoring.</p>
-<p><a href="https://www.tidyverse.org/blog/2020/03/dplyr-1-0-0-is-coming-soon/">dplyr 1.0.0 is comming soon</a>. I includes great new features but also many <a href="https://github.com/tidyverse/dplyr/blob/master/NEWS.md#breaking-changes">changes that can break your code</a>. You will likely need to change your code, and you can save time and pain of you know about Refactoring.</p>
-<div id="content" class="section level2">
-<h2><span class="header-section-number">22.1</span> Content</h2>
-<ul>
-<li><p>Where to find <a href="https://github.com/tidyverse/dplyr/blob/master/NEWS.md#breaking-changes">dplyr’s breaking changes</a> and <a href="https://www.tidyverse.org/blog/">new features</a></p></li>
-<li><p>How to isolate your projects with <a href="https://rstudio.github.io/renv/articles/renv.html">renv</a>.</p>
-<ul>
-<li>DEMO</li>
-</ul></li>
-</ul>
-<blockquote>
-<p>If the potential for changes makes you nervous, now is a good time to learn about <a href="https://rstudio.github.io/renv/articles/renv.html">renv</a>. renv allows to create isolated, reproducible, projects so that you can experiment with new package versions while feeling secure that your existing projects will continue to work as they always have. – <a href="https://www.tidyverse.org/blog/2020/03/dplyr-1-0-0-is-coming-soon/" class="uri">https://www.tidyverse.org/blog/2020/03/dplyr-1-0-0-is-coming-soon/</a></p>
-</blockquote>
-<ul>
-<li><p>Refactoring</p>
-<ul>
-<li><a href="https://refactoring.com/">What is it?</a> <em>“Refactoring is a disciplined technique for restructuring an existing body of code, altering its internal structure without changing its external behavior”.</em></li>
-<li>Rename variable
-<ul>
-<li><a href="https://refactoring.com/catalog/">Catalog</a></li>
-<li>DEMO</li>
-</ul></li>
-</ul></li>
-<li><p>Why is it useful to have tests.</p></li>
-<li><p>Why is it useful to use Git.</p></li>
-</ul>
-</div>
-<div id="resources-1" class="section level2">
-<h2><span class="header-section-number">22.2</span> Resources</h2>
-<ul>
-<li><a href="https://youtu.be/xxtpMXvVM3s">Video recording</a></li>
-<li>Refactoring: <a href="https://refactoring.com/">What is it?</a> and <a href="https://refactoring.com/catalog/">catalog</a>.</li>
-<li>Tidyverse blog
-<ul>
-<li><a href="https://www.tidyverse.org/blog/2020/03/dplyr-1-0-0-is-coming-soon/">dplyr 1.0.0 is comming soon</a></li>
-<li><a href="https://www.tidyverse.org/blog/2020/03/dplyr-1-0-0-summarise/"><code>summarize()</code></a></li>
-<li><a href="https://dplyr.tidyverse.org/dev/articles/rowwise.html"><code>rowwise()</code></a></li>
-<li><a href="https://dplyr.tidyverse.org/dev/articles/colwise.html"><code>colwise()</code></a></li>
-</ul></li>
-<li><a href="https://github.com/tidyverse/dplyr/blob/master/NEWS.md#dplyr-100-in-development">Breaking changes and other dplyr NEWS.md</a></li>
-<li><a href="https://rstudio.github.io/renv/articles/renv.html">renv</a></li>
-<li>Help desk hours with CJ, Jackson, and Mauro (details to come)</li>
-</ul>
+<div id="last-post-here" class="section level1">
+<h1><span class="header-section-number">Chapter 31</span> 2020-05-27: Last post here</h1>
+<p>This is the last post here. The ds-incubator continues but we no longer add chapters to <a href="https://2degreesinvesting.github.io/ds-incubator/" class="uri">https://2degreesinvesting.github.io/ds-incubator/</a>. Instead you can follow the <a href="https://github.com/2DegreesInvesting/ds-incubator/blob/master/README.md">links</a> at the ds-incubator home page.</p>
 
-</div>
 </div>
 <div id="disqus_thread"></div>
 <script>
@@ -480,8 +436,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="coding-sprint-retrospective.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r2dii-data-and-r2dii-match-are-now-on-cran.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="wrapping-up-our-discussion-on-how-to-manage-and-use-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gotchas-when-moving-code-from-a-script-to-an-r-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -512,7 +468,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-03-24_refactoring-prepare-for-dplyr-1.Rmd",
+"link": "https://github.com/2DegreesInvesting/ds-incubator/edit/master/2020-05-27_last-post-here.Rmd",
 "text": "Edit"
 },
 "history": {
