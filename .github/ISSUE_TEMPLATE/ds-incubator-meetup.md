@@ -42,9 +42,9 @@ assignees: ''
 - [ ] Copy invitation from zoom's meeting
 - [ ] Announce on #coding:
 
-    You can now join the ds-incubator.
-    The meeting room is open at:
-    <LINK WITH PASSWORD>
+  The ds-incubator starts in 15'; please join early so we start on time.
+  The meeting room is already open at:
+  `<LINK WITH PASSWORD>`
 
 
 ### Start
