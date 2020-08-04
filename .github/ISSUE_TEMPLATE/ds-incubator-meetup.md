@@ -38,8 +38,7 @@ assignees: ''
 
 ### 10' before
 
-- [ ] Login at <https://zoom.us/> and start the recurring ds-incubator meeting
-- [ ] Copy invitation from zoom's meeting
+- [ ] Start the meeting.
 - [ ] Announce on #coding:
 
   The ds-incubator starts in 10'; please join early so we start on time.
