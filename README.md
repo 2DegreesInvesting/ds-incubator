@@ -10,4 +10,4 @@ The goal of the ds-incubator (data science incubator) is to share best practices
 
 --
 
-This project is managed by [Mauro](https://github.com/maurolepore) with support from [CJ](https://github.com/orgs/2DegreesInvesting/people/cjyetman) and guidance from [Klaus](https://github.com/orgs/2DegreesInvesting/people/2diiKlaus) and [Clare](https://github.com/orgs/2DegreesInvesting/people/Clare2D). Since mid-October, 2019 we meet online weekly. We welcome contributions from everyone at [2° Investing Initiative](http://2degrees-investing.org/).
+This project is managed by [Mauro](https://github.com/maurolepore) with support from [CJ](https://github.com/cjyetman) and guidance from [Klaus](https://github.com/2diiKlaus) and [Clare](https://github.com/Clare2D). Since mid-October, 2019 we meet online weekly. We welcome contributions from everyone at [2° Investing Initiative](http://2degrees-investing.org/).
