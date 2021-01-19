@@ -50,8 +50,13 @@ assignees: ''
 
 - [ ] 00': Welcome
 - [ ] 02': Announcements
+- [ ] 04': Nominate a timekeeper
 - [ ] 05': Record
-- [ ] 25': End
+- [ ] 05': Remind syllabus and requirements
+- [ ] 06': Explain benefit for the intended audience
+- [ ] 20': Show the relevance for 2DII (give an example) 
+- [ ] 24': Point to resources to learn more (share materials)
+- [ ] 25': Round of voices
+- [ ] 30': End 
 - [ ] 30': Upload video
 - [ ] 35': Link video under resources
-- [ ] 35': Label as "must-have" or "nice-to-have"
