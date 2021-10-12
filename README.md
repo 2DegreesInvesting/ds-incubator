@@ -24,7 +24,7 @@ Each meetup has:
 
 * A recording posted on the [ds-incubator
 YouTube-playlist](https://bit.ly/ds-incubator-videos), including a link to the
-meetup section on the series syllabus.
+relevant section of the syllabus.
 
 * A post sharing the meetup recording with `#rstats` on twitter
 ([example](https://twitter.com/mauro_lepore/status/1425121104784416769?s=20)).
