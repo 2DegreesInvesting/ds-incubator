@@ -4,8 +4,8 @@ The goal of the ds-incubator (data science incubator) is to share best practices
 in data-science at [2DII](https://2degrees-investing.org/) and beyond.
 
 The main element of this project is an internal, online, weekly meetup. A series
-of meetups covers a topic that is interesting to us and useful to broader
-data-science community. We vote which topic to cover based on a few
+of meetups covers a topic that is interesting to us and hopefully useful to the
+broader data-science community. We vote which topic to cover based on a few
 [suggestions](https://bit.ly/dsi-ideas) and contributed ideas.
 
 Each series has:
