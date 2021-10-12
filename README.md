@@ -10,11 +10,11 @@ broader data-science community. We vote which topic to cover based on a few
 
 Each series has:
 
-1. A GitHub issue that briefly describes the
+* A GitHub issue that briefly describes the
 series and guides the logistics of each meetup
 ([example](https://github.com/2DegreesInvesting/ds-incubator/issues/75)).
 
-2. A GitHub repository with a syllabus
+* A GitHub repository with a syllabus
 ([example](https://github.com/2DegreesInvesting/ds.reprex)).
 
 Each meetup has:
