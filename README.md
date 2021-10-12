@@ -27,7 +27,7 @@ YouTube-playlist](https://bit.ly/ds-incubator-videos), including a link to the
 relevant section of the syllabus.
 
 * A post sharing the meetup recording with `#rstats` on twitter
-([example](https://twitter.com/mauro_lepore/status/1425121104784416769?s=20)).
+([example](https://twitter.com/mauro_lepore/status/1447936387894976512?s=20)).
 
 ----
 
