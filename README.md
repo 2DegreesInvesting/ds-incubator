@@ -1,10 +1,11 @@
 # ds-incubator
 
-The goal of the data science incubator (ds-incubator) is to share best practices
-in data-science. The main element of the project is an internal, online meetup,
-every Tuesdays at 16:00 GMT+2 (Berlin). A number of meetups (typically 3-6) make
-up a series, focused on a topic that is interesting to us and useful to broader
-open source community. We vote which topic to cover based on a few
+The goal of the ds-incubator (data science incubator) is to share best practices
+in data-science. The main element of the project is an internal, online, weekly
+meetup on Tuesdays at 16:00 GMT+2 (Berlin). A series of meetups covers a topic
+that is interesting to us -- data-scientists at
+[2DII](https://2degrees-investing.org/) --  and useful to broader open source
+community. We vote which topic to cover based on a few
 [suggestions](https://bit.ly/dsi-ideas) and and contributed ideas.
 
 Each series has:
